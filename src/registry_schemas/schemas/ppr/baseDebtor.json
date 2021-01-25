@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/baseDebtor",
+    "type": "object",
+    "title": "The PPR Base Debtor Schema",
+    "definitions": {},
+    "properties": {
+       "businessName": {
+            "type": "string",
+            "maxLength": 150,
+            "description": "Legal business name."
+        },
+        "personName": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/personName"
+        }
+    },
+    "oneOf":[
+        {
+            "required": [
+                "businessName"
+            ]
+        },
+        {
+            "required": [
+                "personName"
+            ]
+        }
+      ]
+    }

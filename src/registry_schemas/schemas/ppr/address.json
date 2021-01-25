@@ -1,0 +1,55 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/address",
+    "type": "object",
+    "title": "The PPR Address Schema",
+    "properties": {
+        "street": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Street address and name."
+        },
+        "streetAdditional": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Additional street address information."
+        },
+        "city": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "City, Town, or Village."
+        },
+        "country": {
+            "type": "string",
+            "description": "2 Character ISO 3166-1 Alpha-2 Country Code.",
+            "minLength": 2,
+            "maxLength": 2
+        },
+        "region": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 2,
+            "description": "For Canada or USA, 2 character region code."
+        },
+        "postalCode": {
+            "type": "string",
+            "maxLength": 15,
+            "description": "Postal Code in A1A 1A1 format for Canada, or zip code for US addresses."
+        },
+        "deliveryInstructions": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "Not in spec."
+        }
+    },
+    "required": [
+        "street",
+        "city",
+        "country",
+        "postalCode",
+        "region"
+    ]
+}
