@@ -11,18 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR person name schema is valid.
+"""Test Suite to ensure the common person name schema is valid.
 
 """
 import copy
 
 from registry_schemas import validate
-from registry_schemas.example_data.ppr import PERSON_NAME
+from registry_schemas.example_data.common import PERSON_NAME
 
 
 def test_valid_person():
     """Assert that the schema is performing as expected for an individual name."""
-    is_valid, errors = validate(PERSON_NAME, 'personName', 'ppr')
+    is_valid, errors = validate(PERSON_NAME, 'personName', 'common')
 
     if errors:
         for err in errors:
@@ -35,9 +35,9 @@ def test_valid_person():
 def test_invalid_person_firstname():
     """Assert that an invalid person name fails - first name too long."""
     name = copy.deepcopy(PERSON_NAME)
-    name['first'] = 'Too longXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    name['first'] = 'Too long0123456789012345678901234567890123456789012'
 
-    is_valid, errors = validate(name, 'personName', 'ppr')
+    is_valid, errors = validate(name, 'personName', 'common')
 
     if errors:
         for err in errors:
@@ -50,9 +50,9 @@ def test_invalid_person_firstname():
 def test_invalid_person_lastname():
     """Assert that an invalid person name fails - last name too long."""
     name = copy.deepcopy(PERSON_NAME)
-    name['last'] = 'Too longXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    name['last'] = 'Too long0123456789012345678901234567890123456789012'
 
-    is_valid, errors = validate(name, 'personName', 'ppr')
+    is_valid, errors = validate(name, 'personName', 'common')
 
     if errors:
         for err in errors:
@@ -65,9 +65,9 @@ def test_invalid_person_lastname():
 def test_invalid_person_middlename():
     """Assert that an invalid person name fails - middle name too long."""
     name = copy.deepcopy(PERSON_NAME)
-    name['middle'] = 'Too longXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    name['middle'] = 'Too long0123456789012345678901234567890123456789012'
 
-    is_valid, errors = validate(name, 'personName', 'ppr')
+    is_valid, errors = validate(name, 'personName', 'common')
 
     if errors:
         for err in errors:
@@ -82,7 +82,7 @@ def test_invalid_person_missing_first():
     name = copy.deepcopy(PERSON_NAME)
     del name['first']
 
-    is_valid, errors = validate(name, 'personName', 'ppr')
+    is_valid, errors = validate(name, 'personName', 'common')
 
     if errors:
         for err in errors:
@@ -97,7 +97,7 @@ def test_invalid_person_missing_last():
     name = copy.deepcopy(PERSON_NAME)
     del name['last']
 
-    is_valid, errors = validate(name, 'personName', 'ppr')
+    is_valid, errors = validate(name, 'personName', 'common')
 
     if errors:
         for err in errors:

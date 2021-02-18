@@ -11,18 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR payment schema is valid.
+"""Test Suite to ensure the PPR payment reference schema is valid.
 
 """
 import copy
 
 from registry_schemas import validate
-from registry_schemas.example_data.ppr import PAYMENT
+from registry_schemas.example_data.common import PAYMENT_REFERENCE
 
 
 def test_valid_payment():
     """Assert that the schema is performing as expected."""
-    is_valid, errors = validate(PAYMENT, 'payment', 'ppr')
+    is_valid, errors = validate(PAYMENT_REFERENCE, 'paymentReference', 'common')
 
     if errors:
         for err in errors:
@@ -34,10 +34,10 @@ def test_valid_payment():
 
 def test_invalid_payment_receipt():
     """Assert that an invalid payment fails - receipt too short."""
-    payment = copy.deepcopy(PAYMENT)
+    payment = copy.deepcopy(PAYMENT_REFERENCE)
     payment['receipt'] = 'Too short'
 
-    is_valid, errors = validate(payment, 'payment', 'ppr')
+    is_valid, errors = validate(payment, 'paymentReference', 'common')
 
     if errors:
         for err in errors:
@@ -49,10 +49,10 @@ def test_invalid_payment_receipt():
 
 def test_invalid_payment_invoice():
     """Assert that an invalid payment fails - invoiceId too long."""
-    payment = copy.deepcopy(PAYMENT)
+    payment = copy.deepcopy(PAYMENT_REFERENCE)
     payment['invoiceId'] = 'This is a really long invoiceId'
 
-    is_valid, errors = validate(payment, 'payment', 'ppr')
+    is_valid, errors = validate(payment, 'paymentReference', 'common')
 
     if errors:
         for err in errors:
@@ -64,10 +64,10 @@ def test_invalid_payment_invoice():
 
 def test_invalid_address_missing_invoice():
     """Assert that an invalid address fails - missing required field invoiceId."""
-    payment = copy.deepcopy(PAYMENT)
+    payment = copy.deepcopy(PAYMENT_REFERENCE)
     del payment['invoiceId']
 
-    is_valid, errors = validate(payment, 'payment', 'ppr')
+    is_valid, errors = validate(payment, 'paymentReference', 'common')
 
     if errors:
         for err in errors:
@@ -79,10 +79,10 @@ def test_invalid_address_missing_invoice():
 
 def test_invalid_address_missing_receipt():
     """Assert that an invalid address fails - missing required field receipt."""
-    payment = copy.deepcopy(PAYMENT)
+    payment = copy.deepcopy(PAYMENT_REFERENCE)
     del payment['receipt']
 
-    is_valid, errors = validate(payment, 'payment', 'ppr')
+    is_valid, errors = validate(payment, 'paymentReference', 'common')
 
     if errors:
         for err in errors:

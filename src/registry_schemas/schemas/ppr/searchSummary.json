@@ -32,7 +32,7 @@
                     "description": "Specifies the type of Financing Statement."
                 },
                 "debtor": {
-                    "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/party"
+                    "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
                 },
                 "vehicleCollateral": {
                     "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/vehicleCollateral"

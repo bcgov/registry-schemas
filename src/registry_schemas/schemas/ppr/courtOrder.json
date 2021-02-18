@@ -25,8 +25,8 @@
         },
         "orderDate": {
             "type": "string",
-            "description": "The date of the court order in ISO 8601 format YYYY-MM-DD.",
-            "format": "date"
+            "description": "The date of the court order in the ISO 8601 format YYYY-MM-DDThh:mm:ssTZD.",
+            "format": "date-time"
         },
         "effectOfOrder": {
             "type": "string",

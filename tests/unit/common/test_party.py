@@ -17,12 +17,12 @@
 import copy
 
 from registry_schemas import validate
-from registry_schemas.example_data.ppr import PARTY
+from registry_schemas.example_data.common import PARTY
 
 
 def test_valid_party_person():
     """Assert that the schema is performing as expected for an individual party."""
-    is_valid, errors = validate(PARTY, 'party', 'ppr')
+    is_valid, errors = validate(PARTY, 'party', 'common')
 
     if errors:
         for err in errors:
@@ -37,7 +37,7 @@ def test_valid_party_business():
     party = copy.deepcopy(PARTY)
     party['businessName'] = 'BUSINESS NAME' 
     del party['personName']
-    is_valid, errors = validate(party, 'party', 'ppr')
+    is_valid, errors = validate(party, 'party', 'common')
 
     if errors:
         for err in errors:
@@ -54,7 +54,7 @@ def test_valid_party_code():
     del party['personName']
     del party['address']
     del party['emailAddress']
-    is_valid, errors = validate(party, 'party', 'ppr')
+    is_valid, errors = validate(party, 'party', 'common')
 
     if errors:
         for err in errors:
@@ -69,7 +69,7 @@ def test_invalid_party_missing_lastname():
     party = copy.deepcopy(PARTY)
     del party['personName']['last']
 
-    is_valid, errors = validate(party, 'party', 'ppr')
+    is_valid, errors = validate(party, 'party', 'common')
 
     if errors:
         for err in errors:
@@ -85,7 +85,7 @@ def test_invalid_party_birthdate():
     party = copy.deepcopy(PARTY)
     party['birthDate'] = 'XXXXXXX'
 
-    is_valid, errors = validate(party, 'party', 'ppr')
+    is_valid, errors = validate(party, 'party', 'common')
 
     if errors:
         for err in errors:
@@ -100,7 +100,7 @@ def test_invalid_party_missing_person():
     party = copy.deepcopy(PARTY)
     del party['personName']
 
-    is_valid, errors = validate(party, 'party', 'ppr')
+    is_valid, errors = validate(party, 'party', 'common')
 
     if errors:
         for err in errors:
@@ -116,7 +116,7 @@ def test_invalid_party_missing_person_address():
     del party['address']
     del party['partyId']
 
-    is_valid, errors = validate(party, 'party', 'ppr')
+    is_valid, errors = validate(party, 'party', 'common')
 
     if errors:
         for err in errors:
@@ -134,7 +134,7 @@ def test_invalid_party_missing_business_address():
     del party['partyId']
     party['businessName'] = 'BUSINESS NAME'
     
-    is_valid, errors = validate(party, 'party', 'ppr')
+    is_valid, errors = validate(party, 'party', 'common')
 
     if errors:
         for err in errors:

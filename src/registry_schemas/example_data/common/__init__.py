@@ -11,15 +11,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Example PPR JSON segments and statements that are known to work.
 
-"""Version of this service in PEP440.
-
-[N!]N(.N)*[{a|b|rc}N][.postN][.devN]
-Epoch segment: N!
-Release segment: N(.N)*
-Pre-release segment: {a|b|rc}N
-Post-release segment: .postN
-Development release segment: .devN
+These can be used in other tests as basis for the JSON registration statements.
 """
+from .schema_data import (
+    ADDRESS,
+    PARTY,
+    PAYMENT_REFERENCE,
+    PERSON_NAME
+)
 
-__version__ = '1.1.0'  # pylint: disable=invalid-name
+
+__all__ = [
+    'ADDRESS',
+    'PARTY',
+    'PAYMENT_REFERENCE',
+    'PERSON_NAME'
+]

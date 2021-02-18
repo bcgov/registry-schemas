@@ -1,9 +1,9 @@
 {
     "definitions": {},
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/address",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/common/address",
     "type": "object",
-    "title": "The PPR Address Schema",
+    "title": "The Common Address Schema",
     "properties": {
         "street": {
             "type": "string",
@@ -17,7 +17,7 @@
         },
         "city": {
             "type": "string",
-            "maxLength": 40,
+            "maxLength": 30,
             "description": "City, Town, or Village."
         },
         "country": {
@@ -32,7 +32,7 @@
                 "null"
             ],
             "maxLength": 2,
-            "description": "For Canada or USA, 2 character region code."
+            "description": "For Canada or USA, 2 character province or state code."
         },
         "postalCode": {
             "type": "string",
@@ -42,7 +42,7 @@
         "deliveryInstructions": {
             "type": "string",
             "maxLength": 80,
-            "description": "Not in spec."
+            "description": ""
         }
     },
     "required": [
