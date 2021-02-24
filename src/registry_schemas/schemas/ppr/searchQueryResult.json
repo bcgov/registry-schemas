@@ -37,7 +37,7 @@
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/searchSummary"
         },
         "payment": {
-            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/payment"
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"
         }
     },
     "required": [

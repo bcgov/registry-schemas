@@ -15,14 +15,16 @@
 
 Test helper functions to load and assert that a JSON payload validates against a defined schema.
 """
+# pylint: disable=unused-variable, too-many-arguments
+
 import json
-from os import listdir, path
+import os
+from os import path
 from typing import Tuple
 
 from jsonschema import Draft7Validator, RefResolver, SchemaError, draft7_format_checker
 
 
-#BASE_URI = 'https://bcrs.gov.bc.ca/ppr/.well_known/schemas'
 BASE_URI = 'https://bcrs.gov.bc.ca/.well_known/schemas'
 
 
@@ -51,14 +53,14 @@ def get_schema_store(validate_schema: bool = False, schema_search_path: str = No
         if not schema_search_path:
             schema_search_path = path.join(path.dirname(__file__), 'schemas')
         schemastore = {}
-        fnames = listdir(schema_search_path)
-        for fname in fnames:
-            fpath = path.join(schema_search_path, fname)
-            if fpath[-5:] == '.json':
-                with open(fpath, 'r') as schema_fd:
-                    schema = json.load(schema_fd)
-                    if '$id' in schema:
-                        schemastore[schema['$id']] = schema
+        for dirpath, dirnames, filenames in os.walk(schema_search_path):
+            for fname in filenames:
+                fpath = path.join(dirpath, fname)
+                if fpath[-5:] == '.json':
+                    with open(fpath, 'r') as schema_fd:
+                        schema = json.load(schema_fd)
+                        if '$id' in schema:
+                            schemastore[schema['$id']] = schema
 
         if validate_schema:
             for _, schema in schemastore.items():
@@ -80,10 +82,7 @@ def validate(json_data: json,
     """Load the json file and validate against loaded schema."""
     try:
         if not schema_search_path:
-            if not app_id:
-                schema_search_path = path.join(path.dirname(__file__), 'schemas')
-            else:
-                schema_search_path = path.join(path.dirname(__file__), 'schemas/' + app_id)
+            schema_search_path = path.join(path.dirname(__file__), 'schemas')
 
         if not schema_store:
             schema_store = get_schema_store(validate_schema, schema_search_path)

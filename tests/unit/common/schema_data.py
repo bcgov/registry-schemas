@@ -1,4 +1,4 @@
-# Copyright © 2019 Province of British Columbia
+# Copyright © 2020 Province of British Columbia
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,15 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Test Suite data used across many tests.
 
-"""Version of this service in PEP440.
-
-[N!]N(.N)*[{a|b|rc}N][.postN][.devN]
-Epoch segment: N!
-Release segment: N(.N)*
-Pre-release segment: {a|b|rc}N
-Post-release segment: .postN
-Development release segment: .devN
+Test array used in multiple pytests.
 """
-
-__version__ = '1.1.0'  # pylint: disable=invalid-name
+# testdata pattern is ({str: environment}, {expected return value})
+TEST_SCHEMAS_DATA = [
+    ('address.json'),
+    ('party.json'),
+    ('payment.json'),
+    ('personName.json')
+]

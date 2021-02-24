@@ -11,7 +11,7 @@
             "description": "Legal business name."
         },
         "personName": {
-            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/personName"
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/personName"
         }
     },
     "oneOf":[

@@ -13,7 +13,6 @@
 # limitations under the License.
 """Sample data used across many tests."""
 # pylint: disable=too-many-lines
-import copy
 
 ADDRESS = {
     'street': 'delivery_address - address line one',
@@ -49,12 +48,12 @@ AMENDMENT_STATEMENT = {
         'courtName': 'Supreme Court of British Columbia.',
         'courtRegistry': 'KAMLOOPS',
         'fileNumber': 'BC123445',
-        'orderDate': '2020-02-02',
+        'orderDate': '2020-02-02T00:00:00-08:00',
         'effectOfOrder': 'Court Order to remove James Smith as debtor.'
     },
     'removeTrustIndenture': False,
     'addTrustIndenture': True,
-    'deleteDebtors': [ 
+    'deleteDebtors': [
         {
             'businessName': 'Brawn Window Cleaning Inc.',
             'address': {
@@ -65,7 +64,7 @@ AMENDMENT_STATEMENT = {
                 'postalCode': 'V8S 3J5'
             },
             'partyId': 1321961
-        } 
+        }
     ],
     'addDebtors': [
         {
@@ -133,14 +132,14 @@ AMENDMENT_STATEMENT = {
             'description': 'Fridges and stoves. Proceeds: Accts Receivable.',
             'addedDateTime': '2019-02-02T21:08:32Z',
             'collateralId': 123435
-        }        
+        }
     ],
     'addGeneralCollateral': [
         {
             'description': '1985 white Fender Stratocaster Guitar #1234',
             'addedDateTime': '2020-02-02T21:08:32Z',
             'collateralId': 126000
-        }        
+        }
     ],
    'createDateTime': '2020-02-21T18:56:20Z',
     'amendmentRegistrationNumber': '10000301R',
@@ -178,7 +177,7 @@ CHANGE_STATEMENT = {
         'emailAddress': 'bsmith@abc-search.com'
     },
     'changeType': 'AC',
-    'deleteDebtors': [ 
+    'deleteDebtors': [
         {
             'businessName': 'Brawn Window Cleaning Inc.',
             'address': {
@@ -189,7 +188,7 @@ CHANGE_STATEMENT = {
                 'postalCode': 'V8S 3J5'
             },
             'partyId': 1321961
-        } 
+        }
     ],
     'addDebtors': [
         {
@@ -257,14 +256,14 @@ CHANGE_STATEMENT = {
             'description': 'Fridges and stoves. Proceeds: Accts Receivable.',
             'addedDateTime': '2019-02-02T21:08:32Z',
             'collateralId': 123435
-        }        
+        }
     ],
     'addGeneralCollateral': [
         {
             'description': '1985 white Fender Stratocaster Guitar #1234',
             'addedDateTime': '2020-02-02T21:08:32Z',
             'collateralId': 126000
-        }        
+        }
     ],
    'createDateTime': '2020-02-21T18:56:20Z',
     'changeRegistrationNumber': '10000301R',
@@ -301,7 +300,7 @@ COURT_ORDER = {
     'courtName': 'Supreme Court of British Columbia.',
     'courtRegistry': 'KAMLOOPS',
     'fileNumber': 'BC123445',
-    'orderDate': '2020-02-02',
+    'orderDate': '2020-02-02T00:00:00-08:00',
     'effectOfOrder': 'Court Order to remove James Smith as debtor.'
 }
 
@@ -358,7 +357,7 @@ DRAFT_AMENDMENT_STATEMENT = {
       'courtName': 'Supreme Court of British Columbia.',
       'courtRegistry': 'KAMLOOPS',
       'fileNumber': 'BC123445',
-      'orderDate': '2020-02-02',
+      'orderDate': '2020-02-02T00:00:00-08:00',
       'effectOfOrder': 'Court Order to remove James Smith as debtor.'
     },
     'deleteDebtors': [
@@ -458,7 +457,7 @@ DRAFT_FINANCING_STATEMENT = {
           'country': 'CA',
           'postalCode': 'A1A 1A1'
         },
-        'birthDate': '1990-06-15',
+        'birthDate': '1990-06-15T09:30:00-08:00',
         'emailAddress': 'dsmith@debtor1.com'
       }
     ],
@@ -558,14 +557,14 @@ FINANCING_STATEMENT = {
             'description': 'Fridges and stoves. Proceeds: Accts Receivable.',
             'addedDateTime': '2019-02-02T21:08:32Z',
             'collateralId': 123435
-        }        
+        }
     ],
-    'expiryDate': '2025-02-21',
+    'expiryDate': '2025-02-21T23:59:59+00:00',
     'lifeYears': 5,
     'trustIndenture': False,
     'lifeInfinite': False,
     'lienAmount': '12,000.00',
-    'surrenderDate': '2021-01-31',
+    'surrenderDate': '2021-01-31T00:00:00-08:00',
     'baseRegistrationNumber': '023001B',
     'createDateTime': '2020-02-21T18:56:20Z',
     'payment': {
@@ -614,7 +613,7 @@ FINANCING_STATEMENT_HISTORY = [
             'country': 'CA',
             'postalCode': 'A1A 1A1'
           },
-          'birthDate': '1990-06-15',
+          'birthDate': '1990-06-15T12:20:20-08:00',
           'emailAddress': 'dsmith@debtor1.com',
           'partyId': 1321065
         }
@@ -632,7 +631,7 @@ FINANCING_STATEMENT_HISTORY = [
       'generalCollateral': [],
       'trustIndenture': False,
       'lifeYears': 2,
-      'expiryDate': '2022-02-21',
+      'expiryDate': '2022-02-21T23:59:59+00:00',
       'baseRegistrationNumber': '023001B',
       'createDateTime': '2020-02-21T18:56:20Z',
       'payment': {
@@ -754,10 +753,10 @@ FINANCING_STATEMENT_HISTORY = [
           'courtName': 'Supreme Court of British Columbia.',
           'courtRegistry': 'VICTORIA',
           'fileNumber': 'BC123495',
-          'orderDate': '2020-02-21',
+          'orderDate': '2020-02-21T00:00:00-08:00',
           'effectOfOrder': 'Court Order to renew Repairers Lien.'
         },
-        'expiryDate': '2020-08-21',
+        'expiryDate': '2020-08-21T23:59:59+00:00',
         'createDateTime': '2020-02-21T18:56:20Z',
         'renewalRegistrationNumber': '010002R',
         'payment': {
@@ -812,7 +811,7 @@ PARTY = {
     'postalCode': 'V8S 2V4'
   },
   'emailAddress': 'msmith@gmail.com',
-  'birthDate': '1986-12-01',
+  'birthDate': '1986-12-01T19:20:20-08:00',
   'partyId': 1321064
 }
 
@@ -845,12 +844,12 @@ RENEWAL_STATEMENT = {
         },
         'emailAddress': 'bsmith@abc-search.com'
     },
-    'expiryDate': '2025-02-21',
+    'expiryDate': '2025-02-21T23:59:59+00:00',
     'courtOrderInformation': {
         'courtName': 'Supreme Court of British Columbia.',
         'courtRegistry': 'KAMLOOPS',
         'fileNumber': 'BC123445',
-        'orderDate': '2020-02-02',
+        'orderDate': '2020-02-02T00:00:00-08:00',
         'effectOfOrder': 'Court Order to remove James Smith as debtor.'
     },
     'createDateTime': '2020-02-21T18:56:20Z',
@@ -989,4 +988,3 @@ VEHICLE_COLLATERAL = {
   'model': 'TUSCON',
   'vehicleId': 876114
 }
-
