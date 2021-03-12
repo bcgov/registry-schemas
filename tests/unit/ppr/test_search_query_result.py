@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR Search Query Result schema is valid.
-
-"""
+"""Test Suite to ensure the PPR Search Query Result schema is valid."""
 import copy
 
 from registry_schemas import validate
@@ -34,11 +32,40 @@ def test_valid_query_result():
 
 def test_valid_query_result_empty():
     """Assert that the schema is performing as expected for a search query with no results."""
-    result= copy.deepcopy(SEARCH_QUERY_RESULT)
+    result = copy.deepcopy(SEARCH_QUERY_RESULT)
     del result['results']
 
     is_valid, errors = validate(result, 'searchQueryResult', 'ppr')
 
+    if errors:
+        for err in errors:
+            print(err.message)
+    print(errors)
+
+    assert is_valid
+
+
+def test_valid_query_result_missing_exact():
+    """Assert that the schema is performing as expected for a search query with no exactResultsSize."""
+    result = copy.deepcopy(SEARCH_QUERY_RESULT)
+    del result['exactResultsSize']
+
+    is_valid, errors = validate(result, 'searchQueryResult', 'ppr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+    print(errors)
+
+    assert is_valid
+
+
+def test_valid_query_result_missing_similar():
+    """Assert that the schema is performing as expected for a search query with no similarResultsSize."""
+    result = copy.deepcopy(SEARCH_QUERY_RESULT)
+    del result['similarResultsSize']
+
+    is_valid, errors = validate(result, 'searchQueryResult', 'ppr')
 
     if errors:
         for err in errors:
@@ -58,7 +85,6 @@ def test_invalid_query_result_missing_id():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -73,7 +99,6 @@ def test_invalid_query_result_missing_query():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -88,7 +113,6 @@ def test_invalid_query_result_missing_payment():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -103,7 +127,6 @@ def test_invalid_query_result_missing_timestamp():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -118,7 +141,6 @@ def test_invalid_query_result_missing_max():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -133,7 +155,6 @@ def test_invalid_query_result_missing_total():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -148,7 +169,6 @@ def test_invalid_query_result_missing_returned():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -163,7 +183,6 @@ def test_invalid_query_result_id():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -178,7 +197,6 @@ def test_invalid_query_result_timestamp():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -193,7 +211,6 @@ def test_invalid_query_result_query():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -201,14 +218,13 @@ def test_invalid_query_result_query():
 def test_invalid_query_result_results():
     """Assert that an invalid search query result fails - first result is invalid."""
     result = copy.deepcopy(SEARCH_QUERY_RESULT)
-    del result['results'][0]['registrationType']
+    del result['results'][0]['matchType']
 
     is_valid, errors = validate(result, 'searchQueryResult', 'ppr')
 
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
 
@@ -223,8 +239,5 @@ def test_invalid_query_result_payment():
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
     assert not is_valid
-
-

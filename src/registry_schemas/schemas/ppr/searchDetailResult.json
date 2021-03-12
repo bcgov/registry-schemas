@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/searchDetailResult",
+    "type": "object",
+    "title": "The PPR Search Detail Results Schema to hold search Financing Statement details from the second step in the search process",
+    "definitions": {},
+    "properties": {
+        "searchDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The UTC date and time the system executed the search query (search step one)."
+        },
+        "exactResultsSize": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Set by the Registry, the number of exact match Financing Statements included in the response."
+        },
+        "similarResultsSize": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Set by the Registry, the number of similar match Financing Statements included in the response."
+        },
+        "totalResultsSize": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "The total number or Registration matches total number of Financing Statements included in the response."
+        },
+        "searchQuery": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/searchQuery"
+        },
+        "payment": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"
+        },
+        "details": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/financingStatementHistory"
+        }
+    },
+    "required": [
+        "searchDateTime",
+        "exactResultsSize",
+        "similarResultsSize",
+        "totalResultsSize",
+        "searchQuery",
+        "payment"
+    ]
+}
