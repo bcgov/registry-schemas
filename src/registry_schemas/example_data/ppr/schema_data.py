@@ -15,142 +15,142 @@
 # pylint: disable=too-many-lines
 
 ADDRESS = {
-    'street': 'delivery_address - address line one',
-    'streetAdditional': 'line 2',
-    'city': 'delivery_address city',
-    'country': 'CA',
-    'postalCode': 'H0H0H0',
-    'region': 'BC'
+  'street': 'delivery_address - address line one',
+  'streetAdditional': 'line 2',
+  'city': 'delivery_address city',
+  'country': 'CA',
+  'postalCode': 'H0H0H0',
+  'region': 'BC'
 }
 
 AMENDMENT_STATEMENT = {
-    'statementType': 'AMENDMENT_STATEMENT',
-    'baseRegistrationNumber': '023001B',
-    'clientReferenceId': 'A-00000402',
-    'documentId': '1234567',
-    'baseDebtor': {
-        'businessName': 'DEBTOR 1 INC.'
-    },
-   'registeringParty': {
-        'businessName': 'ABC SEARCHING COMPANY',
+  'statementType': 'AMENDMENT_STATEMENT',
+  'baseRegistrationNumber': '023001B',
+  'clientReferenceId': 'A-00000402',
+  'documentId': '1234567',
+  'baseDebtor': {
+      'businessName': 'DEBTOR 1 INC.'
+  },
+  'registeringParty': {
+      'businessName': 'ABC SEARCHING COMPANY',
+      'address': {
+          'street': '222 SUMMER STREET',
+          'city': 'VICTORIA',
+          'region': 'BC',
+          'country': 'CA',
+          'postalCode': 'V8W 2V8'
+      },
+      'emailAddress': 'bsmith@abc-search.com'
+  },
+  'changeType': 'AM',
+  'description': 'Court Order debtor removal.',
+  'courtOrderInformation': {
+      'courtName': 'Supreme Court of British Columbia.',
+      'courtRegistry': 'KAMLOOPS',
+      'fileNumber': 'BC123445',
+      'orderDate': '2020-02-02T00:00:00-08:00',
+      'effectOfOrder': 'Court Order to remove James Smith as debtor.'
+  },
+  'removeTrustIndenture': False,
+  'addTrustIndenture': True,
+  'deleteDebtors': [
+    {
+        'businessName': 'Brawn Window Cleaning Inc.',
         'address': {
-            'street': '222 SUMMER STREET',
-            'city': 'VICTORIA',
+            'street': '1234 Blanshard St',
+            'city': 'Victoria',
             'region': 'BC',
             'country': 'CA',
-            'postalCode': 'V8W 2V8'
+            'postalCode': 'V8S 3J5'
         },
-        'emailAddress': 'bsmith@abc-search.com'
-    },
-    'changeType': 'AM',
-    'description': 'Court Order debtor removal.',
-    'courtOrderInformation': {
-        'courtName': 'Supreme Court of British Columbia.',
-        'courtRegistry': 'KAMLOOPS',
-        'fileNumber': 'BC123445',
-        'orderDate': '2020-02-02T00:00:00-08:00',
-        'effectOfOrder': 'Court Order to remove James Smith as debtor.'
-    },
-    'removeTrustIndenture': False,
-    'addTrustIndenture': True,
-    'deleteDebtors': [
-        {
-            'businessName': 'Brawn Window Cleaning Inc.',
-            'address': {
-                'street': '1234 Blanshard St',
-                'city': 'Victoria',
-                'region': 'BC',
-                'country': 'CA',
-                'postalCode': 'V8S 3J5'
-            },
-            'partyId': 1321961
-        }
-    ],
-    'addDebtors': [
-        {
-            'businessName': 'Brown Window Cleaning Inc.',
-            'address': {
-                'street': '1234 Blanshard St',
-                'city': 'Victoria',
-                'region': 'BC',
-                'country': 'CA',
-                'postalCode': 'V8S 3J5'
-             },
-            'emailAddress': 'csmith@bwc.com',
-            'partyId': 1400094
-        }
-    ],
-    'deleteSecuredParties': [
-        {
-            'businessName': 'BANK OF BRITISH COLUMBIA',
-            'address': {
-                'street': '3720 BEACON AVENUE',
-                'city': 'SIDNEY',
-                'region': 'BC',
-                'country': 'CA',
-                'postalCode': 'V7R 1R7'
-            },
-            'partyId': 1321095
-        }
-    ],
-    'addSecuredParties': [
-        {
-            'businessName': 'BANK OF BRITISH COLUMBIA',
-            'address': {
-                'street': '3721 BEACON AVENUE',
-                'city': 'SIDNEY',
-                'region': 'BC',
-                'country': 'CA',
-                'postalCode': 'V7R 1R7'
-            },
-            'emailAddress': 'asmith@bobc.com',
-            'partyId': 1400095
-        }
-    ],
-    'deleteVehicleCollateral': [
-        {
-            'type': 'MV',
-            'serialNumber': 'KNADM5A39E6904135',
-            'year': 2014,
-            'make': 'KIA',
-            'model': 'RIO',
-            'vehicleId': 974124
-        }
-    ],
-    'addVehicleCollateral': [
-        {
-            'type': 'MV',
-            'serialNumber': 'KM8J3CA46JU622994',
-            'year': 2018,
-            'make': 'HYUNDAI',
-            'model': 'TUCSON',
-            'vehicleId': 980000
-        }
-    ],
-    'deleteGeneralCollateral': [
-        {
-            'description': 'Fridges and stoves. Proceeds: Accts Receivable.',
-            'addedDateTime': '2019-02-02T21:08:32Z',
-            'collateralId': 123435
-        }
-    ],
-    'addGeneralCollateral': [
-        {
-            'description': '1985 white Fender Stratocaster Guitar #1234',
-            'addedDateTime': '2020-02-02T21:08:32Z',
-            'collateralId': 126000
-        }
-    ],
-   'createDateTime': '2020-02-21T18:56:20Z',
-    'amendmentRegistrationNumber': '10000301R',
-    'payment': {
-        'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
-        'invoiceId': '2199700'
+        'partyId': 1321961
     }
+  ],
+  'addDebtors': [
+    {
+        'businessName': 'Brown Window Cleaning Inc.',
+        'address': {
+            'street': '1234 Blanshard St',
+            'city': 'Victoria',
+            'region': 'BC',
+            'country': 'CA',
+            'postalCode': 'V8S 3J5'
+          },
+        'emailAddress': 'csmith@bwc.com',
+        'partyId': 1400094
+    }
+  ],
+  'deleteSecuredParties': [
+    {
+      'businessName': 'BANK OF BRITISH COLUMBIA',
+      'address': {
+          'street': '3720 BEACON AVENUE',
+          'city': 'SIDNEY',
+          'region': 'BC',
+          'country': 'CA',
+          'postalCode': 'V7R 1R7'
+      },
+      'partyId': 1321095
+    }
+  ],
+  'addSecuredParties': [
+    {
+      'businessName': 'BANK OF BRITISH COLUMBIA',
+      'address': {
+          'street': '3721 BEACON AVENUE',
+          'city': 'SIDNEY',
+          'region': 'BC',
+          'country': 'CA',
+          'postalCode': 'V7R 1R7'
+      },
+      'emailAddress': 'asmith@bobc.com',
+      'partyId': 1400095
+    }
+  ],
+  'deleteVehicleCollateral': [
+    {
+      'type': 'MV',
+      'serialNumber': 'KNADM5A39E6904135',
+      'year': 2014,
+      'make': 'KIA',
+      'model': 'RIO',
+      'vehicleId': 974124
+    }
+  ],
+  'addVehicleCollateral': [
+    {
+      'type': 'MV',
+      'serialNumber': 'KM8J3CA46JU622994',
+      'year': 2018,
+      'make': 'HYUNDAI',
+      'model': 'TUCSON',
+      'vehicleId': 980000
+    }
+  ],
+  'deleteGeneralCollateral': [
+    {
+      'description': 'Fridges and stoves. Proceeds: Accts Receivable.',
+      'addedDateTime': '2019-02-02T21:08:32+00:00',
+      'collateralId': 123435
+    }
+  ],
+  'addGeneralCollateral': [
+    {
+      'description': '1985 white Fender Stratocaster Guitar #1234',
+      'addedDateTime': '2020-02-02T21:08:32+00:00',
+      'collateralId': 126000
+    }
+  ],
+  'createDateTime': '2020-02-21T18:56:20+00:00',
+  'amendmentRegistrationNumber': '10000301R',
+  'payment': {
+    'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
+    'invoiceId': '2199700'
+  }
 }
 
 BASE_DEBTOR = {
-    'personName': {
+  'personName': {
     'first': 'Michael',
     'middle': 'J',
     'last': 'Smith'
@@ -158,177 +158,177 @@ BASE_DEBTOR = {
 }
 
 CHANGE_STATEMENT = {
-    'statementType': 'CHANGE_STATEMENT',
-    'baseRegistrationNumber': '023001B',
-    'clientReferenceId': 'A-00000402',
-    'documentId': '1234567',
-    'baseDebtor': {
-        'businessName': 'DEBTOR 1 INC.'
-    },
-   'registeringParty': {
-        'businessName': 'ABC SEARCHING COMPANY',
-        'address': {
-            'street': '222 SUMMER STREET',
-            'city': 'VICTORIA',
-            'region': 'BC',
-            'country': 'CA',
-            'postalCode': 'V8W 2V8'
-        },
-        'emailAddress': 'bsmith@abc-search.com'
-    },
-    'changeType': 'AC',
-    'deleteDebtors': [
-        {
-            'businessName': 'Brawn Window Cleaning Inc.',
-            'address': {
-                'street': '1234 Blanshard St',
-                'city': 'Victoria',
-                'region': 'BC',
-                'country': 'CA',
-                'postalCode': 'V8S 3J5'
+  'statementType': 'CHANGE_STATEMENT',
+  'baseRegistrationNumber': '023001B',
+  'clientReferenceId': 'A-00000402',
+  'documentId': '1234567',
+  'baseDebtor': {
+      'businessName': 'DEBTOR 1 INC.'
+  },
+  'registeringParty': {
+      'businessName': 'ABC SEARCHING COMPANY',
+      'address': {
+          'street': '222 SUMMER STREET',
+          'city': 'VICTORIA',
+          'region': 'BC',
+          'country': 'CA',
+          'postalCode': 'V8W 2V8'
+      },
+      'emailAddress': 'bsmith@abc-search.com'
+  },
+  'changeType': 'AC',
+  'deleteDebtors': [
+      {
+          'businessName': 'Brawn Window Cleaning Inc.',
+          'address': {
+              'street': '1234 Blanshard St',
+              'city': 'Victoria',
+              'region': 'BC',
+              'country': 'CA',
+              'postalCode': 'V8S 3J5'
+          },
+          'partyId': 1321961
+      }
+  ],
+  'addDebtors': [
+      {
+          'businessName': 'Brown Window Cleaning Inc.',
+          'address': {
+              'street': '1234 Blanshard St',
+              'city': 'Victoria',
+              'region': 'BC',
+              'country': 'CA',
+              'postalCode': 'V8S 3J5'
             },
-            'partyId': 1321961
-        }
-    ],
-    'addDebtors': [
-        {
-            'businessName': 'Brown Window Cleaning Inc.',
-            'address': {
-                'street': '1234 Blanshard St',
-                'city': 'Victoria',
-                'region': 'BC',
-                'country': 'CA',
-                'postalCode': 'V8S 3J5'
-             },
-            'emailAddress': 'csmith@bwc.com',
-            'partyId': 1400094
-        }
-    ],
-    'deleteSecuredParties': [
-        {
-            'businessName': 'BANK OF BRITISH COLUMBIA',
-            'address': {
-                'street': '3720 BEACON AVENUE',
-                'city': 'SIDNEY',
-                'region': 'BC',
-                'country': 'CA',
-                'postalCode': 'V7R 1R7'
-            },
-            'partyId': 1321095
-        }
-    ],
-    'addSecuredParties': [
-        {
-            'businessName': 'BANK OF BRITISH COLUMBIA',
-            'address': {
-                'street': '3721 BEACON AVENUE',
-                'city': 'SIDNEY',
-                'region': 'BC',
-                'country': 'CA',
-                'postalCode': 'V7R 1R7'
-            },
-            'emailAddress': 'asmith@bobc.com',
-            'partyId': 1400095
-        }
-    ],
-    'deleteVehicleCollateral': [
-        {
-            'type': 'MV',
-            'serialNumber': 'KNADM5A39E6904135',
-            'year': 2014,
-            'make': 'KIA',
-            'model': 'RIO',
-            'vehicleId': 974124
-        }
-    ],
-    'addVehicleCollateral': [
-        {
-            'type': 'MV',
-            'serialNumber': 'KM8J3CA46JU622994',
-            'year': 2018,
-            'make': 'HYUNDAI',
-            'model': 'TUCSON',
-            'vehicleId': 980000
-        }
-    ],
-    'deleteGeneralCollateral': [
-        {
-            'description': 'Fridges and stoves. Proceeds: Accts Receivable.',
-            'addedDateTime': '2019-02-02T21:08:32Z',
-            'collateralId': 123435
-        }
-    ],
-    'addGeneralCollateral': [
-        {
-            'description': '1985 white Fender Stratocaster Guitar #1234',
-            'addedDateTime': '2020-02-02T21:08:32Z',
-            'collateralId': 126000
-        }
-    ],
-   'createDateTime': '2020-02-21T18:56:20Z',
-    'changeRegistrationNumber': '10000301R',
-    'payment': {
-        'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
-        'invoiceId': '2199700'
-    }
+          'emailAddress': 'csmith@bwc.com',
+          'partyId': 1400094
+      }
+  ],
+  'deleteSecuredParties': [
+      {
+          'businessName': 'BANK OF BRITISH COLUMBIA',
+          'address': {
+              'street': '3720 BEACON AVENUE',
+              'city': 'SIDNEY',
+              'region': 'BC',
+              'country': 'CA',
+              'postalCode': 'V7R 1R7'
+          },
+          'partyId': 1321095
+      }
+  ],
+  'addSecuredParties': [
+      {
+          'businessName': 'BANK OF BRITISH COLUMBIA',
+          'address': {
+              'street': '3721 BEACON AVENUE',
+              'city': 'SIDNEY',
+              'region': 'BC',
+              'country': 'CA',
+              'postalCode': 'V7R 1R7'
+          },
+          'emailAddress': 'asmith@bobc.com',
+          'partyId': 1400095
+      }
+  ],
+  'deleteVehicleCollateral': [
+      {
+          'type': 'MV',
+          'serialNumber': 'KNADM5A39E6904135',
+          'year': 2014,
+          'make': 'KIA',
+          'model': 'RIO',
+          'vehicleId': 974124
+      }
+  ],
+  'addVehicleCollateral': [
+      {
+          'type': 'MV',
+          'serialNumber': 'KM8J3CA46JU622994',
+          'year': 2018,
+          'make': 'HYUNDAI',
+          'model': 'TUCSON',
+          'vehicleId': 980000
+      }
+  ],
+  'deleteGeneralCollateral': [
+      {
+          'description': 'Fridges and stoves. Proceeds: Accts Receivable.',
+          'addedDateTime': '2019-02-02T21:08:32+00:00',
+          'collateralId': 123435
+      }
+  ],
+  'addGeneralCollateral': [
+      {
+          'description': '1985 white Fender Stratocaster Guitar #1234',
+          'addedDateTime': '2020-02-02T21:08:32+00:00',
+          'collateralId': 126000
+      }
+  ],
+  'createDateTime': '2020-02-21T18:56:20+00:00',
+  'changeRegistrationNumber': '10000301R',
+  'payment': {
+      'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
+      'invoiceId': '2199700'
+  }
 }
 
 CLIENT_PARTY = {
-    'code': '5000009',
-    'personName': {
-        'first': 'Michael',
-        'middle': 'J',
-        'last': 'Smith'
-    },
-    'address': {
-        'street': '3721 BEACON AVENUE',
-        'city': 'SIDNEY',
-        'region': 'BC',
-        'country': 'CA',
-        'postalCode': 'V7R 1R7'
-    },
-    'emailAddress': 'asmith@bobc.com',
-    'contact': {
-        'name': 'ROBERT JONES',
-        'areaCode': '250',
-        'phoneNumber': '7244404',
-        'emailAddress': 'rbjones@bobc.com'
-    }
+  'code': '5000009',
+  'personName': {
+      'first': 'Michael',
+      'middle': 'J',
+      'last': 'Smith'
+  },
+  'address': {
+      'street': '3721 BEACON AVENUE',
+      'city': 'SIDNEY',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': 'V7R 1R7'
+  },
+  'emailAddress': 'asmith@bobc.com',
+  'contact': {
+      'name': 'ROBERT JONES',
+      'areaCode': '250',
+      'phoneNumber': '7244404',
+      'emailAddress': 'rbjones@bobc.com'
+  }
 }
 
 COURT_ORDER = {
-    'courtName': 'Supreme Court of British Columbia.',
-    'courtRegistry': 'KAMLOOPS',
-    'fileNumber': 'BC123445',
-    'orderDate': '2020-02-02T00:00:00-08:00',
-    'effectOfOrder': 'Court Order to remove James Smith as debtor.'
+  'courtName': 'Supreme Court of British Columbia.',
+  'courtRegistry': 'KAMLOOPS',
+  'fileNumber': 'BC123445',
+  'orderDate': '2020-02-02T00:00:00-08:00',
+  'effectOfOrder': 'Court Order to remove James Smith as debtor.'
 }
 
 DISCHARGE_STATEMENT = {
-    'statementType': 'DISCHARGE_STATEMENT',
-    'baseRegistrationNumber': '023001B',
-    'clientReferenceId': 'A-00000402',
-    'documentId': '1234567',
-    'baseDebtor': {
-        'businessName': 'DEBTOR 1 INC.'
-    },
-   'registeringParty': {
-        'businessName': 'ABC SEARCHING COMPANY',
-        'address': {
-            'street': '222 SUMMER STREET',
-            'city': 'VICTORIA',
-            'region': 'BC',
-            'country': 'CA',
-            'postalCode': 'V8W 2V8'
-        },
-        'emailAddress': 'bsmith@abc-search.com'
-    },
-    'createDateTime': '2020-02-21T18:56:20Z',
-    'dischargeRegistrationNumber': '10000301',
-    'payment': {
-        'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
-        'invoiceId': '2199700'
-    }
+  'statementType': 'DISCHARGE_STATEMENT',
+  'baseRegistrationNumber': '023001B',
+  'clientReferenceId': 'A-00000402',
+  'documentId': '1234567',
+  'baseDebtor': {
+      'businessName': 'DEBTOR 1 INC.'
+  },
+  'registeringParty': {
+      'businessName': 'ABC SEARCHING COMPANY',
+      'address': {
+          'street': '222 SUMMER STREET',
+          'city': 'VICTORIA',
+          'region': 'BC',
+          'country': 'CA',
+          'postalCode': 'V8W 2V8'
+      },
+      'emailAddress': 'bsmith@abc-search.com'
+  },
+  'createDateTime': '2020-02-21T18:56:20+00:00',
+  'dischargeRegistrationNumber': '10000301',
+  'payment': {
+      'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
+      'invoiceId': '2199700'
+  }
 }
 
 DRAFT_AMENDMENT_STATEMENT = {
@@ -370,7 +370,7 @@ DRAFT_AMENDMENT_STATEMENT = {
       }
     ]
   },
-  'createDateTime': '2020-02-21T18:56:20Z'
+  'createDateTime': '2020-02-21T18:56:20+00:00'
 }
 
 DRAFT_CHANGE_STATEMENT = {
@@ -414,8 +414,8 @@ DRAFT_CHANGE_STATEMENT = {
       }
     ]
   },
-  'createDateTime': '2020-02-21T18:56:20Z',
-  'lastUpdateDateTime': '2020-02-23T11:23:20Z'
+  'createDateTime': '2020-02-21T18:56:20+00:00',
+  'lastUpdateDateTime': '2020-02-23T11:23:20+00:00'
 }
 
 DRAFT_FINANCING_STATEMENT = {
@@ -480,7 +480,7 @@ DRAFT_SUMMARY = [
     'documentId': 'B0008761',
     'registrationType': 'SA',
     'path': '/ppr/api/v1/drafts/B0008761',
-    'createDateTime': '2020-02-21T18:56:20Z'
+    'createDateTime': '2020-02-21T18:56:20+00:00'
   },
   {
     'type': 'AMENDMENT_STATEMENT',
@@ -488,7 +488,7 @@ DRAFT_SUMMARY = [
     'documentId': 'B0008762',
     'registrationType': 'AM',
     'path': '/ppr/api/v1/drafts/B0008762',
-    'createDateTime': '2020-02-22T14:13:20Z'
+    'createDateTime': '2020-02-22T14:13:20+00:00'
   },
   {
     'type': 'CHANGE_STATEMENT',
@@ -496,7 +496,7 @@ DRAFT_SUMMARY = [
     'documentId': 'B0008763',
     'registrationType': 'DT',
     'path': '/ppr/api/v1/drafts/B0008763',
-    'createDateTime': '2020-02-23T10:05:20Z'
+    'createDateTime': '2020-02-23T10:05:20+00:00'
   }
 ]
 
@@ -555,7 +555,7 @@ FINANCING_STATEMENT = {
     'generalCollateral': [
         {
             'description': 'Fridges and stoves. Proceeds: Accts Receivable.',
-            'addedDateTime': '2019-02-02T21:08:32Z',
+            'addedDateTime': '2019-02-02T21:08:32+00:00',
             'collateralId': 123435
         }
     ],
@@ -566,7 +566,9 @@ FINANCING_STATEMENT = {
     'lienAmount': '12,000.00',
     'surrenderDate': '2021-01-31T00:00:00-08:00',
     'baseRegistrationNumber': '023001B',
-    'createDateTime': '2020-02-21T18:56:20Z',
+    'createDateTime': '2020-02-21T18:56:20+00:00',
+    'registrationDescription': 'PPSA SECURITY AGREEMENT',
+    'registrationAct': 'PPSA SECURITY ACT',
     'payment': {
         'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
         'invoiceId': '2199700'
@@ -575,6 +577,7 @@ FINANCING_STATEMENT = {
 
 FINANCING_STATEMENT_HISTORY = [
   {
+    'matchType': 'EXACT',
     'financingStatement': {
       'type': 'SA',
       'clientReferenceId': 'A-00000402',
@@ -633,7 +636,9 @@ FINANCING_STATEMENT_HISTORY = [
       'lifeYears': 2,
       'expiryDate': '2022-02-21T23:59:59+00:00',
       'baseRegistrationNumber': '023001B',
-      'createDateTime': '2020-02-21T18:56:20Z',
+      'createDateTime': '2020-02-21T18:56:20+00:00',
+      'registrationDescription': 'PPSA SECURITY AGREEMENT',
+      'registrationAct': 'PPSA SECURITY ACT',
       'payment': {
         'invoiceId': '2198743',
         'receipt': '/pay/api/v1/payment-requests/2198743/receipts'
@@ -643,7 +648,7 @@ FINANCING_STATEMENT_HISTORY = [
       {
         'statementType': 'AMENDMENT_STATEMENT',
         'baseRegistrationNumber': '023001B',
-        'description': 'Amendment to correct spelling mistake in debtor name. Name changed from \'Brawn\' to \'Brown\'.',
+        'description': "Correct spelling mistake in debtor name. Name changed from 'Brawn' to 'Brown'.",
         'changeType': 'AM',
         'clientReferenceId': 'A-00000403',
         'registeringParty': {
@@ -677,7 +682,7 @@ FINANCING_STATEMENT_HISTORY = [
             'partyId': 1325661
           }
         ],
-        'createDateTime': '2020-02-28T08:30:20Z',
+        'createDateTime': '2020-02-28T08:30:20+00:00',
         'amendmentRegistrationNumber': '010001A',
         'payment': {
           'invoiceId': '2198744',
@@ -727,7 +732,7 @@ FINANCING_STATEMENT_HISTORY = [
             'partyId': 1321561
           }
         ],
-        'createDateTime': '2020-03-02T13:02:20Z',
+        'createDateTime': '2020-03-02T13:02:20+00:00',
         'changeRegistrationNumber': '010001C',
         'payment': {
           'invoiceId': '2198745',
@@ -757,52 +762,52 @@ FINANCING_STATEMENT_HISTORY = [
           'effectOfOrder': 'Court Order to renew Repairers Lien.'
         },
         'expiryDate': '2020-08-21T23:59:59+00:00',
-        'createDateTime': '2020-02-21T18:56:20Z',
+        'createDateTime': '2020-02-21T18:56:20+00:00',
         'renewalRegistrationNumber': '010002R',
         'payment': {
           'receipt': '/pay/api/v1/payment-requests/2198743/receipts',
           'invoiceId': '2198743'
         }
       },
-        {
-            'statementType': 'DISCHARGE_STATEMENT',
-            'baseRegistrationNumber': '023001B',
-            'clientReferenceId': 'A-00000402',
-            'documentId': '1234567',
-            'registeringParty': {
-                'businessName': 'ABC SEARCHING COMPANY',
-                'address': {
-                    'street': '222 SUMMER STREET',
-                    'city': 'VICTORIA',
-                    'region': 'BC',
-                    'country': 'CA',
-                    'postalCode': 'V8W 2V8'
-                },
-                'emailAddress': 'bsmith@abc-search.com'
+      {
+        'statementType': 'DISCHARGE_STATEMENT',
+        'baseRegistrationNumber': '023001B',
+        'clientReferenceId': 'A-00000402',
+        'documentId': '1234567',
+        'registeringParty': {
+            'businessName': 'ABC SEARCHING COMPANY',
+            'address': {
+                'street': '222 SUMMER STREET',
+                'city': 'VICTORIA',
+                'region': 'BC',
+                'country': 'CA',
+                'postalCode': 'V8W 2V8'
             },
-            'createDateTime': '2020-02-21T18:56:20Z',
-            'dischargeRegistrationNumber': '10000301',
-            'payment': {
-                'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
-                'invoiceId': '2199700'
-            }
+            'emailAddress': 'bsmith@abc-search.com'
+        },
+        'createDateTime': '2020-02-21T18:56:20+00:00',
+        'dischargeRegistrationNumber': '10000301',
+        'payment': {
+            'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
+            'invoiceId': '2199700'
         }
+      }
     ]
   }
 ]
 
 GENERAL_COLLATERAL = {
     'description': 'Fridges and stoves. Proceeds: Accts Receivable.',
-    'addedDateTime': '2020-02-02T21:08:32Z',
+    'addedDateTime': '2020-02-02T21:08:32+00:00',
     'collateralId': 123435
 }
 
 PARTY = {
-    'personName': {
-        'first': 'Michael',
-        'middle': 'J',
-        'last': 'Smith'
-    },
+  'personName': {
+      'first': 'Michael',
+      'middle': 'J',
+      'last': 'Smith'
+  },
   'address': {
     'street': '520 Johnson St',
     'city': 'Victoria',
@@ -833,7 +838,7 @@ RENEWAL_STATEMENT = {
     'baseDebtor': {
         'businessName': 'DEBTOR 1 INC.'
     },
-   'registeringParty': {
+    'registeringParty': {
         'businessName': 'ABC SEARCHING COMPANY',
         'address': {
             'street': '222 SUMMER STREET',
@@ -852,12 +857,253 @@ RENEWAL_STATEMENT = {
         'orderDate': '2020-02-02T00:00:00-08:00',
         'effectOfOrder': 'Court Order to remove James Smith as debtor.'
     },
-    'createDateTime': '2020-02-21T18:56:20Z',
+    'createDateTime': '2020-02-21T18:56:20+00:00',
     'renewalRegistrationNumber': '10000301R',
     'payment': {
         'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
         'invoiceId': '2199700'
     }
+}
+
+
+SEARCH_DETAIL_RESULT = {
+  'searchDateTime': '2020-10-15T21:08:32+00:00',
+  'exactResultsSize': 1,
+  'similarResultsSize': 0,
+  'totalResultsSize': 1,
+  'searchQuery': {
+    'type': 'BUSINESS_DEBTOR',
+    'criteria': {
+      'debtorName': {
+        'business': 'BROWN AUTOMOTIVE LTD.'
+      }
+    },
+    'clientReferenceId': 'A-00000402'
+  },
+  'payment': {
+    'receipt': '/pay/api/v1/payment-requests/2198748/receipts',
+    'invoiceId': '2198748'
+  },
+  'details': [
+    {
+      'matchType': 'EXACT',
+      'financingStatement': {
+        'type': 'SA',
+        'clientReferenceId': 'A-00000402',
+        'registeringParty': {
+          'businessName': 'ABC SEARCHING COMPANY',
+          'address': {
+            'street': '222 SUMMER STREET',
+            'city': 'VICTORIA',
+            'region': 'BC',
+            'country': 'CA',
+            'postalCode': 'V8W 2V8'
+          },
+          'emailAddress': 'bsmith@abc-search.com'
+        },
+        'securedParties': [
+          {
+            'businessName': 'BANK OF BRITISH COLUMBIA',
+            'address': {
+              'street': '3721 BEACON AVENUE',
+              'city': 'SIDNEY',
+              'region': 'BC',
+              'country': 'CA',
+              'postalCode': 'V7R 1R7'
+            },
+            'emailAddress': 'asmith@bobc.com',
+            'partyId': 1321064
+          }
+        ],
+        'debtors': [
+          {
+            'businessName': 'Debtor 1 Inc.',
+            'address': {
+              'street': '721 Debtor Ave',
+              'city': 'Victoria',
+              'region': 'BC',
+              'country': 'CA',
+              'postalCode': 'A1A 1A1'
+            },
+            'birthDate': '1990-06-15T12:20:20-08:00',
+            'emailAddress': 'dsmith@debtor1.com',
+            'partyId': 1321065
+          }
+        ],
+        'vehicleCollateral': [
+          {
+            'type': 'MV',
+            'serialNumber': 'KM8J3CA46JU622994',
+            'year': 2018,
+            'make': 'HYUNDAI',
+            'model': 'TUCSON',
+            'vehicleId': 974123
+          }
+        ],
+        'generalCollateral': [],
+        'trustIndenture': False,
+        'lifeYears': 2,
+        'expiryDate': '2022-02-21T23:59:59+00:00',
+        'baseRegistrationNumber': '023001B',
+        'createDateTime': '2020-02-21T18:56:20+00:00',
+        'registrationDescription': 'PPSA SECURITY AGREEMENT',
+        'registrationAct': 'PPSA SECURITY ACT',
+        'payment': {
+          'invoiceId': '2198743',
+          'receipt': '/pay/api/v1/payment-requests/2198743/receipts'
+        }
+      },
+      'changes': [
+        {
+          'statementType': 'AMENDMENT_STATEMENT',
+          'baseRegistrationNumber': '023001B',
+          'description': "Correct spelling mistake in debtor name. Name changed from 'Brawn' to 'Brown'.",
+          'changeType': 'AM',
+          'clientReferenceId': 'A-00000403',
+          'registeringParty': {
+            'businessName': 'ABC SEARCHING COMPANY',
+            'address': {
+              'street': '222 SUMMER STREET',
+              'city': 'VICTORIA',
+              'region': 'BC',
+              'country': 'CA',
+              'postalCode': 'V8W 2V8'
+            },
+            'emailAddress': 'bsmith@abc-search.com'
+          },
+          'deleteDebtors': [
+            {
+              'businessName': 'Brawn Window Cleaning Inc.',
+              'partyId': 1321065
+            }
+          ],
+          'addDebtors': [
+            {
+              'businessName': 'Brown Window Cleaning Inc.',
+              'address': {
+                'street': '1234 Blanshard St',
+                'city': 'Victoria',
+                'region': 'BC',
+                'country': 'CA',
+                'postalCode': 'V8S 3J5'
+              },
+              'emailAddress': 'csmith@bwc.com',
+              'partyId': 1325661
+            }
+          ],
+          'createDateTime': '2020-02-28T08:30:20+00:00',
+          'amendmentRegistrationNumber': '010001A',
+          'payment': {
+            'invoiceId': '2198744',
+            'receipt': '/pay/api/v1/payment-requests/2198744/receipts'
+          }
+        },
+        {
+          'statementType': 'CHANGE_STATEMENT',
+          'baseRegistrationNumber': '023001B',
+          'changeType': 'ST',
+          'clientReferenceId': 'A-00000404',
+          'registeringParty': {
+            'businessName': 'ABC SEARCHING COMPANY',
+            'address': {
+              'street': '222 SUMMER STREET',
+              'city': 'VICTORIA',
+              'region': 'BC',
+              'country': 'CA',
+              'postalCode': 'V8W 2V8'
+            },
+            'emailAddress': 'bsmith@abc-search.com'
+          },
+          'deleteSecuredParties': [
+            {
+              'businessName': 'Secured 1 Ltd',
+              'address': {
+                'street': '721 Pandora Ave',
+                'city': 'Victoria',
+                'region': 'BC',
+                'country': 'CA',
+                'postalCode': 'V8S 1V2'
+              },
+              'partyId': 1320122
+            }
+          ],
+          'addSecuredParties': [
+            {
+              'businessName': 'BANK OF BRITISH COLUMBIA',
+              'address': {
+                'street': '3721 BEACON AVENUE',
+                'city': 'SIDNEY',
+                'region': 'BC',
+                'country': 'CA',
+                'postalCode': 'V7R 1R7'
+              },
+              'emailAddress': 'asmith@bobc.com',
+              'partyId': 1321561
+            }
+          ],
+          'createDateTime': '2020-03-02T13:02:20+00:00',
+          'changeRegistrationNumber': '010001C',
+          'payment': {
+            'invoiceId': '2198745',
+            'receipt': '/pay/api/v1/payment-requests/2198745/receipts'
+          }
+        },
+        {
+          'statementType': 'RENEWAL_STATEMENT',
+          'baseRegistrationNumber': '023001B',
+          'clientReferenceId': 'A-00000405',
+          'registeringParty': {
+            'businessName': 'ABC SEARCHING COMPANY',
+            'address': {
+              'street': '222 SUMMER STREET',
+              'city': 'VICTORIA',
+              'region': 'BC',
+              'country': 'CA',
+              'postalCode': 'V8V 4V6'
+            },
+            'emailAddress': 'bsmith@abc-search.com'
+          },
+          'courtOrderInformation': {
+            'courtName': 'Supreme Court of British Columbia.',
+            'courtRegistry': 'VICTORIA',
+            'fileNumber': 'BC123495',
+            'orderDate': '2020-02-21T00:00:00-08:00',
+            'effectOfOrder': 'Court Order to renew Repairers Lien.'
+          },
+          'expiryDate': '2020-08-21T23:59:59+00:00',
+          'createDateTime': '2020-02-21T18:56:20+00:00',
+          'renewalRegistrationNumber': '010002R',
+          'payment': {
+            'receipt': '/pay/api/v1/payment-requests/2198743/receipts',
+            'invoiceId': '2198743'
+          }
+        },
+        {
+            'statementType': 'DISCHARGE_STATEMENT',
+            'baseRegistrationNumber': '023001B',
+            'clientReferenceId': 'A-00000402',
+            'documentId': '1234567',
+            'registeringParty': {
+                'businessName': 'ABC SEARCHING COMPANY',
+                'address': {
+                    'street': '222 SUMMER STREET',
+                    'city': 'VICTORIA',
+                    'region': 'BC',
+                    'country': 'CA',
+                    'postalCode': 'V8W 2V8'
+                },
+                'emailAddress': 'bsmith@abc-search.com'
+            },
+            'createDateTime': '2020-02-21T18:56:20+00:00',
+            'dischargeRegistrationNumber': '10000301',
+            'payment': {
+                'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
+                'invoiceId': '2199700'
+            }
+        }
+      ]
+    }
+  ]
 }
 
 SEARCH_QUERY = {
@@ -872,13 +1118,13 @@ SEARCH_QUERY = {
         }
     },
     'clientReferenceId': 'A-00000402',
-    'startDateTime': '2020-08-07T00:00:00Z',
-    'endDateTime': '2020-08-08T00:00:00Z'
+    'startDateTime': '2020-08-07T00:00:00+00:00',
+    'endDateTime': '2020-08-08T00:00:00+00:00'
 }
 
 SEARCH_QUERY_RESULT = {
   'searchId': '1294376',
-  'searchDateTime': '2020-10-15T21:08:32Z',
+  'searchDateTime': '2020-10-15T21:08:32+00:00',
   'returnedResultsSize': 4,
   'totalResultsSize': 4,
   'maxResultsSize': 1000,
@@ -895,8 +1141,9 @@ SEARCH_QUERY_RESULT = {
     {
       'matchType': 'EXACT',
       'baseRegistrationNumber': '013739B',
-      'createDateTime': '2020-08-10T18:56:20Z',
+      'createDateTime': '2020-08-10T18:56:20+00:00',
       'registrationType': 'SA',
+      'selected': True,
       'debtor': {
         'businessName': 'BROWN AUTOMOTIVE LTD.',
         'partyId': 1041115
@@ -905,7 +1152,7 @@ SEARCH_QUERY_RESULT = {
     {
       'matchType': 'SIMILAR',
       'baseRegistrationNumber': '013600B',
-      'createDateTime': '2020-08-03T10:12:20Z',
+      'createDateTime': '2020-08-03T10:12:20+00:00',
       'registrationType': 'SA',
       'debtor': {
         'businessName': 'BROWNS AUTOMOTIVE LTD.',
@@ -915,7 +1162,7 @@ SEARCH_QUERY_RESULT = {
     {
       'matchType': 'SIMILAR',
       'baseRegistrationNumber': '013699B',
-      'createDateTime': '2020-08-08T10:12:20Z',
+      'createDateTime': '2020-08-08T10:12:20+00:00',
       'registrationType': 'SA',
       'debtor': {
         'businessName': 'BROWN AND BLACK AUTO LTD.',
@@ -925,7 +1172,7 @@ SEARCH_QUERY_RESULT = {
     {
       'matchType': 'SIMILAR',
       'baseRegistrationNumber': '013800B',
-      'createDateTime': '2020-08-14T10:12:20Z',
+      'createDateTime': '2020-08-14T10:12:20+00:00',
       'registrationType': 'SA',
       'debtor': {
         'businessName': 'BROWNING AUTOMOTIVE LTD.',
@@ -936,47 +1183,51 @@ SEARCH_QUERY_RESULT = {
   'payment': {
     'receipt': '/pay/api/v1/payment-requests/2198748/receipts',
     'invoiceId': '2198748'
-  }
+  },
+  'exactResultsSize': 1,
+  'similarResultsSize': 3,
 }
 
 SEARCH_SUMMARY = [
     {
-        'matchType': 'EXACT',
-        'registrationNumber': '013900B',
-        'baseRegistrationNumber': '013739B',
-        'createDateTime': '2020-08-10T18:56:20Z',
-        'registrationType': 'SA'
+      'matchType': 'EXACT',
+      'registrationNumber': '013900B',
+      'baseRegistrationNumber': '013739B',
+      'createDateTime': '2020-08-10T18:56:20+00:00',
+      'registrationType': 'SA',
+      'selected': True
     },
     {
-        'matchType': 'SIMILAR',
-        'baseRegistrationNumber': '013600B',
-        'createDateTime': '2020-08-03T10:12:20Z',
-        'registrationType': 'SA'
+      'matchType': 'SIMILAR',
+      'baseRegistrationNumber': '013600B',
+      'createDateTime': '2020-08-03T10:12:20+00:00',
+      'registrationType': 'SA',
+      'selected': True
     },
     {
-        'matchType': 'SIMILAR',
-        'baseRegistrationNumber': '013699B',
-        'createDateTime': '2020-08-08T10:12:20Z',
-        'registrationType': 'SA',
-        'vehicleCollateral': {
-            'type': 'MV',
-            'serialNumber': 'KM8J3CA46JU622994',
-            'year': 2018,
-            'make': 'HYUNDAI',
-            'model': 'TUCSON'
-        },
-        'debtor': {
-            'businessName': 'Brown Window Cleaning Inc.',
-            'address': {
-                'street': '1234 Blanshard St',
-                'city': 'Victoria',
-                'region': 'BC',
-                'country': 'CA',
-                'postalCode': 'V8S 3J5'
-             },
-            'emailAddress': 'csmith@bwc.com',
-            'partyId': 1400094
-        }
+      'matchType': 'SIMILAR',
+      'baseRegistrationNumber': '013699B',
+      'createDateTime': '2020-08-08T10:12:20+00:00',
+      'registrationType': 'SA',
+      'vehicleCollateral': {
+          'type': 'MV',
+          'serialNumber': 'KM8J3CA46JU622994',
+          'year': 2018,
+          'make': 'HYUNDAI',
+          'model': 'TUCSON'
+      },
+      'selected': False
+    },
+    {
+      'matchType': 'SIMILAR',
+      'baseRegistrationNumber': '013800B',
+      'createDateTime': '2020-08-14T10:12:20+00:00',
+      'registrationType': 'SA',
+      'debtor': {
+        'businessName': 'BROWNING AUTOMOTIVE LTD.',
+        'partyId': 1011115
+      },
+      'selected': False
     }
 ]
 

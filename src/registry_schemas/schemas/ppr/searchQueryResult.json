@@ -38,6 +38,16 @@
         },
         "payment": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"
+        },
+        "exactResultsSize": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Set by the Registry, the number of exact match Financing Statements included in the detail response."
+        },
+        "similarResultsSize": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Set by the Registry, the number of similar match Financing Statements included in the detail response."
         }
     },
     "required": [

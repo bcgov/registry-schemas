@@ -3,10 +3,20 @@
     "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/financingStatementHistory",
     "type": "array",
     "title": "The PPR Financing Statement History Schema (all statements in chronological order)",
+    "description": "currentFinancingStatement is included if some changes have been made to the registration. It includes the current, consolidated registration information.",
     "definitions": {
         "financingStatementHistory": {
             "type": "object",
             "properties": {
+                "matchType": {
+                    "type": "string",
+                    "maxLength": 10,
+                    "enum": ["SIMILAR", "EXACT"],
+                    "description": "Specifies how closely the Financing Statement matches the query criteria."
+                },
+                "currentFinancingStatement": {
+                    "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/financingStatement"
+                },
                 "financingStatement": {
                     "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/financingStatement"
                 },
@@ -32,6 +42,7 @@
                 }
             },
             "required": [
+                "matchType",
                 "financingStatement"
             ]
         }
