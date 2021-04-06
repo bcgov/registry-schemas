@@ -19,7 +19,9 @@ from .schema_data import (
     ADDRESS,
     PARTY,
     PAYMENT_REFERENCE,
-    PERSON_NAME
+    PERSON_NAME,
+    USER,
+    USER_PROFILE
 )
 
 
@@ -27,5 +29,7 @@ __all__ = [
     'ADDRESS',
     'PARTY',
     'PAYMENT_REFERENCE',
-    'PERSON_NAME'
+    'PERSON_NAME',
+    'USER',
+    'USER_PROFILE'
 ]

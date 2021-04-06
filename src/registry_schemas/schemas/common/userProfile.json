@@ -1,0 +1,48 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/common/userProfile",
+    "type": "object",
+    "title": "The Common User Profile Schema",
+    "description": "Profile information for the user represented by the BC Regisgtries UI JWT.",
+    "properties": {
+        "paymentConfirmationDialog": {
+            "type": "boolean",
+            "description": "Set to true if the user payment confirmation dialog is enabled/displayed."
+        },
+        "selectConfirmationDialog": {
+            "type": "boolean",
+            "description": "Set to true if the user search selection confirmation dialog is enabled/displayed."
+        },
+        "defaultDropDowns": {
+            "type": "boolean",
+            "description": "Set to true if the user preference the default UI drop down behaviour.."
+        },
+        "defaultTableFilters": {
+            "type": "boolean",
+            "description": "Set to true if the user preference is the default UI table filter behaviour."
+        }
+    },
+    "anyOf":[
+        {
+            "required": [
+                "paymentConfirmationDialog"
+            ]
+        },
+        {
+            "required": [
+                "selectConfirmationDialog"
+            ]
+        },
+        {
+            "required": [
+                "defaultDropDowns"
+            ]
+        },
+        {
+            "required": [
+            "defaultTableFilters"
+            ]
+        }
+      ]
+}
