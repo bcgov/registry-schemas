@@ -20,5 +20,7 @@ TEST_SCHEMAS_DATA = [
     ('address.json'),
     ('party.json'),
     ('payment.json'),
-    ('personName.json')
+    ('personName.json'),
+    ('user.json'),
+    ('userProfile.json')
 ]

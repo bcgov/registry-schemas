@@ -28,6 +28,12 @@
         "searchQuery": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/searchQuery"
         },
+        "selected": {
+            "type": "array",
+            "description": "The selection of search criteria matches included in the results. Exact matches are always included.",
+            "items":
+                { "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/searchSummary" }
+        },
         "payment": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"
         },

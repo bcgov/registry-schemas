@@ -44,10 +44,10 @@
             "minimum": 0,
             "description": "Set by the Registry, the number of exact match Financing Statements included in the detail response."
         },
-        "similarResultsSize": {
+        "selectedResultsSize": {
             "type": "integer",
             "minimum": 0,
-            "description": "Set by the Registry, the number of similar match Financing Statements included in the detail response."
+            "description": "The total number of matching Financing Statements (exact and similar)included in the detail response. Set when fetching account search history."
         }
     },
     "required": [

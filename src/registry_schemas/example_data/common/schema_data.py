@@ -29,16 +29,16 @@ PARTY = {
         'middle': 'J',
         'last': 'Smith'
     },
-  'address': {
-    'street': '520 Johnson St',
-    'city': 'Victoria',
-    'region': 'BC',
-    'country': 'CA',
-    'postalCode': 'V8S 2V4'
-  },
-  'emailAddress': 'msmith@gmail.com',
-  'birthDate': '1986-12-01T19:20:20-08:00',
-  'partyId': 1321064
+    'address': {
+        'street': '520 Johnson St',
+        'city': 'Victoria',
+        'region': 'BC',
+        'country': 'CA',
+        'postalCode': 'V8S 2V4'
+    },
+    'emailAddress': 'msmith@gmail.com',
+    'birthDate': '1986-12-01T19:20:20-08:00',
+    'partyId': 1321064
 }
 
 PAYMENT_REFERENCE = {
@@ -50,4 +50,22 @@ PERSON_NAME = {
     'first': 'Michael',
     'middle': 'J',
     'last': 'Smith'
+}
+
+USER = {
+    'creationDate': '2021-04-01T16:20:20+00:00',
+    'username': 'bcsc/avyw3cbumorr91k7f5uq2i3mzcqrm4av',
+    'sub': 'fd362600-x234-9115-c427-fed859c6d093',
+    'iss': 'https://dev.oidc.gov.bc.ca/auth/realms/fcf0kpqr',
+    'firstname': 'Michael',
+    'lastname': 'Smith',
+    'email': 'msmith@gmail.com',
+    'accountId': '12345'
+}
+
+USER_PROFILE = {
+    'paymentConfirmationDialog': True,
+    'selectConfirmationDialog': False,
+    'defaultDropDowns': True,
+    'defaultTableFilters': False
 }

@@ -27,6 +27,12 @@
         "registeringParty": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
         },
+        "lifeYears": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25,
+            "description": "Extension of the life of the registration in years. Always included in a response. Must be a value between 1 to 25."
+        },
         "expiryDate": {
             "type": "string",
             "format": "date-time",
@@ -51,6 +57,14 @@
         }
     },
     "oneOf":[
+        {
+            "required": [
+                "baseRegistrationNumber",
+                "registeringParty",
+                "baseDebtor",
+                "lifeYears"
+            ]
+        },
         {
             "required": [
                 "baseRegistrationNumber",
