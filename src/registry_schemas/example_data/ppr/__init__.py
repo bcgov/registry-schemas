@@ -38,7 +38,7 @@ from .schema_data import (
     SEARCH_QUERY,
     SEARCH_QUERY_RESULT,
     SEARCH_SUMMARY,
-    VEHICLE_COLLATERAL
+    VEHICLE_COLLATERAL,
 )
 
 

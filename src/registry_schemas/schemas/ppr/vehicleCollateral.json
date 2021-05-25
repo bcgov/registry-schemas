@@ -7,7 +7,7 @@
     "properties": {
         "type": {
             "type": "string",
-            "enum": [ "AC", "AF", "BO", "EV", "MH", "MV", "OB", "TR"],
+            "enum": [ "AC", "AF", "AP", "BO", "EV", "MH", "MV", "OB", "TR"],
             "maxLength": 2,
             "description": "Specifies the type of vehicle."
         },

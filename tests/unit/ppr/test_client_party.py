@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR client party schema is valid.
-
-"""
+"""Test Suite to ensure the PPR client party schema is valid."""
 import copy
 
 from registry_schemas import validate
@@ -35,7 +33,7 @@ def test_valid_client_person():
 def test_valid_client_business():
     """Assert that the schema is performing as expected for a business client party."""
     party = copy.deepcopy(CLIENT_PARTY)
-    party['businessName'] = 'BUSINESS NAME' 
+    party['businessName'] = 'BUSINESS NAME'
     del party['personName']
     is_valid, errors = validate(party, 'clientParty', 'ppr')
 
@@ -212,6 +210,7 @@ def test_invalid_client_missing_business_address():
     print(errors)
 
     assert not is_valid
+
 
 def test_invalid_client_missing_business_contact():
     """Assert that an invalid client party fails - business contact is missing."""

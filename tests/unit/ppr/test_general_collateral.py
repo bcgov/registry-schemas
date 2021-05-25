@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR general collateral schema is valid.
-
-"""
+"""Test Suite to ensure the PPR general collateral schema is valid."""
 import copy
 
 from registry_schemas import validate
@@ -75,4 +73,3 @@ def test_invalid_general_collateral_missing_description():
     print(errors)
 
     assert not is_valid
-

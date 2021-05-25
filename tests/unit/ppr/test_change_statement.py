@@ -11,16 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR Change Statement (request and response) schema is valid.
-
-"""
+"""Test Suite to ensure the PPR Change Statement (request and response) schema is valid."""
 import copy
 
 from registry_schemas import validate
 from registry_schemas.example_data.ppr import CHANGE_STATEMENT
 
 
-def test_valid_change_request_AC_vehicle():
+def test_valid_change_request_ac_vehicle():
     """Assert that the schema is performing as expected for an add vehicle collateral change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'AC'
@@ -45,7 +43,7 @@ def test_valid_change_request_AC_vehicle():
     assert is_valid
 
 
-def test_valid_change_request_AC_general():
+def test_valid_change_request_ac_general():
     """Assert that the schema is performing as expected for an add general collateral change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'AC'
@@ -70,7 +68,7 @@ def test_valid_change_request_AC_general():
     assert is_valid
 
 
-def test_valid_change_request_AC_both():
+def test_valid_change_request_ac_both():
     """Assert that the schema is performing as expected for an add vehicle and general collateral change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'AC'
@@ -94,7 +92,7 @@ def test_valid_change_request_AC_both():
     assert is_valid
 
 
-def test_valid_change_request_DR():
+def test_valid_change_request_dr():
     """Assert that the schema is performing as expected for a debtor release change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'DR'
@@ -119,7 +117,7 @@ def test_valid_change_request_DR():
     assert is_valid
 
 
-def test_valid_change_request_DT():
+def test_valid_change_request_dt():
     """Assert that the schema is performing as expected for a debtor transfer change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'DT'
@@ -143,7 +141,7 @@ def test_valid_change_request_DT():
     assert is_valid
 
 
-def test_valid_change_request_PD():
+def test_valid_change_request_pd():
     """Assert that the schema is performing as expected for a partial discharge change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'PD'
@@ -168,7 +166,7 @@ def test_valid_change_request_PD():
     assert is_valid
 
 
-def test_valid_change_request_ST():
+def test_valid_change_request_st():
     """Assert that the schema is performing as expected for a secured party transfer change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'ST'
@@ -192,8 +190,8 @@ def test_valid_change_request_ST():
     assert is_valid
 
 
-def test_valid_change_request_SU_all():
-    """Assert that the schema is performing as expected for a subsitution of general and vehicle collateral change request."""
+def test_valid_change_request_su_all():
+    """Assert that the schema is performing as expected for a subsitution of general and vehicle collateral."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'SU'
     del statement['createDateTime']
@@ -203,7 +201,7 @@ def test_valid_change_request_SU_all():
     del statement['deleteDebtors']
     del statement['addSecuredParties']
     del statement['deleteSecuredParties']
- 
+
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
 
     if errors:
@@ -214,7 +212,7 @@ def test_valid_change_request_SU_all():
     assert is_valid
 
 
-def test_valid_change_request_SU_vehicle():
+def test_valid_change_request_su_vehicle():
     """Assert that the schema is performing as expected for a subsitution of vehicle collateral change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'SU'
@@ -236,7 +234,7 @@ def test_valid_change_request_SU_vehicle():
     assert is_valid
 
 
-def test_valid_change_request_SU_general():
+def test_valid_change_request_su_general():
     """Assert that the schema is performing as expected for a subsitution of general collateral change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'SU'
@@ -256,7 +254,6 @@ def test_valid_change_request_SU_general():
     print(errors)
 
     assert is_valid
-
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
 
@@ -283,7 +280,7 @@ def test_valid_change_response():
     assert is_valid
 
 
-def test_invalid_change_AC_missing_collateral():
+def test_invalid_change_ac_missing_collateral():
     """Assert that an invalid change statement fails - AC change but no add collateral."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     del statement['createDateTime']
@@ -302,7 +299,7 @@ def test_invalid_change_AC_missing_collateral():
     assert not is_valid
 
 
-def test_invalid_change_PD_missing_collateral():
+def test_invalid_change_pd_missing_collateral():
     """Assert that an invalid change statement fails - PD change but no delete collateral."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'PD'
@@ -322,7 +319,7 @@ def test_invalid_change_PD_missing_collateral():
     assert not is_valid
 
 
-def test_invalid_change_DR_missing_debtors():
+def test_invalid_change_dr_missing_debtors():
     """Assert that an invalid change statement fails - DC change but no delete debtors."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'DR'
@@ -341,7 +338,7 @@ def test_invalid_change_DR_missing_debtors():
     assert not is_valid
 
 
-def test_invalid_change_DT_missing_delete():
+def test_invalid_change_dt_missing_delete():
     """Assert that an invalid change statement fails - DT change but no delete debtors."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'DT'
@@ -360,7 +357,7 @@ def test_invalid_change_DT_missing_delete():
     assert not is_valid
 
 
-def test_invalid_change_DT_missing_add():
+def test_invalid_change_dt_missing_add():
     """Assert that an invalid change statement fails - DT change but no add debtors."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'DT'
@@ -379,7 +376,7 @@ def test_invalid_change_DT_missing_add():
     assert not is_valid
 
 
-def test_invalid_change_ST_missing_add():
+def test_invalid_change_st_missing_add():
     """Assert that an invalid change statement fails - ST change but no add secured parties."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'ST'
@@ -398,7 +395,7 @@ def test_invalid_change_ST_missing_add():
     assert not is_valid
 
 
-def test_invalid_change_ST_missing_delete():
+def test_invalid_change_st_missing_delete():
     """Assert that an invalid change statement fails - ST change but no delete secured parties."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'ST'
@@ -417,7 +414,7 @@ def test_invalid_change_ST_missing_delete():
     assert not is_valid
 
 
-def test_invalid_change_SU_missing_add():
+def test_invalid_change_su_missing_add():
     """Assert that an invalid change statement fails - SU change but no add collateral."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'SU'
@@ -437,7 +434,7 @@ def test_invalid_change_SU_missing_add():
     assert not is_valid
 
 
-def test_invalid_change_SU_missing_delete():
+def test_invalid_change_su_missing_delete():
     """Assert that an invalid change statement fails - SU change but no delete collateral."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'SU'
@@ -762,5 +759,3 @@ def test_invalid_change_missing_changetype():
     print(errors)
 
     assert not is_valid
-
-

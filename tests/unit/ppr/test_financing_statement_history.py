@@ -15,11 +15,13 @@
 import copy
 
 from registry_schemas import validate
-from registry_schemas.example_data.ppr import FINANCING_STATEMENT_HISTORY
-from registry_schemas.example_data.ppr import CHANGE_STATEMENT
-from registry_schemas.example_data.ppr import AMENDMENT_STATEMENT
-from registry_schemas.example_data.ppr import RENEWAL_STATEMENT
-from registry_schemas.example_data.ppr import DISCHARGE_STATEMENT
+from registry_schemas.example_data.ppr import (
+    AMENDMENT_STATEMENT,
+    CHANGE_STATEMENT,
+    DISCHARGE_STATEMENT,
+    FINANCING_STATEMENT_HISTORY,
+    RENEWAL_STATEMENT,
+)
 
 
 def test_valid_financing_history():

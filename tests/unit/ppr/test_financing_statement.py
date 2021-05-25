@@ -11,16 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR Financing Statement (request and response) schema is valid.
-
-"""
+"""Test Suite to ensure the PPR Financing Statement (request and response) schema is valid."""
 import copy
 
 from registry_schemas import validate
 from registry_schemas.example_data.ppr import FINANCING_STATEMENT
 
 
-def test_valid_financing_request_SA():
+def test_valid_financing_request_sa():
     """Assert that the schema is performing as expected for a security agreement financing request."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['type'] = 'SA'
@@ -41,7 +39,7 @@ def test_valid_financing_request_SA():
     assert is_valid
 
 
-def test_valid_financing_request_RL():
+def test_valid_financing_request_rl():
     """Assert that the schema is performing as expected for a repairer's lien financing request."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['type'] = 'RL'
@@ -63,7 +61,7 @@ def test_valid_financing_request_RL():
     assert is_valid
 
 
-def test_valid_financing_request_FR():
+def test_valid_financing_request_fr():
     """Assert that the schema is performing as expected for a FR financing request."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['type'] = 'FR'
@@ -88,7 +86,7 @@ def test_valid_financing_request_FR():
     assert is_valid
 
 
-def test_valid_financing_request_LT():
+def test_valid_financing_request_lt():
     """Assert that the schema is performing as expected for a land tax lien financing request."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['type'] = 'LT'
@@ -111,7 +109,7 @@ def test_valid_financing_request_LT():
     assert is_valid
 
 
-def test_valid_financing_request_MH():
+def test_valid_financing_request_mh():
     """Assert that the schema is performing as expected for a manufactured home lien financing request."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['type'] = 'MH'
@@ -133,7 +131,7 @@ def test_valid_financing_request_MH():
     assert is_valid
 
 
-def test_valid_financing_request_SG():
+def test_valid_financing_request_sg():
     """Assert that the schema is performing as expected for a sale of goods financing request."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['type'] = 'SG'
@@ -155,7 +153,7 @@ def test_valid_financing_request_SG():
     assert is_valid
 
 
-def test_valid_financing_request_FL():
+def test_valid_financing_request_fl():
     """Assert that the schema is performing as expected for a forestry contractor lien financing request."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['type'] = 'FL'
@@ -177,7 +175,7 @@ def test_valid_financing_request_FL():
     assert is_valid
 
 
-def test_valid_financing_request_FA():
+def test_valid_financing_request_fa():
     """Assert that the schema is performing as expected for a forestry contractor charge lien financing request."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['type'] = 'FA'
@@ -199,7 +197,7 @@ def test_valid_financing_request_FA():
     assert is_valid
 
 
-def test_valid_financing_request_FS():
+def test_valid_financing_request_fs():
     """Assert that the schema is performing as expected for a forestry contractor subcharge lien financing request."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['type'] = 'FS'
@@ -221,7 +219,7 @@ def test_valid_financing_request_FS():
     assert is_valid
 
 
-def test_valid_financing_request_MR():
+def test_valid_financing_request_mr():
     """Assert that the schema is performing as expected for a miscellaneous regulations act financing request."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['type'] = 'MR'
@@ -243,7 +241,7 @@ def test_valid_financing_request_MR():
     assert is_valid
 
 
-def test_valid_financing_response_SA():
+def test_valid_financing_response_sa():
     """Assert that the schema is performing as expected for an financing response."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     del statement['lifeInfinite']
@@ -515,7 +513,6 @@ def test_invalid_financing_missing_secparties():
     assert not is_valid
 
 
-
 def test_invalid_financing_missing_debtors():
     """Assert that an invalid financing statement fails - debtors are missing."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
@@ -545,4 +542,3 @@ def test_invalid_financing_missing_collateral():
     print(errors)
 
     assert not is_valid
-
