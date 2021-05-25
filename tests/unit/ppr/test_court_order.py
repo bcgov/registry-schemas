@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR court order information schema is valid.
-
-"""
+"""Test Suite to ensure the PPR court order information schema is valid."""
 import copy
 
 from registry_schemas import validate
@@ -34,10 +32,10 @@ def test_valid_court_order():
 
 def test_invalid_court_order_missing_courtname():
     """Assert that an invalid court order fails - court name is missing."""
-    coInfo = copy.deepcopy(COURT_ORDER)
-    del coInfo['courtName']
+    co_info = copy.deepcopy(COURT_ORDER)
+    del co_info['courtName']
 
-    is_valid, errors = validate(coInfo, 'courtOrder', 'ppr')
+    is_valid, errors = validate(co_info, 'courtOrder', 'ppr')
 
     if errors:
         for err in errors:
@@ -49,10 +47,10 @@ def test_invalid_court_order_missing_courtname():
 
 def test_invalid_court_order_missing_courtregistry():
     """Assert that an invalid court order fails - court registry is missing."""
-    coInfo = copy.deepcopy(COURT_ORDER)
-    del coInfo['courtRegistry']
+    co_info = copy.deepcopy(COURT_ORDER)
+    del co_info['courtRegistry']
 
-    is_valid, errors = validate(coInfo, 'courtOrder', 'ppr')
+    is_valid, errors = validate(co_info, 'courtOrder', 'ppr')
 
     if errors:
         for err in errors:
@@ -64,10 +62,10 @@ def test_invalid_court_order_missing_courtregistry():
 
 def test_invalid_court_order_missing_filenumber():
     """Assert that an invalid court order fails - file number is missing."""
-    coInfo = copy.deepcopy(COURT_ORDER)
-    del coInfo['fileNumber']
+    co_info = copy.deepcopy(COURT_ORDER)
+    del co_info['fileNumber']
 
-    is_valid, errors = validate(coInfo, 'courtOrder', 'ppr')
+    is_valid, errors = validate(co_info, 'courtOrder', 'ppr')
 
     if errors:
         for err in errors:
@@ -79,10 +77,10 @@ def test_invalid_court_order_missing_filenumber():
 
 def test_invalid_court_order_missing_orderdate():
     """Assert that an invalid court order fails - order date is missing."""
-    coInfo = copy.deepcopy(COURT_ORDER)
-    del coInfo['orderDate']
+    co_info = copy.deepcopy(COURT_ORDER)
+    del co_info['orderDate']
 
-    is_valid, errors = validate(coInfo, 'courtOrder', 'ppr')
+    is_valid, errors = validate(co_info, 'courtOrder', 'ppr')
 
     if errors:
         for err in errors:
@@ -94,10 +92,10 @@ def test_invalid_court_order_missing_orderdate():
 
 def test_invalid_court_order_courtname():
     """Assert that an invalid court order fails - court name is too short."""
-    coInfo = copy.deepcopy(COURT_ORDER)
-    coInfo['courtName'] = 'xx'
+    co_info = copy.deepcopy(COURT_ORDER)
+    co_info['courtName'] = 'xx'
 
-    is_valid, errors = validate(coInfo, 'courtOrder', 'ppr')
+    is_valid, errors = validate(co_info, 'courtOrder', 'ppr')
 
     if errors:
         for err in errors:
@@ -109,10 +107,10 @@ def test_invalid_court_order_courtname():
 
 def test_invalid_court_order_courtregistry():
     """Assert that an invalid court order fails - court registry is too short."""
-    coInfo = copy.deepcopy(COURT_ORDER)
-    coInfo['courtRegistry'] = 'XX'
+    co_info = copy.deepcopy(COURT_ORDER)
+    co_info['courtRegistry'] = 'XX'
 
-    is_valid, errors = validate(coInfo, 'courtOrder', 'ppr')
+    is_valid, errors = validate(co_info, 'courtOrder', 'ppr')
 
     if errors:
         for err in errors:
@@ -124,10 +122,10 @@ def test_invalid_court_order_courtregistry():
 
 def test_invalid_court_order_filenumber():
     """Assert that an invalid court order fails - file number is too long."""
-    coInfo = copy.deepcopy(COURT_ORDER)
-    coInfo['fileNumber'] = 'FILE NUMBER TOO LONGXXXX'
+    co_info = copy.deepcopy(COURT_ORDER)
+    co_info['fileNumber'] = 'FILE NUMBER TOO LONGXXXX'
 
-    is_valid, errors = validate(coInfo, 'courtOrder', 'ppr')
+    is_valid, errors = validate(co_info, 'courtOrder', 'ppr')
 
     if errors:
         for err in errors:
@@ -139,10 +137,10 @@ def test_invalid_court_order_filenumber():
 
 def test_invalid_court_order_date():
     """Assert that an invalid court order fails - order date format is invalid."""
-    coInfo = copy.deepcopy(COURT_ORDER)
-    coInfo['orderDate'] = 'XXXXXXXX'
+    co_info = copy.deepcopy(COURT_ORDER)
+    co_info['orderDate'] = 'XXXXXXXX'
 
-    is_valid, errors = validate(coInfo, 'courtOrder', 'ppr')
+    is_valid, errors = validate(co_info, 'courtOrder', 'ppr')
 
     if errors:
         for err in errors:
@@ -150,13 +148,14 @@ def test_invalid_court_order_date():
     print(errors)
 
     assert not is_valid
+
 
 def test_invalid_court_order_effect():
     """Assert that an invalid court order fails - effect of order is too short."""
-    coInfo = copy.deepcopy(COURT_ORDER)
-    coInfo['effectOfOrder'] = 'XX'
+    co_info = copy.deepcopy(COURT_ORDER)
+    co_info['effectOfOrder'] = 'XX'
 
-    is_valid, errors = validate(coInfo, 'courtOrder', 'ppr')
+    is_valid, errors = validate(co_info, 'courtOrder', 'ppr')
 
     if errors:
         for err in errors:
@@ -164,5 +163,3 @@ def test_invalid_court_order_effect():
     print(errors)
 
     assert not is_valid
-
-

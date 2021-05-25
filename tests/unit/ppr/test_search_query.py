@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR Search Query schema is valid.
-
-"""
+"""Test Suite to ensure the PPR Search Query schema is valid."""
 import copy
 
 from registry_schemas import validate
@@ -31,7 +29,6 @@ def test_valid_search_query_ind_debtor():
     del query['endDateTime']
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
-
 
     if errors:
         for err in errors:
@@ -52,7 +49,6 @@ def test_valid_search_query_bus_debtor():
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 
-
     if errors:
         for err in errors:
             print(err.message)
@@ -69,7 +65,6 @@ def test_valid_search_query_airdot():
     query['criteria']['value'] = 'CFYXW'
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
-
 
     if errors:
         for err in errors:
@@ -88,7 +83,6 @@ def test_valid_search_query_regnum():
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 
-
     if errors:
         for err in errors:
             print(err.message)
@@ -106,7 +100,6 @@ def test_valid_search_query_mhrnum():
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 
-
     if errors:
         for err in errors:
             print(err.message)
@@ -123,7 +116,6 @@ def test_valid_search_query_serialnum():
     query['criteria']['value'] = 'KM8J3CA46JU622994'
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
-
 
     if errors:
         for err in errors:
@@ -253,7 +245,7 @@ def test_invalid_search_query_firstname():
     del query['criteria']['value']
     del query['criteria']['debtorName']['business']
     query['criteria']['debtorName']['first'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
- 
+
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 
     if errors:
@@ -270,7 +262,7 @@ def test_invalid_search_query_secondname():
     del query['criteria']['value']
     del query['criteria']['debtorName']['business']
     query['criteria']['debtorName']['second'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
- 
+
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 
     if errors:
@@ -281,14 +273,13 @@ def test_invalid_search_query_secondname():
     assert not is_valid
 
 
-
 def test_invalid_search_query_lastname():
     """Assert that an invalid search query fails - debtor last name is too long."""
     query = copy.deepcopy(SEARCH_QUERY)
     del query['criteria']['value']
     del query['criteria']['debtorName']['business']
     query['criteria']['debtorName']['last'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
- 
+
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 
     if errors:
@@ -348,4 +339,3 @@ def test_invalid_search_query_endts():
     print(errors)
 
     assert not is_valid
-

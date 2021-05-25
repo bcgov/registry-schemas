@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR Draft Summary schema is valid.
-
-"""
+"""Test Suite to ensure the PPR Draft Summary schema is valid."""
 import copy
 
 from registry_schemas import validate
@@ -40,7 +38,6 @@ def test_valid_draft_summary_empty():
     del draft[0]
 
     is_valid, errors = validate(draft, 'draftSummary', 'ppr')
-
 
     if errors:
         for err in errors:
@@ -80,7 +77,7 @@ def test_invalid_draft_summary_missing_regtype():
     assert not is_valid
 
 
-def test_invalid_draft_summary_missing_docId():
+def test_invalid_draft_summary_missing_docid():
     """Assert that an invalid draft summary fails - document ID is missing."""
     draft = copy.deepcopy(DRAFT_SUMMARY)
     del draft[0]['documentId']
@@ -125,7 +122,7 @@ def test_invalid_draft_summary_missing_timestamp():
     assert not is_valid
 
 
-def test_invalid_draft_summary_docId():
+def test_invalid_draft_summary_docid():
     """Assert that an invalid draft summary fails - document Id is too long."""
     draft = copy.deepcopy(DRAFT_SUMMARY)
     draft[0]['documentId'] = 'XXXXXXXXXXXXX'
@@ -168,5 +165,3 @@ def test_invalid_draft_summary_regtype():
     print(errors)
 
     assert not is_valid
-
-

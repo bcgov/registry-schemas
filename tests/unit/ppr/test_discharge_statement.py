@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR Discharge Statement (request and response) schema is valid.
-
-"""
+"""Test Suite to ensure the PPR Discharge Statement (request and response) schema is valid."""
 import copy
 
 from registry_schemas import validate

@@ -11,15 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR Draft schema is valid.
-
-"""
+"""Test Suite to ensure the PPR Draft schema is valid."""
 import copy
 
 from registry_schemas import validate
-from registry_schemas.example_data.ppr import DRAFT_FINANCING_STATEMENT
-from registry_schemas.example_data.ppr import DRAFT_CHANGE_STATEMENT
-from registry_schemas.example_data.ppr import DRAFT_AMENDMENT_STATEMENT
+from registry_schemas.example_data.ppr import (
+    DRAFT_AMENDMENT_STATEMENT,
+    DRAFT_CHANGE_STATEMENT,
+    DRAFT_FINANCING_STATEMENT,
+)
 
 
 def test_valid_draft_financing():
@@ -192,4 +192,3 @@ def test_invalid_draft_update():
     print(errors)
 
     assert not is_valid
-

@@ -14,8 +14,49 @@
 """Test Suite to ensure the PPR Search Summary schema is valid."""
 import copy
 
+import pytest
+
 from registry_schemas import validate
 from registry_schemas.example_data.ppr import SEARCH_SUMMARY
+
+
+# testdata pattern is ({registration type}, {is valid})
+TEST_DATA_REG_TYPE = [
+    ('CC', True),
+    ('CT', True),
+    ('DP', True),
+    ('ET', True),
+    ('FA', True),
+    ('FL', True),
+    ('FO', True),
+    ('FR', True),
+    ('FS', True),
+    ('FT', True),
+    ('HN', True),
+    ('HR', True),
+    ('IP', True),
+    ('IT', True),
+    ('LO', True),
+    ('LT', True),
+    ('MH', True),
+    ('MI', True),
+    ('ML', True),
+    ('MN', True),
+    ('MR', True),
+    ('OT', True),
+    ('PG', True),
+    ('PN', True),
+    ('PS', True),
+    ('RA', True),
+    ('RL', True),
+    ('SA', True),
+    ('SG', True),
+    ('SS', True),
+    ('TF', True),
+    ('TL', True),
+    ('WL', True),
+    ('XX', False),
+]
 
 
 def test_valid_search_summary():
@@ -86,6 +127,24 @@ def test_valid_search_summary_missing_regtype():
             print(err.message)
 
     assert is_valid
+
+
+@pytest.mark.parametrize('registration_type, valid', TEST_DATA_REG_TYPE)
+def test_search_summary_regtype(registration_type, valid):
+    """Assert the validation of all registration types."""
+    search = copy.deepcopy(SEARCH_SUMMARY)
+    search[0]['registrationType'] = registration_type
+
+    is_valid, errors = validate(search, 'searchSummary', 'ppr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
 
 
 def test_valid_search_summary_missing_create():

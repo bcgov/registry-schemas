@@ -11,16 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR Amendment Statement (request and response) schema is valid.
-
-"""
+"""Test Suite to ensure the PPR Amendment Statement (request and response) schema is valid."""
 import copy
 
 from registry_schemas import validate
 from registry_schemas.example_data.ppr import AMENDMENT_STATEMENT
 
 
-def test_valid_amendment_request_AM():
+def test_valid_amendment_request_am():
     """Assert that the schema is performing as expected for an amendment request."""
     statement = copy.deepcopy(AMENDMENT_STATEMENT)
     statement['changeType'] = 'AM'
@@ -39,7 +37,7 @@ def test_valid_amendment_request_AM():
     assert is_valid
 
 
-def test_valid_amendment_request_CO():
+def test_valid_amendment_request_co():
     """Assert that the schema is performing as expected for a court order amendment request."""
     statement = copy.deepcopy(AMENDMENT_STATEMENT)
     del statement['createDateTime']
@@ -636,7 +634,7 @@ def test_invalid_amendment_missing_changetype():
     assert not is_valid
 
 
-def test_invalid_amendment_CO_missing_info():
+def test_invalid_amendment_co_missing_info():
     """Assert that an invalid amendment statement fails - CO change type missing court order information."""
     statement = copy.deepcopy(AMENDMENT_STATEMENT)
     del statement['baseDebtor']
@@ -651,5 +649,3 @@ def test_invalid_amendment_CO_missing_info():
     print(errors)
 
     assert not is_valid
-
-

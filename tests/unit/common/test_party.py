@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR party schema is valid.
-
-"""
+"""Test Suite to ensure the PPR party schema is valid."""
 import copy
 
 from registry_schemas import validate
@@ -35,7 +33,7 @@ def test_valid_party_person():
 def test_valid_party_business():
     """Assert that the schema is performing as expected for a business party."""
     party = copy.deepcopy(PARTY)
-    party['businessName'] = 'BUSINESS NAME' 
+    party['businessName'] = 'BUSINESS NAME'
     del party['personName']
     is_valid, errors = validate(party, 'party', 'common')
 
@@ -50,7 +48,7 @@ def test_valid_party_business():
 def test_valid_party_code():
     """Assert that the schema is performing as expected for a party code."""
     party = copy.deepcopy(PARTY)
-    party['code'] = '1234' 
+    party['code'] = '1234'
     del party['personName']
     del party['address']
     del party['emailAddress']
@@ -77,7 +75,6 @@ def test_invalid_party_missing_lastname():
     print(errors)
 
     assert not is_valid
-
 
 
 def test_invalid_party_birthdate():
@@ -133,7 +130,7 @@ def test_invalid_party_missing_business_address():
     del party['address']
     del party['partyId']
     party['businessName'] = 'BUSINESS NAME'
-    
+
     is_valid, errors = validate(party, 'party', 'common')
 
     if errors:

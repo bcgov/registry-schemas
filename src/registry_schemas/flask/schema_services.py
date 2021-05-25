@@ -22,7 +22,8 @@ import json
 
 from flask import g
 
-from registry_schemas import get_schema_store, validate as schema_validate
+from registry_schemas import get_schema_store
+from registry_schemas import validate as schema_validate
 
 
 class SchemaServices():

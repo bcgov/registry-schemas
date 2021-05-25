@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR base debtor schema is valid.
-
-"""
+"""Test Suite to ensure the PPR base debtor schema is valid."""
 import copy
 
 from registry_schemas import validate
@@ -35,7 +33,7 @@ def test_valid_debtor_person():
 def test_valid_debtor_business():
     """Assert that the schema is performing as expected for a business debtor."""
     debtor = copy.deepcopy(BASE_DEBTOR)
-    debtor['businessName'] = 'BUSINESS NAME DEBTOR INC.' 
+    debtor['businessName'] = 'BUSINESS NAME DEBTOR INC.'
     del debtor['personName']
     is_valid, errors = validate(debtor, 'baseDebtor', 'ppr')
 
@@ -90,4 +88,3 @@ def test_invalid_debtor_missing_debtor():
     print(errors)
 
     assert not is_valid
-

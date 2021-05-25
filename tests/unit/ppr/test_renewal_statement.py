@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test Suite to ensure the PPR Renewal Statement (request and response) schema is valid.
-
-"""
+"""Test Suite to ensure the PPR Renewal Statement (request and response) schema is valid."""
 import copy
 
 from registry_schemas import validate
@@ -38,7 +36,7 @@ def test_valid_renewal_request():
     assert is_valid
 
 
-def test_valid_renewal_RL_request():
+def test_valid_renewal_rl_request():
     """Assert that the schema is performing as expected for a repairer's lien renewal request."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
     del statement['expiryDate']
