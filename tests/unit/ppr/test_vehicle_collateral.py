@@ -34,12 +34,60 @@ TEST_DATA_VEHICLE_TYPE = [
     ('XX', False)
 ]
 
+# testdata pattern is ({vehicle type}, {serial number}, {mhr number}, {is valid})
+TEST_DATA_SERIAL_NUMBER = [
+    ('AC', 'CFYXW', None, True),
+    ('AC', None, '123456', False),
+    ('AF', '12343424', None, True),
+    ('AF', None, '123456', False),
+    ('AP', 'ABDCD12343', None, True),
+    ('AP', None, '123456', False),
+    ('BO', '13434X', None, True),
+    ('BO', None, '123456', False),
+    ('EV', 'ASDVSS13424', None, True),
+    ('EV', None, '123456', False),
+    ('MH', '002434', None, True),
+    ('MH', None, '123456', True),
+    ('MH', None, None, False),
+    ('MV', '242342342', None, True),
+    ('MV', None, '123456', False),
+    ('OB', 'xsfsfd132', None, True),
+    ('OB', None, '123456', False),
+    ('TR', 'TR32324', None, True),
+    ('TR', None, '123456', False)
+]
+
 
 @pytest.mark.parametrize('vehicle_type, valid', TEST_DATA_VEHICLE_TYPE)
 def test_vehicle_type(vehicle_type, valid):
     """Assert that the schema is performing as expected for all serial collateral types."""
     vehicle = copy.deepcopy(VEHICLE_COLLATERAL)
     vehicle['type'] = vehicle_type
+
+    is_valid, errors = validate(vehicle, 'vehicleCollateral', 'ppr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('vehicle_type, serial_number, mhr_number, valid', TEST_DATA_SERIAL_NUMBER)
+def test_serial_number(vehicle_type, serial_number, mhr_number, valid):
+    """Assert that the schema is performing as expected for all serial collateral type - serial number combinations."""
+    vehicle = copy.deepcopy(VEHICLE_COLLATERAL)
+    vehicle['type'] = vehicle_type
+    if serial_number is None:
+        del vehicle['serialNumber']
+    else:
+        vehicle['serialNumber'] = serial_number
+
+    if mhr_number is not None:
+        vehicle['manufacturedHomeRegistrationNumber'] = mhr_number
 
     is_valid, errors = validate(vehicle, 'vehicleCollateral', 'ppr')
 
