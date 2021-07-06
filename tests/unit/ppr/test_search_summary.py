@@ -53,7 +53,10 @@ TEST_DATA_REG_TYPE = [
     ('SG', True),
     ('SS', True),
     ('TF', True),
+    ('TA', True),
+    ('TG', True),
     ('TL', True),
+    ('TM', True),
     ('WL', True),
     ('XX', False),
 ]
