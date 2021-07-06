@@ -14,231 +14,79 @@
 """Test Suite to ensure the PPR Financing Statement (request and response) schema is valid."""
 import copy
 
+import pytest
+
 from registry_schemas import validate
 from registry_schemas.example_data.ppr import FINANCING_STATEMENT
 
 
-def test_valid_financing_request_sa():
-    """Assert that the schema is performing as expected for a security agreement financing request."""
+# testdata pattern is ({registration type}, {is valid})
+TEST_DATA_REG_TYPE = [
+    ('CC', True),
+    ('CT', True),
+    ('DP', True),
+    ('ET', True),
+    ('FA', True),
+    ('FL', True),
+    ('FO', True),
+    ('FR', True),
+    ('FS', True),
+    ('FT', True),
+    ('HN', True),
+    ('HR', True),
+    ('IP', True),
+    ('IT', True),
+    ('LO', True),
+    ('LT', True),
+    ('MH', True),
+    ('MI', True),
+    ('ML', True),
+    ('MN', True),
+    ('MR', True),
+    ('OT', True),
+    ('PG', True),
+    ('PN', True),
+    ('PS', True),
+    ('RA', True),
+    ('RL', True),
+    ('SA', True),
+    ('SG', True),
+    ('SS', True),
+    ('TF', True),
+    ('TA', True),
+    ('TG', True),
+    ('TL', True),
+    ('TM', True),
+    ('WL', True),
+    ('XX', False),
+]
+
+
+@pytest.mark.parametrize('registration_type, valid', TEST_DATA_REG_TYPE)
+def test_financing_regtype(registration_type, valid):
+    """Assert the validation of all registration types."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'SA'
+    statement['type'] = registration_type
     del statement['createDateTime']
     del statement['baseRegistrationNumber']
     del statement['payment']
     del statement['lifeInfinite']
-    del statement['lienAmount']
-    del statement['surrenderDate']
+    if registration_type != 'SA':
+        del statement['trustIndenture']
+    elif registration_type != 'RL':
+        del statement['lienAmount']
+        del statement['surrenderDate']
 
     is_valid, errors = validate(statement, 'financingStatement', 'ppr')
 
     if errors:
         for err in errors:
             print(err.message)
-    print(errors)
 
-    assert is_valid
-
-
-def test_valid_financing_request_rl():
-    """Assert that the schema is performing as expected for a repairer's lien financing request."""
-    statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'RL'
-    del statement['createDateTime']
-    del statement['baseRegistrationNumber']
-    del statement['payment']
-    del statement['lifeYears']
-    del statement['lifeInfinite']
-    del statement['trustIndenture']
-    del statement['generalCollateral']
-
-    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-    print(errors)
-
-    assert is_valid
-
-
-def test_valid_financing_request_fr():
-    """Assert that the schema is performing as expected for a FR financing request."""
-    statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'FR'
-    del statement['createDateTime']
-    del statement['baseRegistrationNumber']
-    del statement['payment']
-    del statement['lienAmount']
-    del statement['surrenderDate']
-    del statement['trustIndenture']
-    del statement['generalCollateral']
-    del statement['lifeYears']
-    del statement['expiryDate']
-    statement['lifeInfinite'] = True
-
-    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-    print(errors)
-
-    assert is_valid
-
-
-def test_valid_financing_request_lt():
-    """Assert that the schema is performing as expected for a land tax lien financing request."""
-    statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'LT'
-    del statement['createDateTime']
-    del statement['baseRegistrationNumber']
-    del statement['payment']
-    del statement['lifeInfinite']
-    del statement['trustIndenture']
-    del statement['lienAmount']
-    del statement['surrenderDate']
-    del statement['vehicleCollateral']
-
-    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-    print(errors)
-
-    assert is_valid
-
-
-def test_valid_financing_request_mh():
-    """Assert that the schema is performing as expected for a manufactured home lien financing request."""
-    statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'MH'
-    del statement['createDateTime']
-    del statement['baseRegistrationNumber']
-    del statement['payment']
-    del statement['trustIndenture']
-    del statement['lifeInfinite']
-    del statement['lienAmount']
-    del statement['surrenderDate']
-
-    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-    print(errors)
-
-    assert is_valid
-
-
-def test_valid_financing_request_sg():
-    """Assert that the schema is performing as expected for a sale of goods financing request."""
-    statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'SG'
-    del statement['createDateTime']
-    del statement['baseRegistrationNumber']
-    del statement['payment']
-    del statement['trustIndenture']
-    del statement['lifeInfinite']
-    del statement['lienAmount']
-    del statement['surrenderDate']
-
-    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-    print(errors)
-
-    assert is_valid
-
-
-def test_valid_financing_request_fl():
-    """Assert that the schema is performing as expected for a forestry contractor lien financing request."""
-    statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'FL'
-    del statement['createDateTime']
-    del statement['baseRegistrationNumber']
-    del statement['payment']
-    del statement['trustIndenture']
-    del statement['lifeInfinite']
-    del statement['lienAmount']
-    del statement['surrenderDate']
-
-    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-    print(errors)
-
-    assert is_valid
-
-
-def test_valid_financing_request_fa():
-    """Assert that the schema is performing as expected for a forestry contractor charge lien financing request."""
-    statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'FA'
-    del statement['createDateTime']
-    del statement['baseRegistrationNumber']
-    del statement['payment']
-    del statement['trustIndenture']
-    del statement['lifeInfinite']
-    del statement['lienAmount']
-    del statement['surrenderDate']
-
-    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-    print(errors)
-
-    assert is_valid
-
-
-def test_valid_financing_request_fs():
-    """Assert that the schema is performing as expected for a forestry contractor subcharge lien financing request."""
-    statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'FS'
-    del statement['createDateTime']
-    del statement['baseRegistrationNumber']
-    del statement['payment']
-    del statement['trustIndenture']
-    del statement['lifeInfinite']
-    del statement['lienAmount']
-    del statement['surrenderDate']
-
-    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-    print(errors)
-
-    assert is_valid
-
-
-def test_valid_financing_request_mr():
-    """Assert that the schema is performing as expected for a miscellaneous regulations act financing request."""
-    statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'MR'
-    del statement['createDateTime']
-    del statement['baseRegistrationNumber']
-    del statement['payment']
-    del statement['trustIndenture']
-    del statement['lifeInfinite']
-    del statement['lienAmount']
-    del statement['surrenderDate']
-
-    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-    print(errors)
-
-    assert is_valid
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
 
 
 def test_valid_financing_response_sa():
@@ -292,21 +140,6 @@ def test_invalid_financing_doc_id():
     """Assert that an invalid financing statement fails - document id too long."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
     statement['documentId'] = '00123456789'
-
-    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-    print(errors)
-
-    assert not is_valid
-
-
-def test_invalid_financing_type():
-    """Assert that an invalid financing statement fails - financing type is invalid."""
-    statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['type'] = 'XX'
 
     is_valid, errors = validate(statement, 'financingStatement', 'ppr')
 
