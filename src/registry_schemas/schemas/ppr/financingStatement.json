@@ -76,17 +76,17 @@
         },
         "trustIndenture": {
             "type": [ "boolean", "null" ],
-            "description": "Indicates if security interest is contained in a Trust Indenture. Required when the type is SA. Should be null otherwise."
+            "description": "Indicates if security interest is contained in a Trust Indenture. Required when the type is SA. Should be absent otherwise."
         },
         "lienAmount": {
             "type": [ "string", "null" ],
             "maxLength": 15,
-            "description": "The value of a lien. Required when the type is RL. Should be null otherwise."
+            "description": "The value of a lien. Required when the type is RL, otherwise it should be absent."
         },
         "surrenderDate": {
             "type": [ "string", "null" ],
             "format": "date-time",
-            "description": "The date the vehicle was or will be surrendered to the owner in the ISO 8601 format YYYY-MM-DDThh:mm:ssTZD. When provided it must be within the past 21 days or a later date. Required when the type is RL. Should be null otherwise."
+            "description": "The date the vehicle was or will be surrendered to the owner in the ISO 8601 format YYYY-MM-DDThh:mm:ssTZD. When provided it must be within the past 21 days or a later date. Required when the type is RL, otherwise it should be absent."
         },
         "baseRegistrationNumber": {
             "type": "string",
@@ -103,6 +103,11 @@
             "type": "string",
             "format": "date-time",
             "description": "Returned in search results detail information if applicable. The date and time in the ISO 8601 format YYYY-MM-DDThh:mm:ssTZD that the Financing Statement was discharged."
+        },
+        "otherTypeDescription": {
+            "type": [ "string", "null" ],
+            "maxLength": 70,
+            "description": "A text description when the crown charge type is other (OT). Required when the type is OT, otherwise should be absent."
         },
         "statusType": {
             "type": "string",

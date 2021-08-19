@@ -216,7 +216,7 @@ def test_valid_change_request_su_vehicle():
     """Assert that the schema is performing as expected for a subsitution of vehicle collateral change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'SU'
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['addSecuredParties']
     del statement['deleteSecuredParties']
     del statement['deleteDebtors']
@@ -238,7 +238,7 @@ def test_valid_change_request_su_general():
     """Assert that the schema is performing as expected for a subsitution of general collateral change request."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     statement['changeType'] = 'SU'
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['addSecuredParties']
     del statement['deleteSecuredParties']
     del statement['deleteDebtors']
@@ -268,7 +268,7 @@ def test_valid_change_request_su_general():
 def test_valid_change_response():
     """Assert that the schema is performing as expected for an change response."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
 
@@ -472,7 +472,7 @@ def test_invalid_change_baseregnum():
 def test_invalid_change_clientref():
     """Assert that an invalid change statement fails - client reference number too long."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['clientReferenceId'] = 'RSXXXXXXXX00001234567'
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -488,7 +488,7 @@ def test_invalid_change_clientref():
 def test_invalid_change_doc_id():
     """Assert that an invalid change statement fails - document id too long."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['documentId'] = '00123456789'
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -504,7 +504,7 @@ def test_invalid_change_doc_id():
 def test_invalid_change_changetype():
     """Assert that an invalid change statement fails - change type is invalid."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['changeType'] = 'XX'
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -520,7 +520,7 @@ def test_invalid_change_changetype():
 def test_invalid_change_timestamp():
     """Assert that an invalid change statement fails - create timestamp format is invalid."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['createDateTime'] = 'XXXXXXXXXXXX'
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -536,7 +536,7 @@ def test_invalid_change_timestamp():
 def test_invalid_change_regnum():
     """Assert that an invalid change statement fails - registration number too long."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['changeRegistrationNumber'] = 'D000012345678'
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -552,7 +552,7 @@ def test_invalid_change_regnum():
 def test_invalid_change_delete_debtor_name():
     """Assert that an invalid change statement fails - delete debtor name is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['deleteDebtors'][0]['businessName']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -568,7 +568,7 @@ def test_invalid_change_delete_debtor_name():
 def test_invalid_change_add_debtor_address():
     """Assert that an invalid change statement fails - add debtor address is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['addDebtors'][0]['address']
     del statement['addDebtors'][0]['partyId']
 
@@ -585,7 +585,7 @@ def test_invalid_change_add_debtor_address():
 def test_invalid_change_delete_secured_name():
     """Assert that an invalid change statement fails - delete secured party name is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['deleteSecuredParties'][0]['businessName']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -601,7 +601,7 @@ def test_invalid_change_delete_secured_name():
 def test_invalid_change_add_secured_address():
     """Assert that an invalid change statement fails - add secured party address is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['addSecuredParties'][0]['address']
     del statement['addSecuredParties'][0]['partyId']
 
@@ -618,7 +618,7 @@ def test_invalid_change_add_secured_address():
 def test_invalid_change_delete_vehicle_type():
     """Assert that an invalid change statement fails - delete vehicle collateral type is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['deleteVehicleCollateral'][0]['type']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -634,7 +634,7 @@ def test_invalid_change_delete_vehicle_type():
 def test_invalid_change_add_vehicle_serial():
     """Assert that an invalid change statement fails - add vehicle collateral serial number is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['addVehicleCollateral'][0]['serialNumber']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -650,7 +650,7 @@ def test_invalid_change_add_vehicle_serial():
 def test_invalid_change_delete_general_desc():
     """Assert that an invalid change statement fails - delete general collateral description is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['deleteGeneralCollateral'][0]['description']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -666,7 +666,7 @@ def test_invalid_change_delete_general_desc():
 def test_invalid_change_add_general_desc():
     """Assert that an invalid change statement fails - add general collateral description is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['addGeneralCollateral'][0]['description']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -685,7 +685,7 @@ def test_invalid_change_missing_debtor_first():
     del statement['createDateTime']
     del statement['changeRegistrationNumber']
     del statement['payment']
-    del statement['baseDebtor']['businessName']
+    del statement['debtorName']['businessName']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
 
@@ -700,7 +700,7 @@ def test_invalid_change_missing_debtor_first():
 def test_invalid_change_missing_regparty_address():
     """Assert that an invalid change statement fails - registering party address is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['registeringParty']['address']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -716,7 +716,7 @@ def test_invalid_change_missing_regparty_address():
 def test_invalid_change_missing_basereg():
     """Assert that an invalid change statement fails - base registration number is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['baseRegistrationNumber']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -732,7 +732,7 @@ def test_invalid_change_missing_basereg():
 def test_invalid_change_missing_regparty():
     """Assert that an invalid change statement fails - registering party is missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['registeringParty']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
@@ -748,7 +748,7 @@ def test_invalid_change_missing_regparty():
 def test_invalid_change_missing_changetype():
     """Assert that an invalid change statement fails - change type missing."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['changeType']
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')

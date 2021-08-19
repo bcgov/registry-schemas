@@ -60,6 +60,11 @@ TEST_DATA_REG_TYPE = [
     ('WL', True),
     ('XX', False),
 ]
+# testdata pattern is ({other type description}, {is valid})
+TEST_DATA_OT = [
+    ('0123456789012345678901234567890123456789012345678901234567890123456789', True),
+    ('01234567890123456789012345678901234567890123456789012345678901234567890', False),
+]
 
 
 @pytest.mark.parametrize('registration_type, valid', TEST_DATA_REG_TYPE)
@@ -76,6 +81,32 @@ def test_financing_regtype(registration_type, valid):
     elif registration_type != 'RL':
         del statement['lienAmount']
         del statement['surrenderDate']
+
+    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('other_description, valid', TEST_DATA_OT)
+def test_financing_ot(other_description, valid):
+    """Assert the validation of OT type otherTypeDescription."""
+    statement = copy.deepcopy(FINANCING_STATEMENT)
+    statement['type'] = 'OT'
+    statement['otherTypeDescription'] = other_description
+    del statement['createDateTime']
+    del statement['baseRegistrationNumber']
+    del statement['payment']
+    del statement['lifeInfinite']
+    del statement['trustIndenture']
+    del statement['lienAmount']
+    del statement['surrenderDate']
 
     is_valid, errors = validate(statement, 'financingStatement', 'ppr')
 

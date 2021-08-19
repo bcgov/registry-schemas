@@ -28,7 +28,7 @@ AMENDMENT_STATEMENT = {
   'baseRegistrationNumber': '023001B',
   'clientReferenceId': 'A-00000402',
   'documentId': '1234567',
-  'baseDebtor': {
+  'debtorName': {
       'businessName': 'DEBTOR 1 INC.'
   },
   'registeringParty': {
@@ -149,20 +149,12 @@ AMENDMENT_STATEMENT = {
   }
 }
 
-BASE_DEBTOR = {
-  'personName': {
-    'first': 'Michael',
-    'middle': 'J',
-    'last': 'Smith'
-  }
-}
-
 CHANGE_STATEMENT = {
   'statementType': 'CHANGE_STATEMENT',
   'baseRegistrationNumber': '023001B',
   'clientReferenceId': 'A-00000402',
   'documentId': '1234567',
-  'baseDebtor': {
+  'debtorName': {
       'businessName': 'DEBTOR 1 INC.'
   },
   'registeringParty': {
@@ -304,12 +296,20 @@ COURT_ORDER = {
   'effectOfOrder': 'Court Order to remove James Smith as debtor.'
 }
 
+DEBTOR_NAME = {
+  'personName': {
+    'first': 'Michael',
+    'middle': 'J',
+    'last': 'Smith'
+  }
+}
+
 DISCHARGE_STATEMENT = {
   'statementType': 'DISCHARGE_STATEMENT',
   'baseRegistrationNumber': '023001B',
   'clientReferenceId': 'A-00000402',
   'documentId': '1234567',
-  'baseDebtor': {
+  'debtorName': {
       'businessName': 'DEBTOR 1 INC.'
   },
   'registeringParty': {
@@ -339,7 +339,7 @@ DRAFT_AMENDMENT_STATEMENT = {
     'description': 'Court Order debtor removal.',
     'changeType': 'CO',
     'clientReferenceId': 'A-00000402',
-    'baseDebtor': {
+    'debtorName': {
         'businessName': 'DEBTOR 1 INC.'
     },
     'registeringParty': {
@@ -380,7 +380,7 @@ DRAFT_CHANGE_STATEMENT = {
     'documentId': 'D0034003',
     'changeType': 'DT',
     'clientReferenceId': 'A-00000402',
-    'baseDebtor': {
+    'debtorName': {
         'businessName': 'DEBTOR 1 INC.'
     },
     'registeringParty': {
@@ -835,7 +835,7 @@ RENEWAL_STATEMENT = {
     'statementType': 'RENEWAL_STATEMENT',
     'baseRegistrationNumber': '023001B',
     'clientReferenceId': 'A-00000402',
-    'baseDebtor': {
+    'debtorName': {
         'businessName': 'DEBTOR 1 INC.'
     },
     'registeringParty': {

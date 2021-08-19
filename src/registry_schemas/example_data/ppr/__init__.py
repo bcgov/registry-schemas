@@ -18,10 +18,10 @@ These can be used in other tests as basis for the JSON registration statements.
 from .schema_data import (
     ADDRESS,
     AMENDMENT_STATEMENT,
-    BASE_DEBTOR,
     CHANGE_STATEMENT,
     CLIENT_PARTY,
     COURT_ORDER,
+    DEBTOR_NAME,
     DISCHARGE_STATEMENT,
     DRAFT_AMENDMENT_STATEMENT,
     DRAFT_CHANGE_STATEMENT,
@@ -45,10 +45,10 @@ from .schema_data import (
 __all__ = [
     'ADDRESS',
     'AMENDMENT_STATEMENT',
-    'BASE_DEBTOR',
     'CHANGE_STATEMENT',
     'CLIENT_PARTY',
     'COURT_ORDER',
+    'DEBTOR_NAME',
     'DISCHARGE_STATEMENT',
     'DRAFT_AMENDMENT_STATEMENT',
     'DRAFT_CHANGE_STATEMENT',
