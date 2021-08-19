@@ -59,7 +59,7 @@ class SchemaServices():
             store = None
 
     @property
-    def rsbc_schema_store(self) -> dict:  # pylint: disable=assigning-non-slot
+    def rsbc_schema_store(self) -> dict:
         """Return the cached schema_store.
 
         If this is running in a Flask context,
@@ -68,7 +68,7 @@ class SchemaServices():
         :return: dict
         """
         if 'rsbc_schema_store' not in g:
-            g.rsbc_schema_store = get_schema_store()
+            g.rsbc_schema_store = get_schema_store()  # pylint: disable=E0237
 
         return g.rsbc_schema_store
 
