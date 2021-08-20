@@ -32,8 +32,8 @@
             "maxLength": 10,
             "description": "Optional draft document identifier if the Amendment is in a draft state and has not yet been registered. If included when creating the statement the draft will be deleted."
         },
-        "baseDebtor": {
-            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/baseDebtor"
+        "debtorName": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/debtorName"
         },
         "registeringParty": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
@@ -125,7 +125,7 @@
             "required": [
                 "baseRegistrationNumber",
                 "registeringParty",
-                "baseDebtor",
+                "debtorName",
                 "courtOrderInformation"
             ]
         },
@@ -134,7 +134,7 @@
                 "changeType",
                 "baseRegistrationNumber",
                 "registeringParty",
-                "baseDebtor"
+                "debtorName"
                 ]
         },
         {

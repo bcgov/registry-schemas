@@ -21,8 +21,8 @@
             "maxLength": 20,
             "description": "An optional client reference identifier associated with a change. Provided to facilitate client tracking of PPR activity."
         },
-        "baseDebtor": {
-            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/baseDebtor"
+        "debtorName": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/debtorName"
         },
         "registeringParty": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
@@ -47,7 +47,7 @@
             "required": [
                 "baseRegistrationNumber",
                 "registeringParty",
-                "baseDebtor"
+                "debtorName"
             ]
         },
         {

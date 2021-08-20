@@ -15,12 +15,12 @@
 import copy
 
 from registry_schemas import validate
-from registry_schemas.example_data.ppr import BASE_DEBTOR
+from registry_schemas.example_data.ppr import DEBTOR_NAME
 
 
 def test_valid_debtor_person():
     """Assert that the schema is performing as expected for an individual debtor."""
-    is_valid, errors = validate(BASE_DEBTOR, 'baseDebtor', 'ppr')
+    is_valid, errors = validate(DEBTOR_NAME, 'debtorName', 'ppr')
 
     if errors:
         for err in errors:
@@ -32,10 +32,10 @@ def test_valid_debtor_person():
 
 def test_valid_debtor_business():
     """Assert that the schema is performing as expected for a business debtor."""
-    debtor = copy.deepcopy(BASE_DEBTOR)
+    debtor = copy.deepcopy(DEBTOR_NAME)
     debtor['businessName'] = 'BUSINESS NAME DEBTOR INC.'
     del debtor['personName']
-    is_valid, errors = validate(debtor, 'baseDebtor', 'ppr')
+    is_valid, errors = validate(debtor, 'debtorName', 'ppr')
 
     if errors:
         for err in errors:
@@ -47,10 +47,10 @@ def test_valid_debtor_business():
 
 def test_invalid_debtor_missing_firstname():
     """Assert that an invalid debtor fails - person first name is missing."""
-    debtor = copy.deepcopy(BASE_DEBTOR)
+    debtor = copy.deepcopy(DEBTOR_NAME)
     del debtor['personName']['first']
 
-    is_valid, errors = validate(debtor, 'baseDebtor', 'ppr')
+    is_valid, errors = validate(debtor, 'debtorName', 'ppr')
 
     if errors:
         for err in errors:
@@ -62,10 +62,10 @@ def test_invalid_debtor_missing_firstname():
 
 def test_invalid_debtor_missing_lastname():
     """Assert that an invalid debtor fails - person last name is missing."""
-    debtor = copy.deepcopy(BASE_DEBTOR)
+    debtor = copy.deepcopy(DEBTOR_NAME)
     del debtor['personName']['last']
 
-    is_valid, errors = validate(debtor, 'baseDebtor', 'ppr')
+    is_valid, errors = validate(debtor, 'debtorName', 'ppr')
 
     if errors:
         for err in errors:
@@ -77,10 +77,10 @@ def test_invalid_debtor_missing_lastname():
 
 def test_invalid_debtor_missing_debtor():
     """Assert that an invalid debtor fails - debtor name is missing."""
-    debtor = copy.deepcopy(BASE_DEBTOR)
+    debtor = copy.deepcopy(DEBTOR_NAME)
     del debtor['personName']
 
-    is_valid, errors = validate(debtor, 'baseDebtor', 'ppr')
+    is_valid, errors = validate(debtor, 'debtorName', 'ppr')
 
     if errors:
         for err in errors:

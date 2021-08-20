@@ -78,7 +78,7 @@ def test_valid_financing_history_change():
     del history[0]['changes'][3]
     del history[0]['changes'][2]
     del history[0]['changes'][1]
-    del statement['baseDebtor']
+    del statement['debtorName']
     history[0]['changes'][0] = statement
 
     is_valid, errors = validate(history, 'financingStatementHistory', 'ppr')
@@ -95,7 +95,7 @@ def test_valid_financing_history_renewal():
     """Assert that the schema is performing as expected for a financing history list with 1 renewal statement."""
     history = copy.deepcopy(FINANCING_STATEMENT_HISTORY)
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del history[0]['changes'][3]
     del history[0]['changes'][2]
     del history[0]['changes'][1]
@@ -115,7 +115,7 @@ def test_valid_financing_history_discharge():
     """Assert that the schema is performing as expected for a financing history list with 1 discharge statement."""
     history = copy.deepcopy(FINANCING_STATEMENT_HISTORY)
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del history[0]['changes'][3]
     del history[0]['changes'][2]
     del history[0]['changes'][1]
@@ -135,7 +135,7 @@ def test_valid_financing_history_changes():
     """Assert that the schema is performing as expected for a financing history list with 2 change statements."""
     history = copy.deepcopy(FINANCING_STATEMENT_HISTORY)
     statement = copy.deepcopy(CHANGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     history[0]['changes'][3] = statement
 
     is_valid, errors = validate(history, 'financingStatementHistory', 'ppr')
@@ -152,7 +152,7 @@ def test_valid_financing_history_amendments():
     """Assert that the schema is performing as expected for a financing history list with 2 amendment statements."""
     history = copy.deepcopy(FINANCING_STATEMENT_HISTORY)
     statement = copy.deepcopy(AMENDMENT_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     history[0]['changes'][3] = statement
 
     is_valid, errors = validate(history, 'financingStatementHistory', 'ppr')
@@ -169,7 +169,7 @@ def test_valid_financing_history_renewals():
     """Assert that the schema is performing as expected for a financing history list with 2 renewal statements."""
     history = copy.deepcopy(FINANCING_STATEMENT_HISTORY)
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     history[0]['changes'][3] = statement
 
     is_valid, errors = validate(history, 'financingStatementHistory', 'ppr')

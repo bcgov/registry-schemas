@@ -38,7 +38,7 @@ def test_valid_discharge_request():
 def test_valid_discharge_response():
     """Assert that the schema is performing as expected for a discharge response."""
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
 
     is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
 
@@ -53,7 +53,7 @@ def test_valid_discharge_response():
 def test_invalid_discharge_baseregnum():
     """Assert that an invalid discharge statement fails - base registration number too long."""
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['baseRegistrationNumber'] = 'B0000123456789'
 
     is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
@@ -69,7 +69,7 @@ def test_invalid_discharge_baseregnum():
 def test_invalid_discharge_clientref():
     """Assert that an invalid discharge statement fails - client reference number too long."""
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['clientReferenceId'] = 'RSXXXXXXXX00001234567'
 
     is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
@@ -85,7 +85,7 @@ def test_invalid_discharge_clientref():
 def test_invalid_discharge_timestamp():
     """Assert that an invalid discharge statement fails - create timestamp format is invalid."""
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['createDateTime'] = 'XXXXXXXXXXXX'
 
     is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
@@ -101,7 +101,7 @@ def test_invalid_discharge_timestamp():
 def test_invalid_discharge_regnum():
     """Assert that an invalid discharge statement fails - registration number too long."""
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['dischargeRegistrationNumber'] = 'D000012345678'
 
     is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
@@ -120,7 +120,7 @@ def test_invalid_discharge_missing_debtor_first():
     del statement['createDateTime']
     del statement['dischargeRegistrationNumber']
     del statement['payment']
-    del statement['baseDebtor']['businessName']
+    del statement['debtorName']['businessName']
 
     is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
 
@@ -135,7 +135,7 @@ def test_invalid_discharge_missing_debtor_first():
 def test_invalid_discharge_missing_regparty_address():
     """Assert that an invalid discharge statement fails - registering party address is missing."""
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['registeringParty']['address']
 
     is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
@@ -151,7 +151,7 @@ def test_invalid_discharge_missing_regparty_address():
 def test_invalid_discharge_missing_basereg():
     """Assert that an invalid discharge statement fails - base registration number is missing."""
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['baseRegistrationNumber']
 
     is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
@@ -167,7 +167,7 @@ def test_invalid_discharge_missing_basereg():
 def test_invalid_discharge_missing_regparty():
     """Assert that an invalid discharge statement fails - registering party is missing."""
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['registeringParty']
 
     is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
@@ -183,7 +183,7 @@ def test_invalid_discharge_missing_regparty():
 def test_invalid_discharge_missing_debtor():
     """Assert that an invalid discharge statement fails - base debtor and statement reg number are missing."""
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['createDateTime']
     del statement['dischargeRegistrationNumber']
     del statement['payment']

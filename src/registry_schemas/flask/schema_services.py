@@ -68,7 +68,7 @@ class SchemaServices():
         :return: dict
         """
         if 'rsbc_schema_store' not in g:
-            g.rsbc_schema_store = get_schema_store()
+            g.rsbc_schema_store = get_schema_store()  # pylint: disable=E0237
 
         return g.rsbc_schema_store
 

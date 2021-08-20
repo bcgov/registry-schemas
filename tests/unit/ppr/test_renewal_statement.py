@@ -57,7 +57,7 @@ def test_valid_renewal_rl_request():
 def test_valid_renewal_response():
     """Assert that the schema is performing as expected for an renewal response."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
 
@@ -72,7 +72,7 @@ def test_valid_renewal_response():
 def test_invalid_renewal_baseregnum():
     """Assert that an invalid renewal statement fails - base registration number too long."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['baseRegistrationNumber'] = 'B0000123456789'
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
@@ -88,7 +88,7 @@ def test_invalid_renewal_baseregnum():
 def test_invalid_renewal_clientref():
     """Assert that an invalid renewal statement fails - client reference number too long."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['clientReferenceId'] = 'RSXXXXXXXX00001234567'
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
@@ -104,7 +104,7 @@ def test_invalid_renewal_clientref():
 def test_invalid_renewal_courtorder():
     """Assert that an invalid renewal statement fails - court order court name is missing."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['courtOrderInformation']['courtName']
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
@@ -120,7 +120,7 @@ def test_invalid_renewal_courtorder():
 def test_invalid_renewal_expiry():
     """Assert that an invalid renewal statement fails - expiry date format is invalid."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['expiryDate'] = 'XXXXXXXX'
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
@@ -136,7 +136,7 @@ def test_invalid_renewal_expiry():
 def test_invalid_renewal_timestamp():
     """Assert that an invalid renewal statement fails - create timestamp format is invalid."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['createDateTime'] = 'XXXXXXXXXXXX'
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
@@ -152,7 +152,7 @@ def test_invalid_renewal_timestamp():
 def test_invalid_renewal_regnum():
     """Assert that an invalid renewal statement fails - registration number too long."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     statement['renewalRegistrationNumber'] = 'D000012345678'
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
@@ -171,7 +171,7 @@ def test_invalid_renewal_missing_debtor_first():
     del statement['createDateTime']
     del statement['renewalRegistrationNumber']
     del statement['payment']
-    del statement['baseDebtor']['businessName']
+    del statement['debtorName']['businessName']
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
 
@@ -186,7 +186,7 @@ def test_invalid_renewal_missing_debtor_first():
 def test_invalid_renewal_missing_regparty_address():
     """Assert that an invalid renewal statement fails - registering party address is missing."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['registeringParty']['address']
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
@@ -202,7 +202,7 @@ def test_invalid_renewal_missing_regparty_address():
 def test_invalid_renewal_missing_basereg():
     """Assert that an invalid renewal statement fails - base registration number is missing."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['baseRegistrationNumber']
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
@@ -218,7 +218,7 @@ def test_invalid_renewal_missing_basereg():
 def test_invalid_renewal_missing_regparty():
     """Assert that an invalid renewal statement fails - registering party is missing."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['registeringParty']
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
@@ -234,7 +234,7 @@ def test_invalid_renewal_missing_regparty():
 def test_invalid_renewal_missing_debtor():
     """Assert that an invalid renewal statement fails - base debtor and statement reg number are missing."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['baseDebtor']
+    del statement['debtorName']
     del statement['createDateTime']
     del statement['renewalRegistrationNumber']
     del statement['payment']

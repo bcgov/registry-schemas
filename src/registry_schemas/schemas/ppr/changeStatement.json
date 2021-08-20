@@ -32,8 +32,8 @@
             "maxLength": 10,
             "description": "Optional draft document identifier if the Amendment is in a draft state and has not yet been registered. If included when creating the statement the draft will be deleted."
         },
-        "baseDebtor": {
-            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/baseDebtor"
+        "debtorName": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/debtorName"
         },
         "registeringParty": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
@@ -112,7 +112,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "addVehicleCollateral"
                     ]
                 },
@@ -121,7 +121,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "addGeneralCollateral"
                     ]
                 },
@@ -147,7 +147,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "deleteVehicleCollateral"
                     ]
                 },
@@ -156,7 +156,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "deleteGeneralCollateral"
                     ]
                 },
@@ -165,7 +165,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "deleteVehicleCollateral",
                         "deleteGeneralCollateral"
                     ]
@@ -192,7 +192,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "deleteDebtors"
                     ]
                 },
@@ -219,7 +219,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "deleteDebtors",
                         "addDebtors"
                     ]
@@ -248,7 +248,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "deleteSecuredParties",
                         "addSecuredParties"
                     ]
@@ -277,7 +277,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "addVehicleCollateral",
                         "deleteVehicleCollateral"
                     ]
@@ -287,7 +287,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "addGeneralCollateral",
                         "deleteGeneralCollateral"
                     ]
@@ -297,7 +297,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "addVehicleCollateral",
                         "deleteGeneralCollateral"
                     ]
@@ -307,7 +307,7 @@
                         "changeType",
                         "baseRegistrationNumber",
                         "registeringParty",
-                        "baseDebtor",
+                        "debtorName",
                         "addGeneralCollateral",
                         "deleteVehicleCollateral"
                     ]
