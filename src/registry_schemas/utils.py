@@ -38,7 +38,7 @@ def _load_json_schema(filename: str):
     relative_path = path.join('schemas', filename)
     absolute_path = path.join(path.dirname(__file__), relative_path)
 
-    with open(absolute_path, 'r') as schema_file:
+    with open(absolute_path, 'r', encoding='UTF-8') as schema_file:
         schema = json.loads(schema_file.read())
 
         return schema
@@ -57,7 +57,7 @@ def get_schema_store(validate_schema: bool = False, schema_search_path: str = No
             for fname in filenames:
                 fpath = path.join(dirpath, fname)
                 if fpath[-5:] == '.json':
-                    with open(fpath, 'r') as schema_fd:
+                    with open(fpath, 'r', encoding='UTF-8') as schema_fd:
                         schema = json.load(schema_fd)
                         if '$id' in schema:
                             schemastore[schema['$id']] = schema
