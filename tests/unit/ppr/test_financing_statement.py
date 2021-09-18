@@ -158,7 +158,7 @@ def test_invalid_financing_baseregnum():
 def test_invalid_financing_clientref():
     """Assert that an invalid financing statement fails - client reference number too long."""
     statement = copy.deepcopy(FINANCING_STATEMENT)
-    statement['clientReferenceId'] = 'RSXXXXXXXX00001234567'
+    statement['clientReferenceId'] = '012345678901234567890123456789012345678901234567890'
 
     is_valid, errors = validate(statement, 'financingStatement', 'ppr')
 

@@ -70,7 +70,7 @@ def test_invalid_discharge_clientref():
     """Assert that an invalid discharge statement fails - client reference number too long."""
     statement = copy.deepcopy(DISCHARGE_STATEMENT)
     del statement['debtorName']
-    statement['clientReferenceId'] = 'RSXXXXXXXX00001234567'
+    statement['clientReferenceId'] = '012345678901234567890123456789012345678901234567890'
 
     is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
 

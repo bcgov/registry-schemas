@@ -14,8 +14,45 @@
 """Test Suite to ensure the PPR general collateral schema is valid."""
 import copy
 
+import pytest
+
 from registry_schemas import validate
 from registry_schemas.example_data.ppr import GENERAL_COLLATERAL
+
+
+# testdata pattern is ({include_desc}, {include_desc_add}, {include_desc_delete},  {is valid})
+TEST_DATA_DESCRIPTION = [
+    (True, False, False, True),
+    (False, True, False, True),
+    (False, False, True, True),
+    (False, True, True, True),
+    (True, False, True, False),
+    (True, True, False, False),
+    (True, True, True, False),
+    (False, False, False, False),
+]
+
+
+@pytest.mark.parametrize('include_desc, include_add, include_delete, valid', TEST_DATA_DESCRIPTION)
+def test_description(include_desc, include_add, include_delete, valid):
+    """Assert that the schema is performing as expected for different required description combinations."""
+    collateral = {}
+    if include_desc:
+        collateral['description'] = 'test'
+    if include_add:
+        collateral['descriptionAdd'] = 'test'
+    if include_delete:
+        collateral['descriptionDelete'] = 'test'
+
+    is_valid, errors = validate(collateral, 'generalCollateral', 'ppr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
 
 
 def test_valid_general_collateral():
@@ -33,7 +70,7 @@ def test_valid_general_collateral():
 def test_invalid_general_collateral_description():
     """Assert that an invalid generalCollateral fails - description too short."""
     collateral = copy.deepcopy(GENERAL_COLLATERAL)
-    collateral['description'] = 'XX'
+    collateral['description'] = ''
 
     is_valid, errors = validate(collateral, 'generalCollateral', 'ppr')
 
