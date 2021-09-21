@@ -295,7 +295,7 @@ def test_invalid_search_query_clientref():
     query = copy.deepcopy(SEARCH_QUERY)
     del query['criteria']['value']
     del query['criteria']['debtorName']['business']
-    query['clientReferenceId'] = 'XxxxxxxxxxXxxxxxxxxxX'
+    query['clientReferenceId'] = '012345678901234567890123456789012345678901234567890'
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 

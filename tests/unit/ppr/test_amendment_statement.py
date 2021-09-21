@@ -330,7 +330,7 @@ def test_invalid_amendment_clientref():
     """Assert that an invalid amendment statement fails - client reference number too long."""
     statement = copy.deepcopy(AMENDMENT_STATEMENT)
     del statement['debtorName']
-    statement['clientReferenceId'] = 'RSXXXXXXXX00001234567'
+    statement['clientReferenceId'] = '012345678901234567890123456789012345678901234567890'
 
     is_valid, errors = validate(statement, 'amendmentStatement', 'ppr')
 

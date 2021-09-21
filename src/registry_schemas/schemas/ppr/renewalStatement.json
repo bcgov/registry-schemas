@@ -18,7 +18,7 @@
         },
         "clientReferenceId": {
             "type": [ "string", "null" ],
-            "maxLength": 20,
+            "maxLength": 50,
             "description": "An optional client reference identifier associated with a change. Provided to facilitate client tracking of PPR activity."
         },
         "debtorName": {

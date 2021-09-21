@@ -473,7 +473,7 @@ def test_invalid_change_clientref():
     """Assert that an invalid change statement fails - client reference number too long."""
     statement = copy.deepcopy(CHANGE_STATEMENT)
     del statement['debtorName']
-    statement['clientReferenceId'] = 'RSXXXXXXXX00001234567'
+    statement['clientReferenceId'] = '012345678901234567890123456789012345678901234567890'
 
     is_valid, errors = validate(statement, 'changeStatement', 'ppr')
 
