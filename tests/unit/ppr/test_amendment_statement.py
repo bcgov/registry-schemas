@@ -14,8 +14,46 @@
 """Test Suite to ensure the PPR Amendment Statement (request and response) schema is valid."""
 import copy
 
+import pytest
+
 from registry_schemas import validate
 from registry_schemas.example_data.ppr import AMENDMENT_STATEMENT
+
+
+# testdata pattern is ({change type}, {is valid})
+TEST_DATA_CHANGE_TYPE = [
+    ('AM', True),
+    ('AA', True),
+    ('AR', True),
+    ('AD', True),
+    ('AP', True),
+    ('AS', True),
+    ('AU', True),
+    ('XX', False)
+]
+
+
+@pytest.mark.parametrize('change_type, valid', TEST_DATA_CHANGE_TYPE)
+def test_change_type(change_type, valid):
+    """Assert that the schema is performing as expected for all amendment change types."""
+    statement = copy.deepcopy(AMENDMENT_STATEMENT)
+    statement['changeType'] = change_type
+    del statement['courtOrderInformation']
+    del statement['createDateTime']
+    del statement['amendmentRegistrationNumber']
+    del statement['payment']
+    del statement['description']
+
+    is_valid, errors = validate(statement, 'amendmentStatement', 'ppr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
 
 
 def test_valid_amendment_request_am():

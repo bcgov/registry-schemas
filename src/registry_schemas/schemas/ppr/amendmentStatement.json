@@ -19,8 +19,8 @@
         "changeType": {
             "type": "string",
             "maxLength": 2,
-            "enum": ["AM", "CO"],
-            "description": "Type of change. Either AM for Amendment or CO for Court Order."
+            "enum": ["AM", "CO", "AA", "AR", "AD", "AP", "AS", "AU"],
+            "description": "Type of change. Always CO if the amendment includes Court Order information."
         },
         "clientReferenceId": {
             "type": [ "string", "null" ],
@@ -40,19 +40,19 @@
         },
         "description": {
             "type": "string",
-            "maxLength": 1000,
-            "description": "A brief note explaining the purpose of the amendment."
+            "maxLength": 4000,
+            "description": "A note explaining the purpose of the amendment."
         },
         "courtOrderInformation": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/courtOrder"
         },
         "removeTrustIndenture": {
             "type": "boolean",
-            "description": "Include only if removing a trust indenture."
+            "description": "Include only if the base registration is a Security Agreement and removing a trust indenture."
         },
         "addTrustIndenture": {
             "type": "boolean",
-            "description": "Include only if adding a trust indenture."
+            "description": "Include only if the base registration is a Security Agreement and adding a trust indenture."
         },
         "deleteSecuredParties": {
             "type": [ "array", "null" ],
