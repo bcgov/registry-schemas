@@ -35,7 +35,7 @@ TEST_DATA_CHANGE_TYPE = [
 
 @pytest.mark.parametrize('change_type, valid', TEST_DATA_CHANGE_TYPE)
 def test_change_type(change_type, valid):
-    """Assert that the schema is performing as expected for all amendment change types."""
+    """Assert that the schema is performing as expected for all amendment change types (CO tested separately)."""
     statement = copy.deepcopy(AMENDMENT_STATEMENT)
     statement['changeType'] = change_type
     del statement['courtOrderInformation']
