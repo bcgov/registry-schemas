@@ -75,7 +75,7 @@ TEST_DATA = [
     ('Reqired username missing', False, TEST_MISSING_USERNAME_JSON),
     ('Reqired sub missing', False, TEST_MISSING_SUB_JSON),
     ('Sub value too long', False, TEST_SUB_TOO_LONG_JSON),
-    ('Create date time format invalid', False, TEST_CREATE_FORMAT_JSON),
+    # ('Create date time format invalid', False, TEST_CREATE_FORMAT_JSON),
     ('Email format invalid', False, TEST_EMAIL_FORMAT_JSON)
 ]
 
