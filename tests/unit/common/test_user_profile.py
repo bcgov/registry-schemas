@@ -17,11 +17,34 @@ import pytest
 from registry_schemas import validate
 
 
+# Properties can be anything, using show* for testing.
+REGISTRATIONS_TABLE = {
+    'showColumn1': True,
+    'showColumn2': False,
+    'showColumn3': True,
+    'showColumn4': False
+}
+# Properties can be anything, using misc* for testing.
+MISC_PREFERENCES = {
+    'preference1': 'A',
+    'preference2': False,
+    'preference3': 3
+}
+TEST_REG_TABLE_JSON = {
+    'paymentConfirmationDialog': True,
+    'registrationsTable': REGISTRATIONS_TABLE
+}
+TEST_MISC_PREF_JSON = {
+    'paymentConfirmationDialog': True,
+    'miscellaneousPreferences': MISC_PREFERENCES
+}
 TEST_ALL_JSON = {
     'paymentConfirmationDialog': True,
     'selectConfirmationDialog': False,
     'defaultDropDowns': True,
-    'defaultTableFilters': False
+    'defaultTableFilters': False,
+    'registrationsTable': REGISTRATIONS_TABLE,
+    'miscellaneousPreferences': MISC_PREFERENCES
 }
 TEST_COMBO_JSON = {
     'paymentConfirmationDialog': True,
@@ -56,6 +79,8 @@ TEST_DATA = [
     ('Just search select', True, TEST_SELECT_JSON),
     ('Just dropdown', True, TEST_DROPDOWN_JSON),
     ('Just table filter', True, TEST_FILTER_JSON),
+    ('Just registrations table', True, TEST_REG_TABLE_JSON),
+    ('Just miscellaneous preferences', True, TEST_MISC_PREF_JSON),
     ('No settings', False, TEST_EMPTY_JSON),
     ('Unknown setting', False, TEST_UNKNOWN_JSON),
     ('Invalid type setting', False, TEST_INVALID_TYPE_JSON)

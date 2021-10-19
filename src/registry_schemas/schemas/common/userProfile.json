@@ -21,6 +21,14 @@
         "defaultTableFilters": {
             "type": "boolean",
             "description": "Set to true if the user preference is the default UI table filter behaviour."
+        },
+        "registrationsTable": {
+            "type": "object",
+            "description": "User display preferences for the user account registrations table. Settings can be any valid JSON."
+        },
+        "miscellaneousPreferences": {
+            "type": "object",
+            "description": "Additional miscellaneous user preferences: settings can be any valid JSON."
         }
     },
     "anyOf":[
