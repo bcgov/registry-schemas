@@ -197,3 +197,30 @@ def test_invalid_discharge_missing_debtor():
     print(errors)
 
     assert not is_valid
+
+
+def test_authorization_received():
+    """Assert that authorization received validation works as expected."""
+    statement = copy.deepcopy(DISCHARGE_STATEMENT)
+    del statement['createDateTime']
+    del statement['dischargeRegistrationNumber']
+    del statement['payment']
+    del statement['authorizationReceived']
+
+    is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
+    assert is_valid
+
+    statement['authorizationReceived'] = False
+    is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
+    assert is_valid
+
+    statement['authorizationReceived'] = True
+    is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
+    assert is_valid
+
+    statement['authorizationReceived'] = 'junk'
+    is_valid, errors = validate(statement, 'dischargeStatement', 'ppr')
+    if errors:
+        for err in errors:
+            print(err.message)
+    assert not is_valid
