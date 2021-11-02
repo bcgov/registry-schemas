@@ -760,3 +760,27 @@ def test_invalid_change_missing_changetype():
     print(errors)
 
     assert not is_valid
+
+
+def test_authorization_received():
+    """Assert that authorization received validation works as expected."""
+    statement = copy.deepcopy(CHANGE_STATEMENT)
+    del statement['authorizationReceived']
+
+    is_valid, errors = validate(statement, 'changeStatement', 'ppr')
+    assert is_valid
+
+    statement['authorizationReceived'] = False
+    is_valid, errors = validate(statement, 'changeStatement', 'ppr')
+    assert is_valid
+
+    statement['authorizationReceived'] = True
+    is_valid, errors = validate(statement, 'changeStatement', 'ppr')
+    assert is_valid
+
+    statement['authorizationReceived'] = 'junk'
+    is_valid, errors = validate(statement, 'changeStatement', 'ppr')
+    if errors:
+        for err in errors:
+            print(err.message)
+    assert not is_valid

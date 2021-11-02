@@ -32,6 +32,10 @@
             "maxLength": 10,
             "description": "Optional draft document identifier if the Amendment is in a draft state and has not yet been registered. If included when creating the statement the draft will be deleted."
         },
+        "authorizationReceived": {
+            "type": "boolean",
+            "description": "Required when submitting a request. Must be true to indicate client authorization of the registration."
+        },
         "debtorName": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/debtorName"
         },

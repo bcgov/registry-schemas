@@ -268,3 +268,31 @@ def test_invalid_renewal_missing_expiry():
     print(errors)
 
     assert not is_valid
+
+
+def test_authorization_received():
+    """Assert that authorization received validation works as expected."""
+    statement = copy.deepcopy(RENEWAL_STATEMENT)
+    del statement['courtOrderInformation']
+    del statement['createDateTime']
+    del statement['renewalRegistrationNumber']
+    del statement['payment']
+    del statement['authorizationReceived']
+
+    is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
+    assert is_valid
+
+    statement['authorizationReceived'] = False
+    is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
+    assert is_valid
+
+    statement['authorizationReceived'] = True
+    is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
+    assert is_valid
+
+    statement['authorizationReceived'] = 'junk'
+    is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
+    if errors:
+        for err in errors:
+            print(err.message)
+    assert not is_valid

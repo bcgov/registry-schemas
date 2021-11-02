@@ -28,6 +28,7 @@ AMENDMENT_STATEMENT = {
   'baseRegistrationNumber': '023001B',
   'clientReferenceId': 'A-00000402',
   'documentId': '1234567',
+  'authorizationReceived': True,
   'debtorName': {
       'businessName': 'DEBTOR 1 INC.'
   },
@@ -154,6 +155,7 @@ CHANGE_STATEMENT = {
   'baseRegistrationNumber': '023001B',
   'clientReferenceId': 'A-00000402',
   'documentId': '1234567',
+  'authorizationReceived': True,
   'debtorName': {
       'businessName': 'DEBTOR 1 INC.'
   },
@@ -309,6 +311,7 @@ DISCHARGE_STATEMENT = {
   'baseRegistrationNumber': '023001B',
   'clientReferenceId': 'A-00000402',
   'documentId': '1234567',
+  'authorizationReceived': True,
   'debtorName': {
       'businessName': 'DEBTOR 1 INC.'
   },
@@ -504,6 +507,7 @@ FINANCING_STATEMENT = {
     'type': 'SA',
     'clientReferenceId': 'A-00000402',
     'documentId': '1234567',
+    'authorizationReceived': True,
     'registeringParty': {
         'businessName': 'ABC SEARCHING COMPANY',
         'address': {
@@ -835,6 +839,7 @@ RENEWAL_STATEMENT = {
     'statementType': 'RENEWAL_STATEMENT',
     'baseRegistrationNumber': '023001B',
     'clientReferenceId': 'A-00000402',
+    'authorizationReceived': True,
     'debtorName': {
         'businessName': 'DEBTOR 1 INC.'
     },
