@@ -8,19 +8,16 @@
         "description": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 4000,
             "description": "The Financing Statement description of the general collateral and proceeds being claimed in accordance with the legislative requirements."
         },
         "descriptionAdd": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 4000,
             "description": "The Change or Amendment description of the general collateral and proceeds added to the Financing Statement. Included in the search consolidated view of a Financing Statement."
         },
         "descriptionDelete": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 4000,
             "description": "The Change or Amendment description of the general collateral and proceeds added to the Financing Statement. Included in the search consolidated view of a Financing Statement."
         },
         "addedDateTime": {
