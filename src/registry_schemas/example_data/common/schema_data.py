@@ -23,6 +23,16 @@ ADDRESS = {
     'region': 'BC'
 }
 
+EVENT_TRACKING = {
+    'eventTrackingId': 123456,
+    'keyId': 99923,
+    'createDateTime': '2021-12-01T19:20:20-00:00',
+    'type': 'EMAIL',
+    'status': 200,
+    'message': 'Error message',
+    'emailAddress': 'msmith@gmail.com'
+}
+
 PARTY = {
     'personName': {
         'first': 'Michael',

@@ -18,6 +18,7 @@ Test array used in multiple pytests.
 # testdata pattern is ({str: environment}, {expected return value})
 TEST_SCHEMAS_DATA = [
     ('address.json'),
+    ('eventTracking.json'),
     ('party.json'),
     ('payment.json'),
     ('personName.json'),
