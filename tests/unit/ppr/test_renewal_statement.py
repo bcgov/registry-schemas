@@ -25,6 +25,28 @@ def test_valid_renewal_request():
     del statement['createDateTime']
     del statement['renewalRegistrationNumber']
     del statement['payment']
+    del statement['expiryDate']
+
+    is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+    print(errors)
+
+    assert is_valid
+
+
+def test_valid_renewal_infiinite_request():
+    """Assert that the schema is performing as expected for a renewal to infinite life request."""
+    statement = copy.deepcopy(RENEWAL_STATEMENT)
+    del statement['courtOrderInformation']
+    del statement['createDateTime']
+    del statement['renewalRegistrationNumber']
+    del statement['payment']
+    del statement['expiryDate']
+    del statement['lifeYears']
+    statement['lifeInfinite'] = True
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
 
@@ -43,6 +65,7 @@ def test_valid_renewal_rl_request():
     del statement['createDateTime']
     del statement['renewalRegistrationNumber']
     del statement['payment']
+    del statement['lifeYears']
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
 
@@ -251,14 +274,15 @@ def test_invalid_renewal_missing_debtor():
     assert not is_valid
 
 
-def test_invalid_renewal_missing_expiry():
-    """Assert that an invalid renewal statement fails - expiry date and court order information are missing."""
+def test_invalid_renewal_missing_life():
+    """Assert that an invalid renewal statement fails - life and court order information are missing."""
     statement = copy.deepcopy(RENEWAL_STATEMENT)
-    del statement['expiryDate']
     del statement['courtOrderInformation']
     del statement['createDateTime']
     del statement['renewalRegistrationNumber']
     del statement['payment']
+    del statement['expiryDate']
+    del statement['lifeYears']
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
 
@@ -277,6 +301,7 @@ def test_authorization_received():
     del statement['createDateTime']
     del statement['renewalRegistrationNumber']
     del statement['payment']
+    del statement['expiryDate']
     del statement['authorizationReceived']
 
     is_valid, errors = validate(statement, 'renewalStatement', 'ppr')
