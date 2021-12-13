@@ -15,11 +15,12 @@
 
 These can be used in other tests as basis for the JSON registration statements.
 """
-from .schema_data import ADDRESS, PARTY, PAYMENT_REFERENCE, PERSON_NAME, USER, USER_PROFILE
+from .schema_data import ADDRESS, EVENT_TRACKING, PARTY, PAYMENT_REFERENCE, PERSON_NAME, USER, USER_PROFILE
 
 
 __all__ = [
     'ADDRESS',
+    'EVENT_TRACKING',
     'PARTY',
     'PAYMENT_REFERENCE',
     'PERSON_NAME',

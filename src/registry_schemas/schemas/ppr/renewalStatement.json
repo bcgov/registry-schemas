@@ -37,6 +37,10 @@
             "maximum": 25,
             "description": "Extension of the life of the registration in years. Always included in a response. Must be a value between 1 to 25."
         },
+        "lifeInfinite": {
+            "type": [ "boolean", "null" ],
+            "description": "Set to true if the registration has an infinite life (no expiry date). Cannot be true when lifeYears has a value. Cannot be true when type is RL. Must be true or lifeYears must have a value for all other registration types."
+        },
         "expiryDate": {
             "type": "string",
             "format": "date-time",
@@ -74,7 +78,7 @@
                 "baseRegistrationNumber",
                 "registeringParty",
                 "debtorName",
-                "expiryDate"
+                "lifeInfinite"
             ]
         },
         {
@@ -89,7 +93,6 @@
             "required": [
                 "baseRegistrationNumber",
                 "registeringParty",
-                "expiryDate",
                 "createDateTime",
                 "renewalRegistrationNumber",
                 "payment"

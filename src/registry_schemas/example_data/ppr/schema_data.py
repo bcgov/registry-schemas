@@ -854,7 +854,7 @@ RENEWAL_STATEMENT = {
         },
         'emailAddress': 'bsmith@abc-search.com'
     },
-    'expiryDate': '2025-02-21T23:59:59+00:00',
+    'lifeYears': 5,
     'courtOrderInformation': {
         'courtName': 'Supreme Court of British Columbia.',
         'courtRegistry': 'KAMLOOPS',
@@ -863,6 +863,7 @@ RENEWAL_STATEMENT = {
         'effectOfOrder': 'Court Order to remove James Smith as debtor.'
     },
     'createDateTime': '2020-02-21T18:56:20+00:00',
+    'expiryDate': '2025-02-21T23:59:59-07:00',
     'renewalRegistrationNumber': '10000301R',
     'payment': {
         'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
