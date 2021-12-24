@@ -8,13 +8,13 @@
         "courtName": {
             "type": "string",
             "minLength": 5,
-            "maxLength": 250,
+            "maxLength": 256,
             "description": "The name of the court that issued the court order."
         },
         "courtRegistry": {
             "type": "string",
             "minLength": 5,
-            "maxLength": 250,
+            "maxLength": 64,
             "description": "The location of the court that issued the order. If someone needs to request a copy of the court order, this is where they will find it."
         },
         "fileNumber": {
@@ -31,7 +31,7 @@
         "effectOfOrder": {
             "type": "string",
             "minLength": 5,
-            "maxLength": 500,
+            "maxLength": 512,
             "description": "A brief note to explain the purpose of the Court Order."
         }
     },

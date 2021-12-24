@@ -13,17 +13,17 @@
         },
         "serialNumber": {
             "type": "string",
-            "maxLength": 25,
+            "maxLength": 30,
             "description": "Serial number of the vehicle (eg, VIN number, DOT number (if plane registered in Canada), Airframe number if registered outside of Canada, or designated serial number of the collateral."
         },
         "make": {
             "type": "string",
-            "maxLength": 25,
+            "maxLength": 60,
             "description": "Make of vehicle (or manufacturer's name)."
         },
         "model": {
             "type": "string",
-            "maxLength": 25,
+            "maxLength": 60,
             "description": "Model name."
         },
         "year": {
@@ -35,7 +35,7 @@
         "manufacturedHomeRegistrationNumber": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 7,
+            "maxLength": 6,
             "description": "Home registration number assigned by the Manufactured Home Registry."
         },
         "vehicleId": {

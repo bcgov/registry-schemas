@@ -48,7 +48,8 @@ def test_valid_client_business():
 def test_invalid_client_contact_name():
     """Assert that an invalid client party fails - contact name is too long."""
     party = copy.deepcopy(CLIENT_PARTY)
-    party['contact']['name'] = 'Name too long XXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    name = '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789x'
+    party['contact']['name'] = name
 
     is_valid, errors = validate(party, 'clientParty', 'ppr')
 
@@ -78,7 +79,7 @@ def test_invalid_client_contact_areacode():
 def test_invalid_client_contact_phonenumber():
     """Assert that an invalid client party fails - contact phone number is too long."""
     party = copy.deepcopy(CLIENT_PARTY)
-    party['contact']['phoneNumber'] = '71712345'
+    party['contact']['phoneNumber'] = '1234567897171234'
 
     is_valid, errors = validate(party, 'clientParty', 'ppr')
 

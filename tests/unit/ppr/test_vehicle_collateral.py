@@ -104,7 +104,7 @@ def test_serial_number(vehicle_type, serial_number, mhr_number, valid):
 def test_invalid_vehicle_serial():
     """Assert that an invalid vehicleCollateral fails - serial number too long."""
     vehicle = copy.deepcopy(VEHICLE_COLLATERAL)
-    vehicle['serialNumber'] = '123434342XXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    vehicle['serialNumber'] = '012345678901234567890123456789X'
 
     is_valid, errors = validate(vehicle, 'vehicleCollateral', 'ppr')
 
@@ -134,7 +134,7 @@ def test_invalid_vehicle_year():
 def test_invalid_vehicle_make():
     """Assert that an invalid vehicleCollateral fails - make too long."""
     vehicle = copy.deepcopy(VEHICLE_COLLATERAL)
-    vehicle['make'] = '123434342XXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    vehicle['make'] = '012345678901234567890123456789012345678901234567890123456789x'
 
     is_valid, errors = validate(vehicle, 'vehicleCollateral', 'ppr')
 
@@ -149,7 +149,7 @@ def test_invalid_vehicle_make():
 def test_invalid_vehicle_model():
     """Assert that an invalid vehicleCollateral fails - model too long."""
     vehicle = copy.deepcopy(VEHICLE_COLLATERAL)
-    vehicle['model'] = '123434342XXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    vehicle['model'] = '012345678901234567890123456789012345678901234567890123456789x'
 
     is_valid, errors = validate(vehicle, 'vehicleCollateral', 'ppr')
 
@@ -164,7 +164,7 @@ def test_invalid_vehicle_model():
 def test_invalid_vehicle_mhr_number():
     """Assert that an invalid vehicleCollateral fails - MHR registration number too long."""
     vehicle = copy.deepcopy(VEHICLE_COLLATERAL)
-    vehicle['manufacturedHomeRegistrationNumber'] = '123456789'
+    vehicle['manufacturedHomeRegistrationNumber'] = '1234567'
 
     is_valid, errors = validate(vehicle, 'vehicleCollateral', 'ppr')
 

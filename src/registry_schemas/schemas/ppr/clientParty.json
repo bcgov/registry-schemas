@@ -9,7 +9,7 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "maxLength": 30,
+                    "maxLength": 100,
                     "description": "The name of the person requesting the client party."
                 },
                 "areaCode": {
@@ -21,8 +21,8 @@
                 "phoneNumber": {
                     "type": "string",
                     "minLength": 7,
-                    "maxLength": 7,
-                    "description": "Seven digit contact phone number with no hyphen or space."
+                    "maxLength": 15,
+                    "description": "Contact phone number with no hyphen or space."
                 },
                 "emailAddress": {
                     "type": "string",

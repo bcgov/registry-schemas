@@ -95,7 +95,7 @@
         "baseRegistrationNumber": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 12,
+            "maxLength": 10,
             "description": "The Base Registration Number uniquely identifies a Financing Statement. It is generated in the PPR system and returned in a create Financing Statement response when the information submitted for registration passes all the system edits and is accepted. This number is required to register a Change Statement, Amendment Statement, Renewal Statement, Discharge Statement, or to search on a Financing Statement registration number."
         },
         "createDateTime": {
