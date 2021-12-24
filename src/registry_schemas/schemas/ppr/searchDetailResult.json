@@ -39,6 +39,16 @@
         },
         "details": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/financingStatementHistory"
+        },
+        "callbackURL": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "If the response format is PDF and the request has more than the threshold number of Financing Statements, echo back the callbackURL request parameter value. Otherwise the parameter is ignored (if the response is not a PDF or the number of Financing Statements is below the threshold)"
+        },
+        "getReportURL": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "If the response format is PDF and the request has more than the threshold number of Financing Statements, return the full path to GET the PDF once the notification is sent to the callbackURL that the report is available. If present the response details property is an empty array."
         }
     },
     "required": [

@@ -17,7 +17,7 @@
         },
         "city": {
             "type": "string",
-            "maxLength": 30,
+            "maxLength": 40,
             "description": "City, Town, or Village."
         },
         "country": {
