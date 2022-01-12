@@ -24,7 +24,7 @@
                 },
                 "business": {
                     "type": "string",
-                    "minLength": 5,
+                    "minLength": 2,
                     "maxLength": 150,
                     "description": "Business name of debtor if search type is BUSINESS_DEBTOR."
                 }
