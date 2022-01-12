@@ -196,7 +196,7 @@ def test_invalid_search_query_busname():
     del query['criteria']['debtorName']['second']
     del query['criteria']['debtorName']['last']
     del query['criteria']['value']
-    query['criteria']['debtorName']['business'] = 'XXXX'
+    query['criteria']['debtorName']['business'] = 'X'
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 
