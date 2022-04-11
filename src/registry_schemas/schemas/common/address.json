@@ -45,11 +45,30 @@
             "description": ""
         }
     },
-    "required": [
-        "street",
-        "city",
-        "country",
-        "postalCode",
-        "region"
+    "oneOf":[
+        {
+            "properties": {
+                "country": { "pattern": "CA|US" }
+            },
+            "required": [
+                "street",
+                "city",
+                "country",
+                "region",
+                "postalCode"
+            ]
+       },
+       {
+            "not": {
+                "properties": {
+                    "country": { "pattern": "CA|US" }
+                }
+            },
+            "required": [
+                "street",
+                "city",
+                "country"
+            ]
+    }
     ]
 }

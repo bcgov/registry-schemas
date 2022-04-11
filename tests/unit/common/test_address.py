@@ -148,3 +148,34 @@ def test_invalid_address_postal_missing():
     print(errors)
 
     assert not is_valid
+
+
+def test_valid_address_not_na():
+    """Assert that a valid non-North America address passes - no region or postal code."""
+    address = copy.deepcopy(ADDRESS)
+    del address['postalCode']
+    del address['region']
+    address['country'] = 'FR'
+    is_valid, errors = validate(address, 'address', 'common')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+    print(errors)
+
+    assert is_valid
+
+
+def test_invalid_address_us():
+    """Assert that an invalid US address fails - no region."""
+    address = copy.deepcopy(ADDRESS)
+    del address['region']
+    address['country'] = 'US'
+    is_valid, errors = validate(address, 'address', 'common')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+    print(errors)
+
+    assert not is_valid
