@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/baseInformation",
+    "type": "object",
+    "title": "The MHR Base Information Schema",
+    "properties": {
+        "year": {
+            "type": "integer",
+            "mimimum": 1900,
+            "maximum": 2100,
+            "description": "Year of manufacture of the home."
+        },
+        "make": {
+            "type": [ "string", "null" ],
+            "maxLength": 65,
+            "description": "Make of home."
+        },
+        "model": {
+            "type": [ "string", "null" ],
+            "maxLength": 65,
+            "description": "Model name."
+        }
+    },
+    "required": [
+        "year"
+    ]
+}

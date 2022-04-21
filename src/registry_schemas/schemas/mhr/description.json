@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/description",
+    "type": "object",
+    "title": "The MHR Registration Description Schema",
+    "properties": {
+        "manufacturer": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 65,
+            "description": "The manufacturer of the home."
+        },
+        "baseInformation": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/baseInformation"
+        },
+        "sectionCount": {
+            "type": "integer",
+            "mimimum": 1,
+            "maximum": 4,
+            "description": "The number of sections in the manufactured home."
+        },
+        "sections": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/sectionInformation"
+            }
+        },
+       "csaNumber": {
+            "type": [ "string", "null" ],
+            "maxLength": 10,
+            "description": "The assigned certification CSA number."
+        },
+        "csaStandard": {
+            "type": [ "string", "null" ],
+            "maxLength": 4,
+            "description": "The CSA standard code."
+        },
+        "engineerDate": {
+            "type": [ "string", "null" ],
+            "format": "date-time",
+            "description": "The date of the engineering inspection in the ISO 8601 format YYYY-MM-DDThh:mm:ssTZD."
+        },
+        "engineerName": {
+            "type": [ "string", "null" ],
+            "maxLength": 30,
+            "description": "The name of the engineer who performed the inspection."
+        }
+    },
+    "anyOf":[
+        {
+            "required": [
+                "manufacturer",
+                "baseInformation",
+                "sectionCount",
+                "sections",
+                "csaNumber"
+            ]
+        },
+        {
+            "required": [
+                "manufacturer",
+                "baseInformation",
+                "sectionCount",
+                "sections",
+                "engineerDate",
+                "engineerName"
+            ]
+        }
+      ]
+    }

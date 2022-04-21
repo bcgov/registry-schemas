@@ -1,0 +1,54 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/searchQuery",
+    "type": "object",
+    "title": "The MHR Search Query Schema",
+    "definitions": {
+       "criteria": {
+            "type": "object",
+            "description": "The criteria of the search - the value to search on. Provide either value or debtorName. The criteria must match the type.",
+            "properties": {
+                "value": {
+                    "type": "string",
+                    "maxLength": 70,
+                    "description": "The search string.  Can be the serial number, MHR number, or organization/business name."
+                },
+                "ownerName": {
+                    "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/personName"
+                }
+            },
+            "oneOf":[
+                {
+                    "required": [
+                        "value"
+                    ]
+                },
+                {
+                    "required": [
+                        "ownerName"
+                    ]
+                }
+            ]
+        }
+    },
+    "properties": {
+        "type": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": ["MHR_NUMBER", "SERIAL_NUMBER", "OWNER_NAME", "ORGANIZATION_NAME"],
+            "description": "The type of search to execute."
+        },
+        "criteria": {
+            "$ref": "#/definitions/criteria"
+        },
+        "clientReferenceId": {
+            "type": [ "string", "null" ],
+            "maxLength": 40,
+            "description": "An optional client reference identifier associated with a change. Provided to facilitate client tracking of MHR activity."
+        }
+    },
+    "required": [
+        "type",
+        "criteria"
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/searchDetailResult",
+    "type": "object",
+    "title": "The MHR Search Detail Results Schema to hold search Registration details from the second step in the search process",
+    "definitions": {},
+    "properties": {
+        "searchDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The UTC date and time the system executed the search query (search step one)."
+        },
+        "totalResultsSize": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "The total number of Registrations included in the response."
+        },
+        "searchQuery": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/searchQuery"
+        },
+        "selected": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/searchSummary"
+        },
+        "searchingParty": {
+            "type": "string",
+            "maxLength": 150,
+            "description": "A description of the party who performed the searching."
+        },
+        "payment": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"
+        },
+        "details": {
+            "type": [ "array", "null" ],
+            "description": "This array holds detail information on one or more registrations.",
+            "items":
+                { "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/registration" }
+        },
+        "callbackURL": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "If the response format is PDF and the request has more than the threshold number of Registrations, echo back the callbackURL request parameter value. Otherwise the parameter is ignored (if the response is not a PDF or the number of Registrations is below the threshold)."
+        },
+        "getReportURL": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "If the response format is PDF and the request has more than the threshold number of Registrations, return the full path to GET the PDF once the notification is sent to the callbackURL that the report is available. If present the response details property is an empty array."
+        }
+    },
+    "required": [
+        "searchDateTime",
+        "totalResultsSize",
+        "searchQuery",
+        "payment"
+    ]
+}

@@ -33,25 +33,29 @@ TEST_DATA_VEHICLE_TYPE = [
     ('XX', False)
 ]
 
-# testdata pattern is ({vehicle type}, {serial number}, {mhr number}, {is valid})
+# testdata pattern is ({vehicle type}, {serial number}, {mhr number}, {is valid}, {has_make}, {has_model})
 TEST_DATA_SERIAL_NUMBER = [
-    ('AC', 'CFYXW', None, True),
-    ('AC', None, '123456', False),
-    ('AF', '12343424', None, True),
-    ('AF', None, '123456', False),
-    ('AP', 'ABDCD12343', None, True),
-    ('AP', None, '123456', False),
-    ('BO', '13434X', None, True),
-    ('BO', None, '123456', False),
-    ('MH', '002434', None, True),
-    ('MH', None, '123456', True),
-    ('MH', None, None, False),
-    ('MV', '242342342', None, True),
-    ('MV', None, '123456', False),
-    ('OB', 'xsfsfd132', None, True),
-    ('OB', None, '123456', False),
-    ('TR', 'TR32324', None, True),
-    ('TR', None, '123456', False)
+    ('AC', 'CFYXW', None, True, True, True),
+    ('AC', None, '123456', False, True, True),
+    ('AF', '12343424', None, True, True, True),
+    ('AF', None, '123456', False, True, True),
+    ('AP', 'ABDCD12343', None, True, True, True),
+    ('AP', None, '123456', False, True, True),
+    ('BO', '13434X', None, True, True, True),
+    ('BO', None, '123456', False, True, True),
+    ('MH', '002434', None, True, True, True),
+    ('MH', '002434', None, True, False, True),
+    ('MH', '002434', None, True, True, False),
+    ('MH', None, '123456', True, True, True),
+    ('MH', None, None, False, True, True),
+    ('MV', '242342342', None, True, True, True),
+    ('MV', '242342342', None, False, False, True),
+    ('MV', '242342342', None, False, True, False),
+    ('MV', None, '123456', False, True, True),
+    ('OB', 'xsfsfd132', None, True, True, True),
+    ('OB', None, '123456', False, True, True),
+    ('TR', 'TR32324', None, True, True, True),
+    ('TR', None, '123456', False, True, True)
 ]
 
 
@@ -73,8 +77,8 @@ def test_vehicle_type(vehicle_type, valid):
         assert not is_valid
 
 
-@pytest.mark.parametrize('vehicle_type, serial_number, mhr_number, valid', TEST_DATA_SERIAL_NUMBER)
-def test_serial_number(vehicle_type, serial_number, mhr_number, valid):
+@pytest.mark.parametrize('vehicle_type, serial_number, mhr_number, valid, has_make, has_model', TEST_DATA_SERIAL_NUMBER)
+def test_serial_number(vehicle_type, serial_number, mhr_number, valid, has_make, has_model):
     """Assert that the schema is performing as expected for all serial collateral type - serial number combinations."""
     vehicle = copy.deepcopy(VEHICLE_COLLATERAL)
     vehicle['type'] = vehicle_type
@@ -82,7 +86,10 @@ def test_serial_number(vehicle_type, serial_number, mhr_number, valid):
         del vehicle['serialNumber']
     else:
         vehicle['serialNumber'] = serial_number
-
+    if not has_make:
+        del vehicle['make']
+    if not has_model:
+        del vehicle['model']
     if mhr_number is not None:
         vehicle['manufacturedHomeRegistrationNumber'] = mhr_number
 
