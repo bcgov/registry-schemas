@@ -3,3 +3,4 @@ include LICENSE
 include README.md
 include src/registry_schemas/schemas/common/*.json
 include src/registry_schemas/schemas/ppr/*.json
+include src/registry_schemas/schemas/mhr/*.json
