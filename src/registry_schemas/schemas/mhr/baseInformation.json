@@ -19,6 +19,10 @@
             "type": [ "string", "null" ],
             "maxLength": 65,
             "description": "Model name."
+        },
+        "circa": {
+            "type": [ "boolean", "null" ],
+            "description": "Indicates the year value is uncertain."
         }
     },
     "required": [

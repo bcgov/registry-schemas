@@ -14,8 +14,23 @@
 """Test Suite to ensure the PPR party schema is valid."""
 import copy
 
+import pytest
+
 from registry_schemas import validate
 from registry_schemas.example_data.common import PARTY
+
+
+# testdata pattern is ({phone number}, {is valid})
+TEST_DATA_PHONE_NUM = [
+    ('2504772707', True),
+    ('250 4772707', True),
+    ('250 477-2707 ext. 1234', True),
+    ('250 4772707 extension 123', True),
+    ('250 477-2707', True),
+    ('4772707', False),
+    ('477-2707', False),
+    ('250477270            12345', False)
+]
 
 
 def test_valid_party_person():
@@ -139,3 +154,21 @@ def test_invalid_party_missing_business_address():
     print(errors)
 
     assert not is_valid
+
+
+@pytest.mark.parametrize('phone_num, valid', TEST_DATA_PHONE_NUM)
+def test_phone_number(phone_num, valid):
+    """Assert that the schema is performing as expected for party phoneNumber."""
+    party = copy.deepcopy(PARTY)
+    party['phoneNumber'] = phone_num
+
+    is_valid, errors = validate(party, 'party', 'common')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid

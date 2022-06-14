@@ -20,8 +20,50 @@ from registry_schemas import validate
 from registry_schemas.example_data.mhr import REGISTRATION
 
 
-# testdata pattern is ({desc},{valid},{mhr},{status},{rev},{decv},{haso},{hasl},{hasd},{hasn},{hasdt},{hasp})
+PARTY_VALID = {
+    'personName': {
+        'first': 'Michael',
+        'middle': 'J',
+        'last': 'Smith'
+    },
+    'address': {
+        'street': '520 Johnson St',
+        'city': 'Victoria',
+        'region': 'BC',
+        'country': 'CA',
+        'postalCode': 'V8S 2V4'
+    },
+    'emailAddress': 'msmith@gmail.com',
+    'birthDate': '1986-12-01T19:20:20-08:00',
+    'phoneNumber': '6042314598'
+}
+PARTY_INVALID = {
+    'personName': {
+        'first': 'Michael',
+        'middle': 'J',
+        'last': 'Smith'
+    },
+    'address': {
+        'street': '520 Johnson St',
+        'city': 'Victoria',
+        'region': 'BC',
+        'country': 'CA',
+        'postalCode': 'V8S 2V4'
+    },
+    'emailAddress': 'msmith@gmail.com',
+    'birthDate': '1986-12-01T19:20:20-08:00',
+    'phoneNumber': '2314598'
+}
+PPR_REG_VALID = [
+    {
+        'reg_data': 'any data allowed'
+    }
+]
+PPR_REG_EMPTY = []
+
 LONG_CLIENT_REF = '01234567890123456789012345678901234567890'
+
+# testdata pattern is ({desc},{valid},{mhr},{status},{rev},{decv},{haso},{hasl},{hasd},{hasn},{hasdt},{hasp})
 TEST_DATA_REG = [
     ('Valid request', True, None, None, 'ref', '50000.00', True, True, True, True, False, False),
     ('Valid response', True, '003456', 'R', 'ref', '50000.00', True, True, True, True, True, True),
@@ -35,6 +77,20 @@ TEST_DATA_REG = [
     ('Invalid status', False, None, 'X', 'ref', '50000.00', True, True, True, True, False, False),
     ('Invalid ref too long', False, None, None, LONG_CLIENT_REF, '50000.00', True, True, True, True, False, False),
     ('Invalid declared val too long', False, None, None, 'ref', '1234567890.00', True, True, True, True, False, False)
+]
+
+# testdata pattern is ({desc},{valid},{reg_party})
+TEST_DATA_REG_PARTY = [
+    ('Valid request with party', True, PARTY_VALID),
+    ('Invalid request invalid party', False, PARTY_INVALID),
+    ('Valid request no party', True, None)
+]
+
+# testdata pattern is ({desc},{valid},{ppr_registrations})
+TEST_DATA_PPR_REGISTRATIONS = [
+    ('Valid request with ppr registrations', True, PPR_REG_VALID),
+    ('Valid request empty ppr registrations', True, PPR_REG_EMPTY),
+    ('Valid request no ppr registrations', True, None)
 ]
 
 
@@ -70,6 +126,44 @@ def test_registration(desc, valid, mhr, status, ref, decv, haso, hasl, hasd, has
         del data['declaredValue']
     else:
         data['declaredValue'] = decv
+
+    is_valid, errors = validate(data, 'registration', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,reg_party', TEST_DATA_REG_PARTY)
+def test_registration_reg_party(desc, valid, reg_party):
+    """Assert that the schema is performing as expected with a registering party."""
+    data = copy.deepcopy(REGISTRATION)
+    if reg_party:
+        data['registeringParty'] = reg_party
+
+    is_valid, errors = validate(data, 'registration', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,ppr_registrations', TEST_DATA_PPR_REGISTRATIONS)
+def test_registration_ppr_registrations(desc, valid, ppr_registrations):
+    """Assert that the schema is performing as expected with a registering party."""
+    data = copy.deepcopy(REGISTRATION)
+    if ppr_registrations:
+        data['pprRegistrations'] = ppr_registrations
 
     is_valid, errors = validate(data, 'registration', 'mhr')
 

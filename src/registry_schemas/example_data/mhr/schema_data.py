@@ -176,6 +176,19 @@ REGISTRATION = {
   }
 }
 
+REGISTRATION_SUMMARY = [
+  {
+    'mhrNumber': '002000',
+    'statusType': 'R',
+    'clientReferenceId': 'T-0000001',
+    'path': '/mhr/api/v1/registrations/002000',
+    'createDateTime': '2021-06-03T22:58:45+00:00',
+    'registeringParty': 'Bank of British Columbia',
+    'securedParties': 'Bank of British Columbia',
+    'inUserList': False
+  }
+]
+
 SEARCH_DETAIL_RESULT = {
   'searchDateTime': '2020-05-14T21:08:32+00:00',
   'totalResultsSize': 1,

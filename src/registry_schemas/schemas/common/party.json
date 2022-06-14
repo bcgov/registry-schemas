@@ -37,6 +37,13 @@
             "format": "email",
             "maxLength": 250,
             "description": "The email address of the individual or business."
+        },
+        "phoneNumber": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 25,
+            "description": "Free form text with area code for the party contact phone number. May include an extension.",
+            "example": "2504772734"
         }
     },
     "anyOf":[
