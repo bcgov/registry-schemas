@@ -14,7 +14,7 @@
             "type": [ "string", "null" ],
             "maxLength": 2,
             "enum": ["C", "D", "E", "R"],
-            "description": "The status of the registration. C - cancelled?; D - deleted?; E - expired?; R - registered."
+            "description": "The status of the registration. C - cancelled; D - drafted; E - exempted; R - registered."
         },
         "clientReferenceId": {
             "type": [ "string", "null" ],
@@ -25,6 +25,9 @@
             "type": [ "string", "null" ],
             "maxLength": 12,
             "description": "The declared value of the manufactured home."
+        },
+        "registeringParty": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
         },
         "owners": {
             "type": "array",
@@ -43,6 +46,12 @@
             "type": "array",
             "items": {
                 "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/note"
+            }
+        },
+        "pprRegistrations": {
+            "type": "array",
+            "items": {
+                "type": [ "object", "null" ]
             }
         },
         "createDateTime": {

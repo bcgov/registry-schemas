@@ -18,26 +18,28 @@ import pytest
 from registry_schemas import validate
 
 
-# testdata pattern is ({desc}, {valid}, {year}, {make}, {model})
+# testdata pattern is ({desc}, {valid}, {year}, {make}, {model}, {circa})
 TEST_DATA_BASE_INFO = [
-    ('Valid all', True, 1994, 'make', 'model'),
-    ('Valid no make', True, 1994, None, 'model'),
-    ('Valid no model', True, 1994, 'make', None),
-    ('Valid just year', True, 1994, None, None),
-    ('Missing year', False, None, None, None),
-    ('Make too long', False, 1994, '0123456789012345678901234567890123456789012345678901234567890123456', None),
-    ('Model too long', False, 1994, None, '0123456789012345678901234567890123456789012345678901234567890123456')
+    ('Valid all', True, 1994, 'make', 'model', True),
+    ('Valid no make', True, 1994, None, 'model', False),
+    ('Valid no model', True, 1994, 'make', None, None),
+    ('Valid just year', True, 1994, None, None, False),
+    ('Missing year', False, None, None, None, None),
+    ('Make too long', False, 1994, '0123456789012345678901234567890123456789012345678901234567890123456', None, None),
+    ('Model too long', False, 1994, None, '0123456789012345678901234567890123456789012345678901234567890123456', None)
 ]
 
 
-@pytest.mark.parametrize('desc,valid,year,make,model', TEST_DATA_BASE_INFO)
-def test_base_info(desc, valid, year, make, model):
+@pytest.mark.parametrize('desc,valid,year,make,model,circa', TEST_DATA_BASE_INFO)
+def test_base_info(desc, valid, year, make, model, circa):
     """Assert that the schema is performing as expected."""
     data = {
         'year': year,
         'make': make,
         'model': model
     }
+    if circa:
+        data['circa'] = circa
     is_valid, errors = validate(data, 'baseInformation', 'mhr')
 
     if errors:

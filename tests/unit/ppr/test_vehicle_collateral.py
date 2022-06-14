@@ -47,6 +47,7 @@ TEST_DATA_SERIAL_NUMBER = [
     ('MH', '002434', None, True, False, True),
     ('MH', '002434', None, True, True, False),
     ('MH', None, '123456', True, True, True),
+    ('MH', '002434', '123456', True, True, True),
     ('MH', None, None, False, True, True),
     ('MV', '242342342', None, True, True, True),
     ('MV', '242342342', None, False, False, True),
