@@ -81,7 +81,6 @@
         },
         {
             "required": [
-                "submittingParty",
                 "owners",
                 "location",
                 "description"
