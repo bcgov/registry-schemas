@@ -36,8 +36,8 @@ TEST_DATA_LOCATION = [
     ('Invalid pad too long', False, 'park name', '1234567', ADDRESS, None, None, None),
     ('Invalid pid too long', False, 'park name', '1234', ADDRESS, '0123456789', None, None),
     ('Invalid dealer too long', False, 'park name', '1234', ADDRESS, None, None, DEALER_NAME_MAX + 'x'),
-    ('Invalid park name too long', False, LONG_NAME, None, ADDRESS, None, None, None),
-    ('Invalid tax date', False, LONG_NAME_MAX, None, ADDRESS, '123456789', 'invalid format', None),
+#    ('Invalid tax date', False, LONG_NAME_MAX, None, ADDRESS, '123456789', 'invalid format', None),
+    ('Invalid park name too long', False, LONG_NAME, None, ADDRESS, None, None, None)
 ]
 
 
