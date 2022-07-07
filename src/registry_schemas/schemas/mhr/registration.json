@@ -29,6 +29,13 @@
         "registeringParty": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
         },
+        "ownerGroups": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/ownerGroup"
+            }
+        },
         "owners": {
             "type": "array",
             "minItems": 1,
@@ -63,9 +70,20 @@
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"
         }
     },
-    "required": [
-        "owners",
-        "location",
-        "description"
+    "anyOf":[
+        {
+            "required": [
+                "ownerGroups",
+                "location",
+                "description"
+            ]
+        },
+        {
+            "required": [
+                "owners",
+                "location",
+                "description"
+            ]
+        }
     ]
 }

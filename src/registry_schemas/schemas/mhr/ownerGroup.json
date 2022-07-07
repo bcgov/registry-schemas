@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/ownerGroup",
+    "type": "object",
+    "title": "The MHR Owner Group Schema",
+    "definitions": {},
+    "properties": {
+       "groupId": {
+            "type": "integer",
+            "mimimum": 1,
+            "description": "Assigned by the system if not provided. Starts with 1 and increments for each group associated with a home."
+        },
+        "owners": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/owner"
+            }
+        },
+        "interest": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Describes the group ownership portion as a fraction. Does not apply to the SO type."
+        },
+        "interestNumerator": {
+            "type": "integer",
+            "mimimum": 0,
+            "description": "Represents the group ownership portion as the numerator of a fraction. Does not apply to the SO type."
+        },
+        "type": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": ["JT", "SO", "TC"],
+            "description": "The type of owner."
+        },
+        "status": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": ["ACTIVE", "EXEMPT", "PREVIOUS"],
+            "description": "The status of the owner."
+        },
+        "tenancySpecified": {
+            "type": "boolean",
+            "description": "FFlag indicating details on the JT or TC types are included. If false, no interest or interest numerator is provided."
+        }
+    },
+    "required": [
+        "owners",
+        "type"
+    ]
+    }

@@ -59,7 +59,12 @@ LOCATION = {
     'region': 'BC',
     'postalCode': ' ',
     'country': 'CA'
-  }
+  },
+  'leaveProvince': False,
+  'pidNumber': '011625490',
+  'taxCertificate': True,
+  'taxExpiryDate': '2022-05-21T07:59:59+00:00',
+  'dealerName': 'NOR-TEC DESIGN GROUP LTD.'
 }
 
 NOTE = {
@@ -87,7 +92,34 @@ OWNER = {
     'postalCode': ' ',
     'country': 'CA'
   },
-  'type': 'SO'
+  'type': 'SO',
+  'phoneNumber': '6041234567',
+  'status': 'EXEMPT'
+}
+
+OWNER_GROUP = {
+  'groupId': 1,
+  'owners': [
+    {
+      'individualName': {
+        'first': 'James',
+        'last': 'Smith'
+      },
+      'address': {
+        'street': '3122B LYNNLARK PLACE',
+        'city': 'VICTORIA',
+        'region': 'BC',
+        'postalCode': ' ',
+        'country': 'CA'
+      },
+      'phoneNumber': '6041234567'
+    }
+  ],
+  'type': 'TC',
+  'interest': 'UNDIVIDED 4/5',
+  'interestNumerator': 4,
+  'status': 'ACTIVE',
+  'tenancySpecified': True
 }
 
 PAYMENT = {
@@ -106,20 +138,53 @@ REGISTRATION = {
   'status': 'R',
   'clientReferenceId': 'EX-MH001234',
   'declaredValue': '120000.00',
-  'owners': [
+  'ownerGroups': [
     {
-      'individualName': {
-        'first': 'James',
-        'last': 'Smith'
-      },
-      'address': {
-        'street': '3122B LYNNLARK PLACE',
-        'city': 'VICTORIA',
-        'region': 'BC',
-        'postalCode': ' ',
-        'country': 'CA'
-      },
-      'type': 'SO'
+      'groupId': 1,
+      'owners': [
+        {
+          'individualName': {
+            'first': 'Jane',
+            'last': 'Smith'
+          },
+          'address': {
+            'street': '3122B LYNNLARK PLACE',
+            'city': 'VICTORIA',
+            'region': 'BC',
+            'postalCode': ' ',
+            'country': 'CA'
+          },
+          'phoneNumber': '6041234567'
+        }
+      ],
+      'type': 'TC',
+      'interest': 'UNDIVIDED 4/5',
+      'interestNumerator': 4,
+      'status': 'ACTIVE',
+      'tenancySpecified': True
+    }, {
+      'groupId': 2,
+      'owners': [
+        {
+          'individualName': {
+            'first': 'James',
+            'last': 'Smith'
+          },
+          'address': {
+            'street': '3122B LYNNLARK PLACE',
+            'city': 'VICTORIA',
+            'region': 'BC',
+            'postalCode': ' ',
+            'country': 'CA'
+          },
+          'phoneNumber': '6041234567'
+        }
+      ],
+      'type': 'TC',
+      'interest': 'UNDIVIDED 1/5',
+      'interestNumerator': 1,
+      'status': 'ACTIVE',
+      'tenancySpecified': True
     }
   ],
   'location': {
@@ -131,7 +196,12 @@ REGISTRATION = {
       'region': 'BC',
       'postalCode': ' ',
       'country': 'CA'
-    }
+    },
+    'leaveProvince': False,
+    'pidNumber': '011625490',
+    'taxCertificate': True,
+    'taxExpiryDate': '2022-05-21T07:59:59+00:00',
+    'dealerName': 'NOR-TEC DESIGN GROUP LTD.'
   },
   'description': {
     'manufacturer': 'STARLINE',
@@ -240,7 +310,9 @@ SEARCH_DETAIL_RESULT = {
             'postalCode': ' ',
             'country': 'CA'
           },
-          'type': 'SO'
+          'type': 'SO',
+          'phoneNumber': '2504771234',
+          'status': 'ACTIVE'
         }
       ],
       'location': {
@@ -252,7 +324,12 @@ SEARCH_DETAIL_RESULT = {
           'region': 'BC',
           'postalCode': ' ',
           'country': 'CA'
-        }
+        },
+        'leaveProvince': False,
+        'pidNumber': '011625490',
+        'taxCertificate': True,
+        'taxExpiryDate': '2022-05-21T07:59:59+00:00',
+        'dealerName': 'NOR-TEC DESIGN GROUP LTD.'
       },
       'description': {
         'manufacturer': 'STARLINE',
@@ -327,6 +404,7 @@ SEARCH_QUERY_RESULT = {
         'first': 'James',
         'last': 'Smith'
       },
+      'ownerStatus': 'ACTIVE',
       'serialNumber': '52D70556',
       'baseInformation': {
         'year': 2018,
@@ -348,6 +426,7 @@ SEARCH_SUMMARY = [
       'first': 'James',
       'last': 'Smith'
     },
+    'ownerStatus': 'ACTIVE',
     'serialNumber': '52D70556',
     'baseInformation': {
       'year': 2018,
