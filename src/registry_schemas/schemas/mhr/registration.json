@@ -26,7 +26,7 @@
             "maxLength": 12,
             "description": "The declared value of the manufactured home."
         },
-        "registeringParty": {
+        "submittingParty": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
         },
         "ownerGroups": {
@@ -73,6 +73,7 @@
     "anyOf":[
         {
             "required": [
+                "submittingParty",
                 "ownerGroups",
                 "location",
                 "description"
@@ -80,6 +81,7 @@
         },
         {
             "required": [
+                "submittingParty",
                 "owners",
                 "location",
                 "description"

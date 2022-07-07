@@ -138,6 +138,19 @@ REGISTRATION = {
   'status': 'R',
   'clientReferenceId': 'EX-MH001234',
   'declaredValue': '120000.00',
+  'submittingParty': {
+    'businessName': 'ABC SEARCHING COMPANY',
+    'address': {
+      'street': '222 SUMMER STREET',
+      'city': 'VICTORIA',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': 'V8W 2V8'
+    },
+    'emailAddress': 'bsmith@abc-search.com',
+    'phoneNumber': '6041234567',
+    'phoneExtension': '546'
+  },
   'ownerGroups': [
     {
       'groupId': 1,

@@ -35,7 +35,8 @@ PARTY_VALID = {
     },
     'emailAddress': 'msmith@gmail.com',
     'birthDate': '1986-12-01T19:20:20-08:00',
-    'phoneNumber': '6042314598'
+    'phoneNumber': '6042314598',
+    'phoneExtension': '546'
 }
 PARTY_INVALID = {
     'personName': {
@@ -73,6 +74,7 @@ TEST_DATA_REG = [
     ('Valid no notes', True, None, None, 'ref', '50000.00', True, True, True, False, False, False),
     ('Valid owners', True, None, None, 'ref', '50000.00', True, True, True, False, False, False),
     ('Invalid no owner groups', False, None, None, 'ref', '50000.00', False, True, True, True, False, False),
+    ('Invalid no submitting party', False, None, None, 'ref', '50000.00', True, True, True, False, False, False),
     ('Invalid no location', False, None, None, 'ref', '50000.00', True, False, True, True, False, False),
     ('Invalid no description', False, None, None, 'ref', '50000.00', True, True, False, True, False, False),
     ('Invalid mhr num too long', False, '1234567', None, 'ref', '50000.00', True, True, True, True, False, False),
@@ -82,10 +84,10 @@ TEST_DATA_REG = [
 ]
 
 # testdata pattern is ({desc},{valid},{reg_party})
-TEST_DATA_REG_PARTY = [
+TEST_DATA_SUB_PARTY = [
     ('Valid request with party', True, PARTY_VALID),
     ('Invalid request invalid party', False, PARTY_INVALID),
-    ('Valid request no party', True, None)
+    ('Invalid request no party', False, None)
 ]
 
 # testdata pattern is ({desc},{valid},{ppr_registrations})
@@ -131,6 +133,8 @@ def test_registration(desc, valid, mhr, status, ref, decv, haso, hasl, hasd, has
     if desc == 'Valid owners':
         del data['ownerGroups']
         data['owners'] = OWNERS
+    elif desc == 'Invalid no submitting party':
+        del data['submittingParty']
 
     is_valid, errors = validate(data, 'registration', 'mhr')
 
@@ -144,12 +148,14 @@ def test_registration(desc, valid, mhr, status, ref, decv, haso, hasl, hasd, has
         assert not is_valid
 
 
-@pytest.mark.parametrize('desc,valid,reg_party', TEST_DATA_REG_PARTY)
-def test_registration_reg_party(desc, valid, reg_party):
-    """Assert that the schema is performing as expected with a registering party."""
+@pytest.mark.parametrize('desc,valid,sub_party', TEST_DATA_SUB_PARTY)
+def test_registration_reg_party(desc, valid, sub_party):
+    """Assert that the schema is performing as expected with a submitting party."""
     data = copy.deepcopy(REGISTRATION)
-    if reg_party:
-        data['registeringParty'] = reg_party
+    if sub_party:
+        data['submittingParty'] = sub_party
+    else:
+        del data['submittingParty']
 
     is_valid, errors = validate(data, 'registration', 'mhr')
 
@@ -165,7 +171,7 @@ def test_registration_reg_party(desc, valid, reg_party):
 
 @pytest.mark.parametrize('desc,valid,ppr_registrations', TEST_DATA_PPR_REGISTRATIONS)
 def test_registration_ppr_registrations(desc, valid, ppr_registrations):
-    """Assert that the schema is performing as expected with a registering party."""
+    """Assert that the schema is performing as expected with  search PPR registrations."""
     data = copy.deepcopy(REGISTRATION)
     if ppr_registrations:
         data['pprRegistrations'] = ppr_registrations
