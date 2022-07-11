@@ -19,22 +19,30 @@ from registry_schemas import validate
 from registry_schemas.example_data.mhr import ADDRESS
 
 
-# testdata pattern is ({desc}, {valid}, {park_name}, {pad}, {address})
 LONG_NAME = '01234567890123456789012345678901234567890'
 LONG_NAME_MAX = '0123456789012345678901234567890123456789'
+DEALER_NAME_MAX = '012345678901234567890123456789012345678901234567890123456789'
+VALID_TIMESTAMP = '2022-05-14T21:16:32+00:00'
+# testdata pattern is ({desc}, {valid}, {park_name}, {pad}, {address}, {pid}, {tax_date}, {dealer})
 TEST_DATA_LOCATION = [
-    ('Valid', True, 'park name', '1234', ADDRESS,),
-    ('Valid no park name', True, None, '1234', ADDRESS),
-    ('Valid no pad', True, LONG_NAME_MAX, None, ADDRESS),
-    ('Valid no pad, park name', True, None, None, ADDRESS),
-    ('Invalid missing address', False, 'org name', '1234', None),
-    ('Invalid pad too long', False, 'park name', '1234567', ADDRESS),
-    ('Invalid park name too long', False, LONG_NAME, None, ADDRESS)
+    ('Valid', True, 'park name', '1234', ADDRESS, None, None, None),
+    ('Valid no park name', True, None, '1234', ADDRESS, None, None, None),
+    ('Valid no pad', True, LONG_NAME_MAX, None, ADDRESS, None, None, None),
+    ('Valid no pad, park name', True, None, None, ADDRESS, None, None, None),
+    ('Valid pid', True, LONG_NAME_MAX, None, ADDRESS, '123456789', None, None),
+    ('Valid tax date', True, LONG_NAME_MAX, None, ADDRESS, '123456789', VALID_TIMESTAMP, None),
+    ('Valid dealer', True, LONG_NAME_MAX, None, ADDRESS, '123456789', None, DEALER_NAME_MAX),
+    ('Invalid missing address', False, 'org name', '1234', None, None, None, None),
+    ('Invalid pad too long', False, 'park name', '1234567', ADDRESS, None, None, None),
+    ('Invalid pid too long', False, 'park name', '1234', ADDRESS, '0123456789', None, None),
+    ('Invalid dealer too long', False, 'park name', '1234', ADDRESS, None, None, DEALER_NAME_MAX + 'x'),
+    # ('Invalid tax date', False, LONG_NAME_MAX, None, ADDRESS, '123456789', 'invalid format', None),
+    ('Invalid park name too long', False, LONG_NAME, None, ADDRESS, None, None, None)
 ]
 
 
-@pytest.mark.parametrize('desc,valid,park_name,pad,address', TEST_DATA_LOCATION)
-def test_location(desc, valid, park_name, pad, address):
+@pytest.mark.parametrize('desc,valid,park_name,pad,address,pid,tax_date,dealer', TEST_DATA_LOCATION)
+def test_location(desc, valid, park_name, pad, address, pid, tax_date, dealer):
     """Assert that the schema is performing as expected."""
     data = {
         'address': address
@@ -45,6 +53,12 @@ def test_location(desc, valid, park_name, pad, address):
         data['pad'] = pad
     if not address:
         del data['address']
+    if pid:
+        data['pidNumber'] = pid
+    if tax_date:
+        data['taxExpiryDate'] = tax_date
+    if dealer:
+        data['dealerName'] = dealer
 
     is_valid, errors = validate(data, 'location', 'mhr')
 

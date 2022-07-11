@@ -21,20 +21,29 @@
             "maxLength": 20,
             "enum": ["JT", "SO", "TC"],
             "description": "The type of owner."
+        },
+        "status": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": ["ACTIVE", "EXEMPT", "PREVIOUS"],
+            "description": "The status of the owner."
+        },
+        "phoneNumber": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "The owner phone number formatted as only digits: no spaces, periods, or dashes."
         }
     },
     "oneOf":[
         {
             "required": [
                 "organizationName",
-                "type",
                 "address"
             ]
         },
         {
             "required": [
                 "individualName",
-                "type",
                 "address"
             ]
         }

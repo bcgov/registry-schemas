@@ -16,6 +16,29 @@
         },
         "address": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/address"
+        },
+        "leaveProvince": {
+            "type": "boolean",
+            "description": "Flag indicating the location of the manufactured home is no longer in the province."
+        },
+        "pidNumber": {
+            "type": [ "string", "null" ],
+            "maxLength": 9,
+            "description": "PID Number."
+        },
+        "taxCertificate": {
+            "type": "boolean",
+            "description": "Flag indicating a tax cerfificate has been provided."
+        },
+        "taxExpiryDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The tax certificate expiry date as date-time. Omit if no value provided."
+        },
+        "dealerName": {
+            "type": [ "string", "null" ],
+            "maxLength": 60,
+            "description": "The name of the manufacured home dealer."
         }
     },
     "required": [

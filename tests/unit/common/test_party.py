@@ -20,16 +20,17 @@ from registry_schemas import validate
 from registry_schemas.example_data.common import PARTY
 
 
-# testdata pattern is ({phone number}, {is valid})
+# testdata pattern is ({phone number}, {phone extension} {is valid})
 TEST_DATA_PHONE_NUM = [
-    ('2504772707', True),
-    ('250 4772707', True),
-    ('250 477-2707 ext. 1234', True),
-    ('250 4772707 extension 123', True),
-    ('250 477-2707', True),
-    ('4772707', False),
-    ('477-2707', False),
-    ('250477270            12345', False)
+    ('2504772707', None, True),
+    ('250 4772707', None, True),
+    ('250 477-2707', 'ext. 1234', True),
+    ('250 4772707', '12345', True),
+    ('250 477-2707', '546', True),
+    ('4772707', None, False),
+    ('477-2707', None, False),
+    ('250 477-2707', 'TOO LONG123', False),
+    ('250477270   TOO LONG12', None, False)
 ]
 
 
@@ -156,11 +157,13 @@ def test_invalid_party_missing_business_address():
     assert not is_valid
 
 
-@pytest.mark.parametrize('phone_num, valid', TEST_DATA_PHONE_NUM)
-def test_phone_number(phone_num, valid):
+@pytest.mark.parametrize('phone_num, extension, valid', TEST_DATA_PHONE_NUM)
+def test_phone_number(phone_num, extension, valid):
     """Assert that the schema is performing as expected for party phoneNumber."""
     party = copy.deepcopy(PARTY)
     party['phoneNumber'] = phone_num
+    if extension:
+        party['phoneExtension'] = extension
 
     is_valid, errors = validate(party, 'party', 'common')
 
