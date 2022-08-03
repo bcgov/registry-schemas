@@ -45,6 +45,16 @@
             "type": [ "string", "null" ],
             "maxLength": 30,
             "description": "The name of the engineer who performed the inspection."
+        },
+        "rebuiltRemarks": {
+            "type": [ "string", "null" ],
+            "maxLength": 280,
+            "description": "Comments on the rebuilt status of the home."
+        },
+        "otherRemarks": {
+            "type": [ "string", "null" ],
+            "maxLength": 140,
+            "description": "Other comments on the home."
         }
     },
     "anyOf":[

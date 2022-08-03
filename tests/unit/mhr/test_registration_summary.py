@@ -19,16 +19,19 @@ from registry_schemas import validate
 
 TEST_VALID_ALL = {
     'mhrNumber': '020000',
-    'statusType': 'R',
+    'registrationDescription': 'Manufactured Home Registration',
+    'username': 'Michael Scott',
+    'statusType': 'ACTIVE',
     'clientReferenceId': 'T-0000001',
     'path': '/mhr/api/v1/registrations/020000',
     'createDateTime': '2021-06-03T22:58:45+00:00',
-    'registeringParty': 'Bank of British Columbia',
+    'submittingParty': 'Bank of British Columbia',
+    'ownerNames': 'GRAEME THOMAS CUNNINGHAM, NEIL MARTIN FOLEY',
     'inUserList': False
 }
 TEST_VALID_MINIMUM = {
     'mhrNumber': '020000',
-    'statusType': 'R',
+    'statusType': 'ACTIVE',
     'path': '/mhr/api/v1/registrations/020000',
     'createDateTime': '2021-06-03T22:58:45+00:00'
 }
@@ -40,12 +43,12 @@ TEST_INVALID_STATUS_TYPE = {
 }
 TEST_INVALID_MHR_NUMBER = {
     'mhrNumber': '2020000',
-    'statusType': 'R',
+    'statusType': 'ACTIVE',
     'path': '/mhr/api/v1/registrations/020000',
     'createDateTime': '2021-06-03T22:58:45+00:00'
 }
 TEST_INVALID_MISSING_MHR_NUMBER = {
-    'statusType': 'R',
+    'statusType': 'ACTIVE',
     'path': '/mhr/api/v1/registrations/020000',
     'createDateTime': '2021-06-03T22:58:45+00:00'
 }
@@ -56,12 +59,12 @@ TEST_INVALID_MISSING_STATUS = {
 }
 TEST_INVALID_MISSING_PATH = {
     'mhrNumber': '020000',
-    'statusType': 'R',
+    'statusType': 'ACTIVE',
     'createDateTime': '2021-06-03T22:58:45+00:00'
 }
 TEST_INVALID_MISSING_CREATE_TS = {
     'mhrNumber': '020000',
-    'statusType': 'R',
+    'statusType': 'ACTIVE',
     'path': '/mhr/api/v1/registrations/020000'
 }
 TEST_EMPTY_JSON = {

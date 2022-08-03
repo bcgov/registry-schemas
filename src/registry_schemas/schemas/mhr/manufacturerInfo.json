@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/manufacturerInfo",
+    "type": "object",
+    "title": "The MHR Manufacturer Information Schema",
+    "definitions": {},
+    "properties": {
+        "bcolAccountNumber": {
+            "type": "string",
+            "maxLength": 6,
+            "description": "The legacy BC Online Account number for the manufacturer."
+        },
+       "dealerName": {
+            "type": "string",
+            "maxLength": 60,
+            "description": "The name of the manufacturer dealer."
+        },
+        "submittingParty": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
+        },
+        "owner": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
+        },
+        "manufacturerName": {
+            "type": "string",
+            "maxLength": 65,
+            "description": "The name of the manufacturer."
+        }
+    },
+    "required": [
+        "dealerName",
+        "submittingParty",
+        "manufacturerName"
+    ]
+}

@@ -35,10 +35,80 @@
             "format": "date-time",
             "description": "The tax certificate expiry date as date-time. Omit if no value provided."
         },
+        "exceptionPlan": {
+            "type": [ "string", "null" ],
+            "maxLength": 80,
+            "description": "Exception plan number or description."
+        },
         "dealerName": {
             "type": [ "string", "null" ],
             "maxLength": 60,
             "description": "The name of the manufacured home dealer."
+        },
+        "additionalDescription": {
+            "type": [ "string", "null" ],
+            "maxLength": 80,
+            "description": "Additional location information."
+        },
+        "legalDescription": {
+            "type": [ "string", "null" ],
+            "maxLength": 512,
+            "description": "LTSA parcel identifier legal description. May be submitted with new registrations requests. In the future it may be included in search results."
+        },
+        "lot": {
+            "type": [ "string", "null" ],
+            "maxLength": 10,
+            "description": "LTSA lot number."
+        },
+        "parcel": {
+            "type": [ "string", "null" ],
+            "maxLength": 10,
+            "description": "LTSA parcel description."
+        },
+        "block": {
+            "type": [ "string", "null" ],
+            "maxLength": 10,
+            "description": "LTSA block number."
+        },
+        "districtLot": {
+            "type": [ "string", "null" ],
+            "maxLength": 17,
+            "description": "LTSA district lot number."
+        },
+        "partOf": {
+            "type": [ "string", "null" ],
+            "maxLength": 10,
+            "description": "Part of abbreviated description derived from the LTSA legal description."
+        },
+        "section": {
+            "type": [ "string", "null" ],
+            "maxLength": 10,
+            "description": "LTSA section number."
+        },
+        "township": {
+            "type": [ "string", "null" ],
+            "maxLength": 2,
+            "description": "LTSA township number."
+        },
+        "range": {
+            "type": [ "string", "null" ],
+            "maxLength": 2,
+            "description": "LTSA range number."
+        },
+        "meridian": {
+            "type": [ "string", "null" ],
+            "maxLength": 3,
+            "description": "Abbreviated meridian description derived from the LTSA legal description of the meridian."
+        },
+        "landDistrict": {
+            "type": [ "string", "null" ],
+            "maxLength": 20,
+            "description": "LTSA district description."
+        },
+        "plan": {
+            "type": [ "string", "null" ],
+            "maxLength": 12,
+            "description": "LTSA plan number."
         }
     },
     "required": [
