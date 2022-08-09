@@ -12,9 +12,9 @@
         },
         "status": {
             "type": [ "string", "null" ],
-            "maxLength": 2,
-            "enum": ["C", "D", "E", "R"],
-            "description": "The status of the registration. C - cancelled; D - drafted; E - exempted; R - registered."
+            "maxLength": 20,
+            "enum": ["ACTIVE", "DRAFT", "EXEMPT", "HISTORICAL"],
+            "description": "The status of the registration. ACTIVE - registered; DRAFT; EXEMPT; HISTORICAL - cancelled."
         },
         "clientReferenceId": {
             "type": [ "string", "null" ],

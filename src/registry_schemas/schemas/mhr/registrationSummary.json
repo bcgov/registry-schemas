@@ -10,11 +10,21 @@
             "maxLength": 6,
             "description": "The MHR Number that uniquely identifies the registration."
         },
+        "registrationDescription": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "Description of the registration type."
+        },
+        "username": {
+            "type": "string",
+            "maxLength": 250,
+            "description": "Name of the user who created the registration. Empty string for legacy registrations."
+        },
         "statusType": {
             "type": "string",
-            "maxLength": 3,
-            "enum": ["R", "C", "D", "E"],
-            "description": "The status of the Registration. One of <ul><li>R - Registered</li><li>C - Cancelled</li><li>D - Drafted</li><li>E - Exempted</li></ul>"
+            "maxLength": 20,
+            "enum": ["ACTIVE", "DRAFT", "EXEMPT", "HISTORICAL"],
+            "description": "The status of the registration. ACTIVE - registered; DRAFT; EXEMPT; HISTORICAL - cancelled."
         },
         "path": {
             "type": "string",
@@ -31,10 +41,15 @@
             "maxLength": 50,
             "description": "An optional client reference identifier associated with the registration. Provided to facilitate client tracking of MHR activity."
         },
-        "registeringParty": {
+        "submittingParty": {
             "type": "string",
             "maxlength": 150,
-            "description": "The registration Registering Party name."
+            "description": "The registration Submitting Party name."
+        },
+        "ownerNames": {
+            "type": "string",
+            "maxlength": 1000,
+            "description": "The names of one or more of the registration active owners, separated by a comma in the format first middle last."
         },
         "inUserList": {
             "type": "boolean",

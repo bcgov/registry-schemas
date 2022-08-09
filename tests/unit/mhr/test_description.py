@@ -23,6 +23,9 @@ from registry_schemas.example_data.mhr import DESCRIPTION
 # testdata pattern is ({desc}, {valid}, {manu}, {base}, {sc}, {has_s}, {csa_n}, {csa_s}, {eng_date}, {eng_name})
 LONG_MANUFACTURER = '012345678901234567890123456789012345678901234567890123456789012345'
 LONG_ENG_NAME = '0123456789012345678901234567890'
+LONG_REMARK = '0123456789012345678901234567890123456789012345678901234567890123456789'
+REBUILT_MAX_LENGTH = LONG_REMARK + LONG_REMARK + LONG_REMARK + LONG_REMARK
+OTHER_MAX_LENGTH = LONG_REMARK + LONG_REMARK
 TEST_DATA_DESC = [
     ('Valid all', True, 'manufacturer', True, 1, True, 'csa num', 'csas', True, 'eng name'),
     ('Valid no csa', True, 'manufacturer', True, 1, True, None, None, True, 'eng name'),
@@ -36,6 +39,12 @@ TEST_DATA_DESC = [
     ('Invalid csa num too long', False, 'manufacturer', True, 1, True, '01234567890', 'csas', True, 'eng name'),
     ('Invalid csa standard too long', False, 'manufacturer', True, 1, True, '0123456789', '12345', True, 'eng name'),
     ('Invalid eng name too long', False, 'manufacturer', True, 1, True, '012345678', 'csas', True, LONG_ENG_NAME)
+]
+# testdata pattern is ({desc}, {valid}, {rebuilt}, {other})
+TEST_REMARKS_DATA_DESC = [
+    ('Valid Max Both', True, REBUILT_MAX_LENGTH, OTHER_MAX_LENGTH),
+    ('Invalid rebuilt too long', False, REBUILT_MAX_LENGTH + 'X', OTHER_MAX_LENGTH),
+    ('Invalid other too long', False, REBUILT_MAX_LENGTH, OTHER_MAX_LENGTH + 'X')
 ]
 
 
@@ -65,6 +74,24 @@ def test_description(desc, valid, manu, base, sc, has_s, csa_n, csa_s, eng_date,
     else:
         data['engineerName'] = eng_name
 
+    is_valid, errors = validate(data, 'description', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,rebuilt,other', TEST_REMARKS_DATA_DESC)
+def test_description_remarks(desc, valid, rebuilt, other):
+    """Assert that the schema remarks validation is performing as expected."""
+    data = copy.deepcopy(DESCRIPTION)
+    data['rebuiltRemarks'] = rebuilt
+    data['otherRemarks'] = other
     is_valid, errors = validate(data, 'description', 'mhr')
 
     if errors:

@@ -32,6 +32,11 @@
             "type": "string",
             "maxLength": 20,
             "description": "The owner phone number formatted as only digits: no spaces, periods, or dashes."
+        },
+        "suffix": {
+            "type": "string",
+            "maxLength": 70,
+            "description": "The organization or individual name suffix."
         }
     },
     "oneOf":[

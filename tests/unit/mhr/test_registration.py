@@ -68,7 +68,7 @@ LONG_CLIENT_REF = '01234567890123456789012345678901234567890'
 # testdata pattern is ({desc},{valid},{mhr},{status},{rev},{decv},{haso},{hasl},{hasd},{hasn},{hasdt},{hasp})
 TEST_DATA_REG = [
     ('Valid request', True, None, None, 'ref', '50000.00', True, True, True, True, False, False),
-    ('Valid response', True, '003456', 'R', 'ref', '50000.00', True, True, True, True, True, True),
+    ('Valid response', True, '003456', 'EXEMPT', 'ref', '50000.00', True, True, True, True, True, True),
     ('Valid no ref', True, None, None, None, '50000.00', True, True, True, True, False, False),
     ('Valid no declared value', True, None, None, 'ref', None, True, True, True, True, False, False),
     ('Valid no notes', True, None, None, 'ref', '50000.00', True, True, True, False, False, False),

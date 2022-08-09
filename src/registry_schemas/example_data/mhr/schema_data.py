@@ -47,7 +47,9 @@ DESCRIPTION = {
   'csaNumber': '786356',
   'csaStandard': 'Z240',
   'engineerDate': '2018-02-22T07:59:00+00:00',
-  'engineerName': ' Dave Smith ENG. LTD.'
+  'engineerName': ' Dave Smith ENG. LTD.',
+  'rebuiltRemarks': 'Rebuilt comments',
+  'otherRemarks': 'Other comments'
 }
 
 LOCATION = {
@@ -64,7 +66,49 @@ LOCATION = {
   'pidNumber': '011625490',
   'taxCertificate': True,
   'taxExpiryDate': '2022-05-21T07:59:59+00:00',
-  'dealerName': 'NOR-TEC DESIGN GROUP LTD.'
+  'dealerName': 'NOR-TEC DESIGN GROUP LTD.',
+  'exceptionPlan': 'EXCEPT PART INCLUDED IN PLAN 7152',
+  'additionalDescription': 'SPALLUMCHEEN INDIAN RESERVE NO. 2',
+  'legalDescription': 'PARCEL C (O3806) OF LOT 10 DISTRICT LOT 9778 CARIBOO DISTRICT PLAN 2289',
+  'lot': '3',
+  'parcel': 'A (69860M)',
+  'block': '14',
+  'districtLot': '4913',
+  'partOf': 'NE 1/4',
+  'section': '34',
+  'township': '84',
+  'range': '35',
+  'meridian': 'W6M',
+  'landDistrict': 'CARIBOU',
+  'plan': '71177'
+}
+
+MANUFACTURER_INFO = {
+  'bcolAccountNumber': '378521',
+  'dealerName': 'CHAMPION CANADA INTERNATIONAL ULC - MODULINE INDUSTRIES',
+  'submittingParty': {
+    'businessName': 'CHAMPION CANADA INTERNATIONAL ULC',
+    'address': {
+      'street': 'PO BOX 190 STATION MAIN',
+      'city': 'PENTICTON',
+      'region': 'BC',
+      'postalCode': 'V2A 6J9',
+      'country': 'CA'
+    },
+    'phoneNumber': '2507701067'
+  },
+  'owner': {
+    'businessName': 'CHAMPION CANADA INTERNATIONAL ULC',
+    'address': {
+      'street': '3122B LYNNLARK PLACE',
+      'city': 'PENTICTON',
+      'region': 'BC',
+      'postalCode': 'V2A 5X5',
+      'country': 'CA'
+    },
+    'phoneNumber': '6044620279'
+  },
+  'manufacturerName': 'MODULINE INDUSTRIES - PENTICTON'
 }
 
 NOTE = {
@@ -94,7 +138,8 @@ OWNER = {
   },
   'type': 'SO',
   'phoneNumber': '6041234567',
-  'status': 'EXEMPT'
+  'status': 'EXEMPT',
+  'suffix': 'EXECUTOR OF THE WILL OF JUDITH ANN JANZEN, DECEASED'
 }
 
 OWNER_GROUP = {
@@ -135,7 +180,7 @@ PERSON_NAME = {
 
 REGISTRATION = {
   'mhrNumber': '001234',
-  'status': 'R',
+  'status': 'ACTIVE',
   'clientReferenceId': 'EX-MH001234',
   'declaredValue': '120000.00',
   'submittingParty': {
@@ -262,12 +307,14 @@ REGISTRATION = {
 REGISTRATION_SUMMARY = [
   {
     'mhrNumber': '002000',
-    'statusType': 'R',
+    'registrationDescription': 'Manufactured Home Registration',
+    'username': 'Michael Scott',
+    'statusType': 'ACTIVE',
     'clientReferenceId': 'T-0000001',
     'path': '/mhr/api/v1/registrations/002000',
     'createDateTime': '2021-06-03T22:58:45+00:00',
-    'registeringParty': 'Bank of British Columbia',
-    'securedParties': 'Bank of British Columbia',
+    'submittingParty': 'Bank of British Columbia',
+    'ownerNames': 'GRAEME THOMAS CUNNINGHAM, NEIL MARTIN FOLEY',
     'inUserList': False
   }
 ]
@@ -307,7 +354,7 @@ SEARCH_DETAIL_RESULT = {
   'details': [
     {
       'mhrNumber': '001234',
-      'status': 'R',
+      'status': 'ACTIVE',
       'clientReferenceId': 'EX-MH001234',
       'declaredValue': '120000.00',
       'owners': [
