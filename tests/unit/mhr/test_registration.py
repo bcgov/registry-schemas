@@ -133,7 +133,7 @@ def test_registration(desc, valid, mhr, status, ref, decv, haso, hasl, hasd, has
     if desc == 'Invalid doc id too long':
         data['documentId'] = data.get('documentId') + '9'
     elif desc == 'Invalid attention too long':
-        data['attentionReference'] =  LONG_ATTENTION_REF
+        data['attentionReference'] = LONG_ATTENTION_REF
 
     is_valid, errors = validate(data, 'registration', 'mhr')
 
