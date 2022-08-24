@@ -17,7 +17,7 @@ import copy
 import pytest
 
 from registry_schemas import validate
-from registry_schemas.example_data.mhr import OWNER, REGISTRATION
+from registry_schemas.example_data.mhr import REGISTRATION
 
 
 PARTY_VALID = {
@@ -61,9 +61,9 @@ PPR_REG_VALID = [
     }
 ]
 PPR_REG_EMPTY = []
-OWNERS = [OWNER]
 
 LONG_CLIENT_REF = '01234567890123456789012345678901234567890'
+LONG_ATTENTION_REF = '01234567890123456789012345678901234567890'
 
 # testdata pattern is ({desc},{valid},{mhr},{status},{rev},{decv},{haso},{hasl},{hasd},{hasn},{hasdt},{hasp})
 TEST_DATA_REG = [
@@ -72,9 +72,9 @@ TEST_DATA_REG = [
     ('Valid no ref', True, None, None, None, '50000.00', True, True, True, True, False, False),
     ('Valid no declared value', True, None, None, 'ref', None, True, True, True, True, False, False),
     ('Valid no notes', True, None, None, 'ref', '50000.00', True, True, True, False, False, False),
-    ('Valid owners', True, None, None, 'ref', '50000.00', True, True, True, False, False, False),
     ('Invalid no owner groups', False, None, None, 'ref', '50000.00', False, True, True, True, False, False),
-    ('Invalid no submitting party', False, None, None, 'ref', '50000.00', True, True, True, False, False, False),
+    ('Invalid doc id too long', False, None, None, 'ref', '50000.00', True, True, True, False, False, False),
+    ('Invalid attention too long', False, None, None, 'ref', '50000.00', True, True, True, False, False, False),
     ('Invalid no location', False, None, None, 'ref', '50000.00', True, False, True, True, False, False),
     ('Invalid no description', False, None, None, 'ref', '50000.00', True, True, False, True, False, False),
     ('Invalid mhr num too long', False, '1234567', None, 'ref', '50000.00', True, True, True, True, False, False),
@@ -130,32 +130,10 @@ def test_registration(desc, valid, mhr, status, ref, decv, haso, hasl, hasd, has
         del data['declaredValue']
     else:
         data['declaredValue'] = decv
-    if desc == 'Valid owners':
-        del data['ownerGroups']
-        data['owners'] = OWNERS
-    elif desc == 'Invalid no submitting party':
-        del data['submittingParty']
-
-    is_valid, errors = validate(data, 'registration', 'mhr')
-
-    if errors:
-        for err in errors:
-            print(err.message)
-
-    if valid:
-        assert is_valid
-    else:
-        assert not is_valid
-
-
-@pytest.mark.parametrize('desc,valid,sub_party', TEST_DATA_SUB_PARTY)
-def test_registration_reg_party(desc, valid, sub_party):
-    """Assert that the schema is performing as expected with a submitting party."""
-    data = copy.deepcopy(REGISTRATION)
-    if sub_party:
-        data['submittingParty'] = sub_party
-    else:
-        del data['submittingParty']
+    if desc == 'Invalid doc id too long':
+        data['documentId'] = data.get('documentId') + '9'
+    elif desc == 'Invalid attention too long':
+        data['attentionReference'] =  LONG_ATTENTION_REF
 
     is_valid, errors = validate(data, 'registration', 'mhr')
 

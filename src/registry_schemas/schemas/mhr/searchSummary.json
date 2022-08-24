@@ -16,8 +16,8 @@
                 "status": {
                     "type": "string",
                     "maxLength": 10,
-                    "enum": ["ACTIVE", "EXEMPT", "HISTORIC"],
-                    "description": "The status of a manufactured home registration: one of ACTIVE, EXEMPT, or HISTORIC."
+                    "enum": ["ACTIVE", "EXEMPT", "HISTORICAL", "HISTORIC"],
+                    "description": "The status of a manufactured home registration: one of ACTIVE, EXEMPT, or HISTORICAL. HISTORIC is deprecated (replaced by HISTORICAL)."
                 },
                 "createDateTime": {
                     "type": "string",

@@ -55,6 +55,7 @@ SEARCH_SUMMARY_ORG = [
 TEST_DATA_STATUS = [
     ('ACTIVE', True),
     ('EXEMPT', True),
+    ('HISTORICAL', True),
     ('HISTORIC', True),
     ('XX', False)
 ]
