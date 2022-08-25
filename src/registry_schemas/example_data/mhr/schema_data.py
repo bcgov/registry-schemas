@@ -133,10 +133,10 @@ OWNER = {
     'street': '3122B LYNNLARK PLACE',
     'city': 'VICTORIA',
     'region': 'BC',
-    'postalCode': ' ',
+    'postalCode': 'V8S 4I6',
     'country': 'CA'
   },
-  'type': 'SO',
+  'type': 'SOLE',
   'phoneNumber': '6041234567',
   'status': 'EXEMPT',
   'suffix': 'EXECUTOR OF THE WILL OF JUDITH ANN JANZEN, DECEASED'
@@ -154,13 +154,13 @@ OWNER_GROUP = {
         'street': '3122B LYNNLARK PLACE',
         'city': 'VICTORIA',
         'region': 'BC',
-        'postalCode': ' ',
+        'postalCode': 'V8S 4I6',
         'country': 'CA'
       },
       'phoneNumber': '6041234567'
     }
   ],
-  'type': 'TC',
+  'type': 'COMMON',
   'interest': 'UNDIVIDED 4/5',
   'interestNumerator': 4,
   'status': 'ACTIVE',
@@ -180,9 +180,11 @@ PERSON_NAME = {
 
 REGISTRATION = {
   'mhrNumber': '001234',
+  'documentId': '42800656',
   'status': 'ACTIVE',
   'clientReferenceId': 'EX-MH001234',
   'declaredValue': '120000.00',
+  'attentionReference': 'GWB14768.100',
   'submittingParty': {
     'businessName': 'ABC SEARCHING COMPANY',
     'address': {
@@ -215,7 +217,7 @@ REGISTRATION = {
           'phoneNumber': '6041234567'
         }
       ],
-      'type': 'TC',
+      'type': 'COMMON',
       'interest': 'UNDIVIDED 4/5',
       'interestNumerator': 4,
       'status': 'ACTIVE',
@@ -238,7 +240,7 @@ REGISTRATION = {
           'phoneNumber': '6041234567'
         }
       ],
-      'type': 'TC',
+      'type': 'COMMON',
       'interest': 'UNDIVIDED 1/5',
       'interestNumerator': 1,
       'status': 'ACTIVE',
@@ -354,25 +356,57 @@ SEARCH_DETAIL_RESULT = {
   'details': [
     {
       'mhrNumber': '001234',
+      'documentId': '42800656',
       'status': 'ACTIVE',
       'clientReferenceId': 'EX-MH001234',
       'declaredValue': '120000.00',
-      'owners': [
+      'ownerGroups': [
         {
-          'individualName': {
-            'first': 'James',
-            'last': 'Smith'
-          },
-          'address': {
-            'street': '3122B LYNNLARK PLACE',
-            'city': 'VICTORIA',
-            'region': 'BC',
-            'postalCode': ' ',
-            'country': 'CA'
-          },
-          'type': 'SO',
-          'phoneNumber': '2504771234',
-          'status': 'ACTIVE'
+          'groupId': 1,
+          'owners': [
+            {
+              'individualName': {
+                'first': 'Jane',
+                'last': 'Smith'
+              },
+              'address': {
+                'street': '3122B LYNNLARK PLACE',
+                'city': 'VICTORIA',
+                'region': 'BC',
+                'postalCode': ' ',
+                'country': 'CA'
+              },
+              'phoneNumber': '6041234567'
+            }
+          ],
+          'type': 'COMMON',
+          'interest': 'UNDIVIDED 4/5',
+          'interestNumerator': 4,
+          'status': 'ACTIVE',
+          'tenancySpecified': True
+        }, {
+          'groupId': 2,
+          'owners': [
+            {
+              'individualName': {
+                'first': 'James',
+                'last': 'Smith'
+              },
+              'address': {
+                'street': '3122B LYNNLARK PLACE',
+                'city': 'VICTORIA',
+                'region': 'BC',
+                'postalCode': ' ',
+                'country': 'CA'
+              },
+              'phoneNumber': '6041234567'
+            }
+          ],
+          'type': 'COMMON',
+          'interest': 'UNDIVIDED 1/5',
+          'interestNumerator': 1,
+          'status': 'ACTIVE',
+          'tenancySpecified': True
         }
       ],
       'location': {

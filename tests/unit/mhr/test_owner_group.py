@@ -23,19 +23,22 @@ from registry_schemas.example_data.mhr import OWNER_GROUP
 LONG_INTEREST = '01234567890123456789'
 # testdata pattern is ({desc}, {valid}, {group_id}, {owners}, {interest}, {numerator}, {type}, {status})
 TEST_DATA_OWNER_GROUP = [
+    ('Valid SOLE type', True, 1, True, None, 0, 'SOLE', None),
+    ('Valid no group id', True, None, True, None, 0, 'SOLE', 'ACTIVE'),
+    ('Valid active', True, 1, True, None, 0, 'SOLE', 'ACTIVE'),
+    ('Valid exempt', True, 1, True, None, 0, 'SOLE', 'EXEMPT'),
+    ('Valid previous', True, 1, True, None, 0, 'SOLE', 'PREVIOUS'),
+    ('Valid JOINT type', True, 1, True, 'UNDIVIDED 1/2', 1, 'JOINT', 'ACTIVE'),
+    ('Valid COMMON type', True, 1, True, LONG_INTEREST, 1, 'COMMON', 'ACTIVE'),
     ('Valid SO type', True, 1, True, None, 0, 'SO', None),
-    ('Valid no group id', True, None, True, None, 0, 'SO', 'ACTIVE'),
-    ('Valid active', True, 1, True, None, 0, 'SO', 'ACTIVE'),
-    ('Valid exempt', True, 1, True, None, 0, 'SO', 'EXEMPT'),
-    ('Valid previous', True, 1, True, None, 0, 'SO', 'PREVIOUS'),
     ('Valid JT type', True, 1, True, 'UNDIVIDED 1/2', 1, 'JT', 'ACTIVE'),
     ('Valid TC type', True, 1, True, LONG_INTEREST, 1, 'TC', 'ACTIVE'),
-    ('Invalid missing owner', False, 1, False, None, 0, 'SO', None),
+    ('Invalid missing owner', False, 1, False, None, 0, 'SOLE', None),
     ('Invalid missing type', False, 1, True, None, 0, None, None),
     ('Invalid type', False, 1, True, None, 0, 'XX', None),
-    ('Invalid status', False, 1, True, None, 0, 'JT', 'XX'),
+    ('Invalid status', False, 1, True, None, 0, 'JOINT', 'XX'),
     ('Invalid numerator', False, 1, True, None, -1, None, None),
-    ('Invalid interest too long', False, 1, True, LONG_INTEREST + 'X', 1, 'TC', None)
+    ('Invalid interest too long', False, 1, True, LONG_INTEREST + 'X', 1, 'COMMON', None)
 ]
 
 

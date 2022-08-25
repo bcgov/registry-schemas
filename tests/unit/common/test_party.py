@@ -23,14 +23,11 @@ from registry_schemas.example_data.common import PARTY
 # testdata pattern is ({phone number}, {phone extension} {is valid})
 TEST_DATA_PHONE_NUM = [
     ('2504772707', None, True),
-    ('250 4772707', None, True),
-    ('250 477-2707', 'ext. 1234', True),
-    ('250 4772707', '12345', True),
-    ('250 477-2707', '546', True),
-    ('4772707', None, False),
-    ('477-2707', None, False),
-    ('250 477-2707', 'TOO LONG123', False),
-    ('250477270   TOO LONG12', None, False)
+    ('250477270', None, False),
+    ('250 4772707', None, False),
+    ('2504772707', '123', True),
+    ('2504772707', '12345', True),
+    ('2504772707', '123456', False)
 ]
 
 

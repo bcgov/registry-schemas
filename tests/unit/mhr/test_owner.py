@@ -23,17 +23,21 @@ from registry_schemas.example_data.mhr import ADDRESS, PERSON_NAME
 LONG_ORG_NAME = '01234567890123456789012345678901234567890123456789012345678901234567890'
 SUFFIX_MAX_LENGTH = '0123456789012345678901234567890123456789012345678901234567890123456789'
 TEST_DATA_OWNER = [
-    ('Valid org active', True, 'org name', None, ADDRESS, 'SO', 'ACTIVE', None, None),
-    ('Valid ind exempt', True, None, PERSON_NAME, ADDRESS, 'SO', 'EXEMPT', None, 'suffix'),
-    ('Valid JT type previous', True, 'org name', None, ADDRESS, 'JT', 'PREVIOUS', None, 'suffix'),
+    ('Valid org active SO', True, 'org name', None, ADDRESS, 'SOLE', 'ACTIVE', None, None),
+    ('Valid org active SOLE', True, 'org name', None, ADDRESS, 'SOLE', 'ACTIVE', None, None),
+    ('Valid ind exempt', True, None, PERSON_NAME, ADDRESS, 'SOLE', 'EXEMPT', None, 'suffix'),
+    ('Valid JOINT type previous', True, 'org name', None, ADDRESS, 'JOINT', 'PREVIOUS', None, 'suffix'),
+    ('Valid COMMON type', True, 'org name', None, ADDRESS, 'COMMON', 'ACTIVE', '2501234567', SUFFIX_MAX_LENGTH),
+    ('Valid SO type', True, 'org name', None, ADDRESS, 'SO', 'ACTIVE', None, None),
+    ('Valid JT type', True, 'org name', None, ADDRESS, 'JT', 'PREVIOUS', None, 'suffix'),
     ('Valid TC type', True, 'org name', None, ADDRESS, 'TC', 'ACTIVE', '2501234567', SUFFIX_MAX_LENGTH),
-    ('Invalid missing owner', False, None, None, ADDRESS, 'SO', 'ACTIVE', '2501234567', 'suffix'),
-    ('Invalid missing address', False, 'org name', None, None, 'TC', 'ACTIVE', '2501234567', 'suffix'),
+    ('Invalid missing owner', False, None, None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567', 'suffix'),
+    ('Invalid missing address', False, 'org name', None, None, 'COMMON', 'ACTIVE', '2501234567', 'suffix'),
     ('Invalid type', False, 'org name', None, ADDRESS, 'XX', 'ACTIVE', '2501234567', 'suffix'),
-    ('Invalid status', False, 'org name', None, ADDRESS, 'SO', 'XXX', '2501234567', 'suffix'),
-    ('Invalid phone too long', False, 'org name', None, ADDRESS, 'SO', 'ACTIVE', '2501234567          8', 'suffix'),
-    ('Invalid org too long', False, LONG_ORG_NAME, None, ADDRESS, 'SO', 'ACTIVE', '2501234567', 'suffix'),
-    ('Invalid suffix too long', False, LONG_ORG_NAME, None, ADDRESS, 'SO', 'ACTIVE', '2501234567',
+    ('Invalid status', False, 'org name', None, ADDRESS, 'SOLE', 'XXX', '2501234567', 'suffix'),
+    ('Invalid phone too long', False, 'org name', None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567          8', 'suffix'),
+    ('Invalid org too long', False, LONG_ORG_NAME, None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567', 'suffix'),
+    ('Invalid suffix too long', False, LONG_ORG_NAME, None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567',
      SUFFIX_MAX_LENGTH + 'X')
 ]
 
