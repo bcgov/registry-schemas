@@ -79,12 +79,23 @@ TEST_DATA_LOCATION_LTSA = [
     ('Invalid plan too long', False, LTSA_MAX, LTSA_MAX, LTSA_MAX, LTSA_DISTRICT_MAX, LTSA_MAX, LTSA_MAX,
      '12', '12', '123', LTSA_LAND_DISTRICT_MAX, LTSA_PLAN_MAX + 'X')
 ]
+# testdata pattern is ({desc}, {valid}, {type})
+TEST_DATA_LOCATION_TYPE = [
+    ('Valid MANUFACTURER', True, 'MANUFACTURER'),
+    ('Valid MH_PARK', True, 'MH_PARK'),
+    ('Valid RESERVE', True, 'RESERVE'),
+    ('Valid STRATA', True, 'STRATA'),
+    ('Valid OTHER', True, 'OTHER'),
+    ('Invalid', False, 'DEALER'),
+    ('Invalid missing', False, None)
+]
 
 
 @pytest.mark.parametrize('desc,valid,park_name,pad,address,pid,tax_date,dealer', TEST_DATA_LOCATION)
 def test_location(desc, valid, park_name, pad, address, pid, tax_date, dealer):
     """Assert that the schema is performing as expected."""
     data = {
+        'locationType': 'OTHER',
         'address': address
     }
     if park_name:
@@ -146,6 +157,26 @@ def test_location_ltsa(desc, valid, lot, parcel, block, dlot, part, section, tow
     data['meridian'] = meridian
     data['landDistrict'] = dland
     data['plan'] = plan
+    is_valid, errors = validate(data, 'location', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,type', TEST_DATA_LOCATION_TYPE)
+def test_location_type(desc, valid, type):
+    """Assert that the schema locationType field valiation is performing as expected."""
+    data = copy.deepcopy(LOCATION)
+    if type:
+        data['locationType'] = type
+    else:
+        del data['locationType']
     is_valid, errors = validate(data, 'location', 'mhr')
 
     if errors:
