@@ -16,6 +16,11 @@
             "minLength": 8,
             "description": "Unique registration document ID/number required for new registrations as a reference to the decal; assigned by the Manufactured Home Registry."
         },
+        "documentDescription": {
+            "type": [ "string", "null" ],
+            "maxLength": 100,
+            "description": "Included in a response as a description of the registration report document."
+        },
         "status": {
             "type": [ "string", "null" ],
             "maxLength": 20,

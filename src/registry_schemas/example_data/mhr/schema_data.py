@@ -53,6 +53,8 @@ DESCRIPTION = {
 }
 
 LOCATION = {
+  'locationType': 'MH_PARK',
+  'status': 'ACTIVE',
   'parkName': 'HIDDEN VALLEY TRAILER COURT',
   'pad': '20',
   'address': {
@@ -181,6 +183,7 @@ PERSON_NAME = {
 REGISTRATION = {
   'mhrNumber': '001234',
   'documentId': '42800656',
+  'documentDescription': 'REGISTER NEW UNIT',
   'status': 'ACTIVE',
   'clientReferenceId': 'EX-MH001234',
   'declaredValue': '120000.00',
@@ -248,6 +251,8 @@ REGISTRATION = {
     }
   ],
   'location': {
+    'locationType': 'OTHER',
+    'status': 'ACTIVE',
     'parkName': 'HIDDEN VALLEY TRAILER COURT',
     'pad': '20',
     'address': {
@@ -410,6 +415,7 @@ SEARCH_DETAIL_RESULT = {
         }
       ],
       'location': {
+        'locationType': 'OTHER',
         'parkName': 'HIDDEN VALLEY TRAILER COURT',
         'pad': '20',
         'address': {
@@ -536,4 +542,75 @@ SECTION_INFORMATION = {
   'lengthInches': 0,
   'widthFeet': 12,
   'widthInches': 0
+}
+
+TRANSFER = {
+  'mhrNumber': '125234',
+  'documentId': '10104535',
+  'documentDescription': 'SALE OR GIFT',
+  'clientReferenceId': 'EX-TRANS-001',
+  'submittingParty': {
+    'businessName': 'ABC SEARCHING COMPANY',
+    'address': {
+      'street': '222 SUMMER STREET',
+      'city': 'VICTORIA',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': 'V8W 2V8'
+    },
+    'emailAddress': 'bsmith@abc-search.com',
+    'phoneNumber': '6041234567',
+    'phoneExtension': '546'
+  },
+  'deleteOwnerGroups': [
+    {
+      'groupId': 1,
+      'owners': [
+        {
+          'individualName': {
+            'first': 'Jane',
+            'last': 'Smith'
+          },
+          'address': {
+            'street': '3122B LYNNLARK PLACE',
+            'city': 'VICTORIA',
+            'region': 'BC',
+            'postalCode': ' ',
+            'country': 'CA'
+          },
+          'phoneNumber': '6041234567'
+        }
+      ],
+      'type': 'SOLE'
+    }
+  ],
+  'addOwnerGroups': [
+    {
+      'groupId': 2,
+      'owners': [
+        {
+          'individualName': {
+            'first': 'James',
+            'last': 'Smith'
+          },
+          'address': {
+            'street': '3122B LYNNLARK PLACE',
+            'city': 'VICTORIA',
+            'region': 'BC',
+            'postalCode': ' ',
+            'country': 'CA'
+          },
+          'phoneNumber': '6041234567'
+        }
+      ],
+      'type': 'SOLE',
+      'status': 'ACTIVE'
+    }
+  ],
+  'createDateTime': '2020-02-21T18:56:20+00:00',
+  'deathOfOwner': False,
+  'payment': {
+    'receipt': '/pay/api/v1/payment-requests/2199900/receipts',
+    'invoiceId': '2199900'
+  }
 }

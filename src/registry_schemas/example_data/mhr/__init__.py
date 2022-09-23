@@ -33,6 +33,7 @@ from .schema_data import (
     SEARCH_QUERY_RESULT,
     SEARCH_SUMMARY,
     SECTION_INFORMATION,
+    TRANSFER,
 )
 
 
@@ -53,5 +54,6 @@ __all__ = [
     'SEARCH_QUERY',
     'SEARCH_QUERY_RESULT',
     'SEARCH_SUMMARY',
-    'SECTION_INFORMATION'
+    'SECTION_INFORMATION',
+    'TRANSFER'
 ]
