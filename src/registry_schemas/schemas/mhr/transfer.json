@@ -10,7 +10,7 @@
             "maxLength": 6,
             "description": "Unique manufactured home registration number assigned by the Manufactured Home Registry when a registration is created."
         },
-        "draftId": {
+        "draftNumber": {
             "type": [ "string", "null" ],
             "maxLength": 10,
             "description": "The identifier of the draft document if the registration is created from a draft. Include to mark the draft as used so it will be excluded from the account list."
