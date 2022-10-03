@@ -54,7 +54,7 @@ DESCRIPTION = {
 
 DRAFT_SUMMARY = [
   {
-    'draftId': '00000234',
+    'draftNumber': '150234',
     'registrationType': 'MHREG',
     'registrationDescription': 'REGISTER NEW UNIT',
     'path': '/mhr/api/v1/drafts/00000234',
@@ -64,7 +64,7 @@ DRAFT_SUMMARY = [
     'clientReferenceId': 'D-100001020'
   },
   {
-    'draftId': '00000191',
+    'draftNumber': '150234',
     'mhrNumber': '125234',
     'registrationType': 'TRANS',
     'registrationDescription': 'SALE OR GIFT',
@@ -77,10 +77,10 @@ DRAFT_SUMMARY = [
 ]
 
 DRAFT_TRANSFER = {
-  'draftId': '00000191',
+  'draftNumber': '150234',
   'type': 'TRANS',
   'registration': {
-    'draftId': '00000191',
+    'draftNumber': '150234',
     'mhrNumber': '125234',
     'clientReferenceId': 'EX-TRANS-001',
     'submittingParty': {

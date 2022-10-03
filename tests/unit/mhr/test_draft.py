@@ -52,7 +52,7 @@ def test_draft(desc, valid, type, has_reg, create, update, draft_id):
     if update:
         draft['lastUpdateDateTime'] = update
     if draft_id:
-        draft['draftId'] = draft_id
+        draft['draftNumber'] = draft_id
 
     is_valid, errors = validate(draft, 'draft', 'mhr')
 

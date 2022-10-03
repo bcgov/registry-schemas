@@ -24,7 +24,7 @@ from registry_schemas.example_data.mhr import DRAFT_SUMMARY
 TEST_DATA = [
     ('Valid non-empty', True, False, True, True, True, True),
     ('Valid empty', True, True, True, True, True, True),
-    ('Invalid missing draftId', False, False, False, True, True, True),
+    ('Invalid missing draftNumber', False, False, False, True, True, True),
     ('Invalid missing type', False, False, True, False, True, True),
     ('Invalid missing path', False, False, True, True, False, True),
     ('Invalid missing createDateTime', False, False, True, True, True, False)
@@ -39,7 +39,7 @@ def test_draft_summary(desc, valid, empty, has_id, has_type, has_path, has_creat
         drafts = []
     else:
         if not has_id:
-            del drafts[0]['draftId']
+            del drafts[0]['draftNumber']
         if not has_type:
             del drafts[0]['registrationType']
         if not has_path:

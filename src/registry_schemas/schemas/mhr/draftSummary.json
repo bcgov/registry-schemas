@@ -7,7 +7,7 @@
         "draftSummary": {
             "type": "object",
             "properties": {
-                "draftId": {
+                "draftNumber": {
                     "type": "string",
                     "maxLength": 10,
                     "description": "The identifier of the draft document. It is generated and returned in the response when the draft is first created." 
@@ -56,7 +56,7 @@
                 }
             },
             "required": [
-                "draftId",
+                "draftNumber",
                 "registrationType",
                 "path",
                 "createDateTime"
