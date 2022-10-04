@@ -61,7 +61,8 @@ DRAFT_SUMMARY = [
     'createDateTime': '2020-02-21T18:56:20+00:00',
     'lastUpdateDateTime': '2022-02-21T18:56:20+00:00',
     'registeringName': 'Michael Smith',
-    'clientReferenceId': 'D-100001020'
+    'clientReferenceId': 'D-100001020',
+    'submittingParty': 'JOHN SMITH NOTARY PUBLIC'
   },
   {
     'draftNumber': '150234',
@@ -72,7 +73,8 @@ DRAFT_SUMMARY = [
     'createDateTime': '2022-11-23T22:58:46+00:00',
     'lastUpdateDateTime': '2022-11-30T18:22:22+00:00',
     'registeringName': 'Michael Smith',
-    'clientReferenceId': 'D-100001005'
+    'clientReferenceId': 'D-100001005',
+    'submittingParty': 'JOHN SMITH NOTARY PUBLIC'
   }
 ]
 

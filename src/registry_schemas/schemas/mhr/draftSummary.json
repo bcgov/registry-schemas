@@ -53,6 +53,11 @@
                     "type": [ "string", "null" ],
                     "maxLength": 40,
                     "description": "An optional client reference identifier associated with a change. Provided to facilitate client tracking of MHR activity."
+                },
+                "submittingParty": {
+                    "type": "string",
+                    "maxlength": 150,
+                    "description": "The registration Submitting Party name."
                 }
             },
             "required": [
