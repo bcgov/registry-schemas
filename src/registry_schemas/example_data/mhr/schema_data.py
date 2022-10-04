@@ -52,6 +52,103 @@ DESCRIPTION = {
   'otherRemarks': 'Other comments'
 }
 
+DRAFT_SUMMARY = [
+  {
+    'draftNumber': '150234',
+    'registrationType': 'MHREG',
+    'registrationDescription': 'REGISTER NEW UNIT',
+    'path': '/mhr/api/v1/drafts/00000234',
+    'createDateTime': '2020-02-21T18:56:20+00:00',
+    'lastUpdateDateTime': '2022-02-21T18:56:20+00:00',
+    'registeringName': 'Michael Smith',
+    'clientReferenceId': 'D-100001020',
+    'submittingParty': 'JOHN SMITH NOTARY PUBLIC'
+  },
+  {
+    'draftNumber': '150234',
+    'mhrNumber': '125234',
+    'registrationType': 'TRANS',
+    'registrationDescription': 'SALE OR GIFT',
+    'path': '/mhr/api/v1/drafts/00000191',
+    'createDateTime': '2022-11-23T22:58:46+00:00',
+    'lastUpdateDateTime': '2022-11-30T18:22:22+00:00',
+    'registeringName': 'Michael Smith',
+    'clientReferenceId': 'D-100001005',
+    'submittingParty': 'JOHN SMITH NOTARY PUBLIC'
+  }
+]
+
+DRAFT_TRANSFER = {
+  'draftNumber': '150234',
+  'type': 'TRANS',
+  'registration': {
+    'draftNumber': '150234',
+    'mhrNumber': '125234',
+    'clientReferenceId': 'EX-TRANS-001',
+    'submittingParty': {
+      'businessName': 'ABC SEARCHING COMPANY',
+      'address': {
+        'street': '222 SUMMER STREET',
+        'city': 'VICTORIA',
+        'region': 'BC',
+        'country': 'CA',
+        'postalCode': 'V8W 2V8'
+      },
+      'emailAddress': 'bsmith@abc-search.com',
+      'phoneNumber': '6041234567',
+      'phoneExtension': '546'
+    },
+    'deleteOwnerGroups': [
+      {
+        'groupId': 1,
+        'owners': [
+          {
+            'individualName': {
+              'first': 'Jane',
+              'last': 'Smith'
+            },
+            'address': {
+              'street': '3122B LYNNLARK PLACE',
+              'city': 'VICTORIA',
+              'region': 'BC',
+              'postalCode': ' ',
+              'country': 'CA'
+            },
+            'phoneNumber': '6041234567'
+          }
+        ],
+        'type': 'SOLE'
+      }
+    ],
+    'addOwnerGroups': [
+      {
+        'groupId': 2,
+        'owners': [
+          {
+            'individualName': {
+              'first': 'James',
+              'last': 'Smith'
+            },
+            'address': {
+              'street': '3122B LYNNLARK PLACE',
+              'city': 'VICTORIA',
+              'region': 'BC',
+              'postalCode': ' ',
+              'country': 'CA'
+            },
+            'phoneNumber': '6041234567'
+          }
+        ],
+        'type': 'SOLE',
+        'status': 'ACTIVE'
+      }
+    ],
+    'deathOfOwner': False
+  },
+  'createDateTime': '2020-02-21T18:56:20+00:00',
+  'lastUpdateDateTime': '2020-02-21T18:56:20+00:00'
+}
+
 LOCATION = {
   'locationType': 'MH_PARK',
   'status': 'ACTIVE',
