@@ -283,7 +283,7 @@ REGISTRATION = {
   'documentDescription': 'REGISTER NEW UNIT',
   'status': 'ACTIVE',
   'clientReferenceId': 'EX-MH001234',
-  'declaredValue': '120000.00',
+  'declaredValue': 120000,
   'attentionReference': 'GWB14768.100',
   'submittingParty': {
     'businessName': 'ABC SEARCHING COMPANY',
@@ -461,7 +461,7 @@ SEARCH_DETAIL_RESULT = {
       'documentId': '42800656',
       'status': 'ACTIVE',
       'clientReferenceId': 'EX-MH001234',
-      'declaredValue': '120000.00',
+      'declaredValue': 120000,
       'ownerGroups': [
         {
           'groupId': 1,
@@ -704,6 +704,10 @@ TRANSFER = {
       'status': 'ACTIVE'
     }
   ],
+  'declaredValue': 78766,
+  'consideration': '$78766.00',
+  'transferDate': '2022-10-04T20:29:36+00:00',
+  'ownLand': False,
   'createDateTime': '2020-02-21T18:56:20+00:00',
   'deathOfOwner': False,
   'payment': {

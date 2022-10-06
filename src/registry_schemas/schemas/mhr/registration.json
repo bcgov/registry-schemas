@@ -43,8 +43,7 @@
             "description": "The registration document attention or reference information."
         },
         "declaredValue": {
-            "type": [ "string", "null" ],
-            "maxLength": 12,
+            "type": [ "integer", "null" ],
             "description": "The declared value of the manufactured home."
         },
         "submittingParty": {
