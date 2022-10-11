@@ -54,6 +54,7 @@ PARTY_INVALID = {
     'phoneNumber': '2314598'
 }
 LONG_CLIENT_REF = '01234567890123456789012345678901234567890'
+MAX_CONSIDERATION = '01234567890123456789012345678901234567890123456789012345678901234567890123456789'
 
 # testdata pattern is ({desc},{valid},{sub_party},{add},{delete},{is_request},{client_ref})
 TEST_DATA = [
@@ -64,6 +65,14 @@ TEST_DATA = [
     ('Missing sub party', False, None, True, True, True, '1234'),
     ('Invalid missing add', False, PARTY_VALID, False, True, True, '1234'),
     ('Invalid missing delete', False, PARTY_VALID, True, False, True, ''),
+]
+# testdata pattern is ({desc},{valid},{declared},{consid},{tran_dt},{own_land})
+TEST_DATA_DETAILS = [
+    ('Valid all', True, 60000, MAX_CONSIDERATION, '2022-09-20T10:39:03-07:53', False),
+    ('Valid none', True, None, None, None, None),
+    ('Invalid declared', False, 'xxxx', MAX_CONSIDERATION, '2022-09-20T10:39:03-07:53', False),
+    ('Invalid consideration', False, 60000, MAX_CONSIDERATION + 'X', '2022-09-20T10:39:03-07:53', False),
+    ('Invalid date', False, 60000, MAX_CONSIDERATION, 'XXXXXXXX', False)
 ]
 
 
@@ -89,6 +98,39 @@ def test_transfer(desc, valid, sub_party, add, delete, is_request, client_ref):
         del data['addOwnerGroups']
     if not delete:
         del data['deleteOwnerGroups']
+
+    is_valid, errors = validate(data, 'transfer', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,declared,consideration,tran_dt,own_land', TEST_DATA_DETAILS)
+def test_transfer_details(desc, valid, declared, consideration, tran_dt, own_land):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(TRANSFER)
+    if declared:
+        data['declaredValue'] = declared
+    else:
+        del data['declaredValue']
+    if consideration:
+        data['consideration'] = consideration
+    else:
+        del data['consideration']
+    if tran_dt:
+        data['transferDate'] = tran_dt
+    else:
+        del data['transferDate']
+    if own_land:
+        data['ownLand'] = own_land
+    else:
+        del data['ownLand']
 
     is_valid, errors = validate(data, 'transfer', 'mhr')
 

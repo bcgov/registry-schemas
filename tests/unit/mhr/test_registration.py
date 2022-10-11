@@ -67,19 +67,19 @@ LONG_ATTENTION_REF = '01234567890123456789012345678901234567890'
 
 # testdata pattern is ({desc},{valid},{mhr},{status},{rev},{decv},{haso},{hasl},{hasd},{hasn},{hasdt},{hasp})
 TEST_DATA_REG = [
-    ('Valid request', True, None, None, 'ref', '50000.00', True, True, True, True, False, False),
-    ('Valid response', True, '003456', 'EXEMPT', 'ref', '50000.00', True, True, True, True, True, True),
-    ('Valid no ref', True, None, None, None, '50000.00', True, True, True, True, False, False),
+    ('Valid request', True, None, None, 'ref', 50000, True, True, True, True, False, False),
+    ('Valid response', True, '003456', 'EXEMPT', 'ref', 50000, True, True, True, True, True, True),
+    ('Valid no ref', True, None, None, None, 50000, True, True, True, True, False, False),
     ('Valid no declared value', True, None, None, 'ref', None, True, True, True, True, False, False),
-    ('Valid no notes', True, None, None, 'ref', '50000.00', True, True, True, False, False, False),
-    ('Invalid no owner groups', False, None, None, 'ref', '50000.00', False, True, True, True, False, False),
-    ('Invalid doc id too long', False, None, None, 'ref', '50000.00', True, True, True, False, False, False),
-    ('Invalid attention too long', False, None, None, 'ref', '50000.00', True, True, True, False, False, False),
-    ('Invalid no location', False, None, None, 'ref', '50000.00', True, False, True, True, False, False),
-    ('Invalid no description', False, None, None, 'ref', '50000.00', True, True, False, True, False, False),
-    ('Invalid mhr num too long', False, '1234567', None, 'ref', '50000.00', True, True, True, True, False, False),
-    ('Invalid status', False, None, 'X', 'ref', '50000.00', True, True, True, True, False, False),
-    ('Invalid ref too long', False, None, None, LONG_CLIENT_REF, '50000.00', True, True, True, True, False, False),
+    ('Valid no notes', True, None, None, 'ref', 50000, True, True, True, False, False, False),
+    ('Invalid no owner groups', False, None, None, 'ref', 50000, False, True, True, True, False, False),
+    ('Invalid doc id too long', False, None, None, 'ref', 50000, True, True, True, False, False, False),
+    ('Invalid attention too long', False, None, None, 'ref', 50000, True, True, True, False, False, False),
+    ('Invalid no location', False, None, None, 'ref', 50000, True, False, True, True, False, False),
+    ('Invalid no description', False, None, None, 'ref', 50000, True, True, False, True, False, False),
+    ('Invalid mhr num too long', False, '1234567', None, 'ref', 50000, True, True, True, True, False, False),
+    ('Invalid status', False, None, 'X', 'ref', 50000, True, True, True, True, False, False),
+    ('Invalid ref too long', False, None, None, LONG_CLIENT_REF, 50000, True, True, True, True, False, False),
     ('Invalid declared val too long', False, None, None, 'ref', '1234567890.00', True, True, True, True, False, False)
 ]
 
@@ -95,6 +95,17 @@ TEST_DATA_PPR_REGISTRATIONS = [
     ('Valid request with ppr registrations', True, PPR_REG_VALID),
     ('Valid request empty ppr registrations', True, PPR_REG_EMPTY),
     ('Valid request no ppr registrations', True, None)
+]
+
+# testdata pattern is ({desc}, {valid}, {type})
+TEST_DATA_LOCATION_TYPE = [
+    ('Valid MANUFACTURER', True, 'MANUFACTURER'),
+    ('Valid MH_PARK', True, 'MH_PARK'),
+    ('Valid RESERVE', True, 'RESERVE'),
+    ('Valid STRATA', True, 'STRATA'),
+    ('Valid OTHER', True, 'OTHER'),
+    ('Invalid', False, 'DEALER'),
+    ('Invalid missing', False, None)
 ]
 
 
@@ -159,6 +170,20 @@ def test_registration_ppr_registrations(desc, valid, ppr_registrations):
     if errors:
         for err in errors:
             print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,type', TEST_DATA_LOCATION_TYPE)
+def test_registration_loc_type(desc, valid, type):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(REGISTRATION)
+    data['location']['locationType'] = type
+
+    is_valid, errors = validate(data, 'registration', 'mhr')
 
     if valid:
         assert is_valid
