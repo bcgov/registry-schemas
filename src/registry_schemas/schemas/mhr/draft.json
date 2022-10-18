@@ -13,7 +13,7 @@
         "type": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "PERMIT", "TRANS", "TRAND"],
+            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND"],
             "description": "<p>The set of registration types supported by this API.<ol><li>EXEMPTION_NON_RES - non-residential exemption</li><li>EXEMPTION_RES - residential exemption</li><li>MHREG - manufactured home registration</li><li>PERMIT - transport permit</li><li>TRAND - transfer due to the death of a joint tenant</li><li>TRANS - transfer sale or gift</li></ol></p>"
         },
         "registration": {

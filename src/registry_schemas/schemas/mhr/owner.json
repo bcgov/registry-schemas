@@ -5,6 +5,11 @@
     "title": "The MHR Owner Schema",
     "definitions": {},
     "properties": {
+        "ownerId": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Assigned by the application and returned in responses, ownerId is a unique identifier of the owner."
+        },
        "organizationName": {
             "type": "string",
             "maxLength": 70,
