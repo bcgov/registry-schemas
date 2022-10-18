@@ -20,12 +20,17 @@
         "interest": {
             "type": "string",
             "maxLength": 20,
-            "description": "Describes the group ownership portion as a fraction. Does not apply to the SO type."
+            "description": "Describes the group ownership portion as a fraction. Does not apply and may be omitted for the Sole Ownership (SOLE) type."
         },
         "interestNumerator": {
             "type": "integer",
             "mimimum": 0,
-            "description": "Represents the group ownership portion as the numerator of a fraction. Does not apply to the SO type."
+            "description": "Represents the group ownership portion as the numerator of a fraction. Does not apply and may be omitted for the Sole Ownership (SOLE) type."
+        },
+        "interestDenominator": {
+            "type": "integer",
+            "mimimum": 0,
+            "description": "Represents the group ownership portion as the denominator of a fraction. Does not apply and may be omitted for the Sole Ownership (SOLE) type."
         },
         "type": {
             "type": "string",
@@ -41,7 +46,7 @@
         },
         "tenancySpecified": {
             "type": "boolean",
-            "description": "FFlag indicating details on the JT or TC types are included. If false, no interest or interest numerator is provided."
+            "description": "Flag indicating details on the JT or TC types are included. If false, no interest or interest numerator is provided."
         }
     },
     "required": [

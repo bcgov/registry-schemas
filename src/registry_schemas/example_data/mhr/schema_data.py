@@ -114,7 +114,8 @@ DRAFT_TRANSFER = {
               'postalCode': ' ',
               'country': 'CA'
             },
-            'phoneNumber': '6041234567'
+            'phoneNumber': '6041234567',
+            'ownerId': 1
           }
         ],
         'type': 'SOLE'
@@ -136,7 +137,8 @@ DRAFT_TRANSFER = {
               'postalCode': ' ',
               'country': 'CA'
             },
-            'phoneNumber': '6041234567'
+            'phoneNumber': '6041234567',
+            'ownerId': 2
           }
         ],
         'type': 'SOLE',
@@ -227,6 +229,7 @@ NOTE = {
 }
 
 OWNER = {
+  'ownerId': 1,
   'organizationName': 'SAGE HILL INC.',
   'address': {
     'street': '3122B LYNNLARK PLACE',
@@ -256,12 +259,14 @@ OWNER_GROUP = {
         'postalCode': 'V8S 4I6',
         'country': 'CA'
       },
-      'phoneNumber': '6041234567'
+      'phoneNumber': '6041234567',
+      'ownerId': 1
     }
   ],
   'type': 'COMMON',
   'interest': 'UNDIVIDED 4/5',
   'interestNumerator': 4,
+  'interestDenominator': 5,
   'status': 'ACTIVE',
   'tenancySpecified': True
 }
@@ -280,7 +285,9 @@ PERSON_NAME = {
 REGISTRATION = {
   'mhrNumber': '001234',
   'documentId': '42800656',
+  'documentRegistrationNumber': '00442217',
   'documentDescription': 'REGISTER NEW UNIT',
+  'registrationType': 'MHREG',
   'status': 'ACTIVE',
   'clientReferenceId': 'EX-MH001234',
   'declaredValue': 120000,
@@ -314,12 +321,14 @@ REGISTRATION = {
             'postalCode': ' ',
             'country': 'CA'
           },
-          'phoneNumber': '6041234567'
+          'phoneNumber': '6041234567',
+          'ownerId': 1
         }
       ],
       'type': 'COMMON',
       'interest': 'UNDIVIDED 4/5',
       'interestNumerator': 4,
+      'interestDenominator': 5,
       'status': 'ACTIVE',
       'tenancySpecified': True
     }, {
@@ -337,12 +346,14 @@ REGISTRATION = {
             'postalCode': ' ',
             'country': 'CA'
           },
-          'phoneNumber': '6041234567'
+          'phoneNumber': '6041234567',
+          'ownerId': 2
         }
       ],
       'type': 'COMMON',
       'interest': 'UNDIVIDED 1/5',
       'interestNumerator': 1,
+      'interestDenominator': 5,
       'status': 'ACTIVE',
       'tenancySpecified': True
     }
@@ -412,6 +423,8 @@ REGISTRATION_SUMMARY = [
   {
     'mhrNumber': '002000',
     'registrationDescription': 'Manufactured Home Registration',
+    'documentId': '10200000',
+    'documentRegistrationNumber': '00442217',
     'username': 'Michael Scott',
     'statusType': 'ACTIVE',
     'clientReferenceId': 'T-0000001',
@@ -644,7 +657,9 @@ SECTION_INFORMATION = {
 TRANSFER = {
   'mhrNumber': '125234',
   'documentId': '10104535',
+  'documentRegistrationNumber': '00443671',
   'documentDescription': 'SALE OR GIFT',
+  'registrationType': 'TRANS',
   'clientReferenceId': 'EX-TRANS-001',
   'submittingParty': {
     'businessName': 'ABC SEARCHING COMPANY',
@@ -675,7 +690,8 @@ TRANSFER = {
             'postalCode': ' ',
             'country': 'CA'
           },
-          'phoneNumber': '6041234567'
+          'phoneNumber': '6041234567',
+          'ownerId': 1
         }
       ],
       'type': 'SOLE'
@@ -697,7 +713,8 @@ TRANSFER = {
             'postalCode': ' ',
             'country': 'CA'
           },
-          'phoneNumber': '6041234567'
+          'phoneNumber': '6041234567',
+          'ownerId': 2
         }
       ],
       'type': 'SOLE',
