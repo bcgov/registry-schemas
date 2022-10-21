@@ -25,11 +25,11 @@ LONG_NAME = '01234567890123456789012345678901234567890'
 TEST_DATA_NOTE = [
     ('Valid all', True, 'type', '123456', True, True, 'remarks', 'contact', ADDRESS),
     ('Valid no expiry', True, 'type', '123456', True, False, 'remarks', 'contact', ADDRESS),
-    ('Valid no remarks', True, 'type', '123456', True, True, None, 'contact', ADDRESS),
     ('Valid no contact', True, 'type', '123456', True, True, 'remarks', None, ADDRESS),
     ('Valid no address', True, 'type', '123456', True, True, 'remarks', 'contact', None),
-    ('Invalid no createTS', False, 'type', '123456', False, True, 'remarks', 'contact', ADDRESS),
-    ('Invalid no doc id', False, 'type', None, True, True, 'remarks', 'contact', ADDRESS),
+    ('Valid no createTS', True, 'type', '123456', False, True, 'remarks', 'contact', ADDRESS),
+    ('Valid no doc id', True, 'type', None, True, True, 'remarks', 'contact', ADDRESS),
+    ('Invalid no remarks', False, 'type', '123456', True, True, None, 'contact', ADDRESS),
     ('Invalid no type', False, None, '123456', True, True, 'remarks', 'contact', ADDRESS),
     ('Invalid type too long', False, '12345', '123456', True, True, 'remarks', 'contact', ADDRESS),
     ('Invalid doc id too long', False, '1234', '123456789', True, True, 'remarks', 'contact', ADDRESS),
@@ -42,13 +42,22 @@ def test_note(desc, valid, type, doc_id, has_create, has_expiry, remarks, contac
     """Assert that the schema is performing as expected."""
     data = copy.deepcopy(NOTE)
     data['documentType'] = type
-    data['documentId'] = doc_id
+    if doc_id:
+        data['documentId'] = doc_id
+    else:
+        del data['documentId']
     if not has_create:
         del data['createDateTime']
     if not has_expiry:
         del data['expiryDate']
-    data['remarks'] = remarks
-    data['contactName'] = contact
+    if remarks:
+        data['remarks'] = remarks
+    else:
+        del data['remarks']
+    if contact:
+        data['contactName'] = contact
+    else:
+        del data['contactName']
     if not address:
         del data['contactAddress']
 
