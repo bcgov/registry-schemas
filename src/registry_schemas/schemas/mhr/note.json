@@ -41,7 +41,6 @@
     },
     "required": [
         "documentType",
-        "documentId",
-        "createDateTime"
+        "remarks"
     ]
 }

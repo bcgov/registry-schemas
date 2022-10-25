@@ -151,6 +151,42 @@ DRAFT_TRANSFER = {
   'lastUpdateDateTime': '2020-02-21T18:56:20+00:00'
 }
 
+EXEMPTION = {
+  'mhrNumber': '062245',
+  'documentId': '10104489',
+  'documentRegistrationNumber': '00416355',
+  'documentDescription': 'RESIDENTIAL EXEMPTION',
+  'registrationType': 'EXEMPTION_RES',
+  'clientReferenceId': 'EX-EXEMPTION-001',
+  'createDateTime': '2022-10-21T19:46:45+00:00',
+  'attentionReference': '15671-003 SHELLEY',
+  'submittingParty': {
+    'personName': {
+      'first': 'JOHN',
+      'middle': 'B',
+      'last': 'SMITH'
+    },
+    'address': {
+      'street': '222 SUMMER STREET',
+      'city': 'VICTORIA',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': 'V8W 2V8'
+    },
+    'emailAddress': 'jbsmith@gmail.com',
+    'phoneNumber': '2504930122',
+    'phoneExtension': ''
+  },
+  'note': {
+    'documentType': 'EXRS',
+    'remarks': 'HOME IS TO BE USED AS A STORAGE SHED'
+  },
+  'payment': {
+    'receipt': '/pay/api/v1/payment-requests/2277900/receipts',
+    'invoiceId': '2277900'
+  }
+}
+
 LOCATION = {
   'locationType': 'MH_PARK',
   'status': 'ACTIVE',
@@ -661,6 +697,7 @@ TRANSFER = {
   'documentDescription': 'SALE OR GIFT',
   'registrationType': 'TRANS',
   'clientReferenceId': 'EX-TRANS-001',
+  'attentionReference': 'GWB14768.100',
   'submittingParty': {
     'businessName': 'ABC SEARCHING COMPANY',
     'address': {
