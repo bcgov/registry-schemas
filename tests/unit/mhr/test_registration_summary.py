@@ -27,7 +27,8 @@ TEST_VALID_ALL = {
     'createDateTime': '2021-06-03T22:58:45+00:00',
     'submittingParty': 'Bank of British Columbia',
     'ownerNames': 'GRAEME THOMAS CUNNINGHAM, NEIL MARTIN FOLEY',
-    'inUserList': False
+    'inUserList': False,
+    'lienRegistrationType': 'SA'
 }
 TEST_VALID_MINIMUM = {
     'mhrNumber': '020000',

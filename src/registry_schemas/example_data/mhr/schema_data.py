@@ -458,7 +458,7 @@ REGISTRATION = {
 REGISTRATION_SUMMARY = [
   {
     'mhrNumber': '002000',
-    'registrationDescription': 'Manufactured Home Registration',
+    'registrationDescription': 'REGISTER NEW UNIT',
     'documentId': '10200000',
     'documentRegistrationNumber': '00442217',
     'username': 'Michael Scott',
@@ -468,7 +468,8 @@ REGISTRATION_SUMMARY = [
     'createDateTime': '2021-06-03T22:58:45+00:00',
     'submittingParty': 'Bank of British Columbia',
     'ownerNames': 'GRAEME THOMAS CUNNINGHAM, NEIL MARTIN FOLEY',
-    'inUserList': False
+    'inUserList': False,
+    'lienRegistrationType': 'SA'
   }
 ]
 

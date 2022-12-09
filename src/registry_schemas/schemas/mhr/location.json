@@ -121,6 +121,16 @@
             "type": [ "string", "null" ],
             "maxLength": 12,
             "description": "LTSA plan number."
+        },
+        "bandName": {
+            "type": [ "string", "null" ],
+            "maxLength": 150,
+            "description": "Required if the location type is RESERVE, otherwise not used. Represents the name of the band."
+        },
+        "reserveNumber": {
+            "type": [ "string", "null" ],
+            "maxLength": 20,
+            "description": "Required if the location type is RESERVE, otherwise not used. Represents the band reserve number."
         }
     },
     "required": [
