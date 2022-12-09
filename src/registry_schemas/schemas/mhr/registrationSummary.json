@@ -65,6 +65,11 @@
         "inUserList": {
             "type": "boolean",
             "description": "True if the base registration is already included in the account registrations list."
+        },
+        "lienRegistrationType": {
+            "type": "string",
+            "maxlength": 2,
+            "description": "The Personal Property Registry (PPR) registration type if a lien exists for the MH registration. Change registrations such as transfers may not be allowed if a lien exists."
         }
     },
     "required": [

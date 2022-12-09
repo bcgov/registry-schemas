@@ -20,10 +20,15 @@ from registry_schemas import validate
 from registry_schemas.example_data.mhr import ADDRESS, LOCATION
 
 
+TEXT_20 = '01234567890123456789'
+TEXT_70 = '0123456789012345678901234567890123456789012345678901234567890123456789'
+TEXT_80 = '01234567890123456789012345678901234567890123456789012345678901234567890123456789'
 LONG_NAME = '01234567890123456789012345678901234567890'
 LONG_NAME_MAX = '0123456789012345678901234567890123456789'
 DEALER_NAME_MAX = '012345678901234567890123456789012345678901234567890123456789'
-DESCRIPTION_MAX = '01234567890123456789012345678901234567890123456789012345678901234567890123456789'
+DESCRIPTION_MAX = TEXT_80
+BAND_NAME_MAX = TEXT_70 + TEXT_80
+RESERVE_NUMBER_MAX = TEXT_20
 VALID_TIMESTAMP = '2022-05-14T21:16:32+00:00'
 LTSA_MAX = '0123456789'
 LTSA_DISTRICT_MAX = '01234567890123456'
@@ -88,6 +93,12 @@ TEST_DATA_LOCATION_TYPE = [
     ('Valid OTHER', True, 'OTHER'),
     ('Invalid', False, 'DEALER'),
     ('Invalid missing', False, None)
+]
+# testdata pattern is ({desc}, {valid}, {band_name}, {reserve_number})
+TEST_DATA_RESERVE_TYPE = [
+    ('Valid', True, BAND_NAME_MAX, RESERVE_NUMBER_MAX),
+    ('Invalid name too long', False, BAND_NAME_MAX + 'x', RESERVE_NUMBER_MAX),
+    ('Invalid reserve number too long', False, BAND_NAME_MAX, RESERVE_NUMBER_MAX + 'x')
 ]
 
 
@@ -171,12 +182,31 @@ def test_location_ltsa(desc, valid, lot, parcel, block, dlot, part, section, tow
 
 @pytest.mark.parametrize('desc,valid,type', TEST_DATA_LOCATION_TYPE)
 def test_location_type(desc, valid, type):
-    """Assert that the schema locationType field valiation is performing as expected."""
+    """Assert that the schema locationType field validation is performing as expected."""
     data = copy.deepcopy(LOCATION)
     if type:
         data['locationType'] = type
     else:
         del data['locationType']
+    is_valid, errors = validate(data, 'location', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,band_name,reserve_number', TEST_DATA_RESERVE_TYPE)
+def test_reserve_type(desc, valid, band_name, reserve_number):
+    """Assert that the schema RESERVE locationType validation is performing as expected."""
+    data = copy.deepcopy(LOCATION)
+    data['locationType'] = 'RESERVE'
+    data['bandName'] = band_name
+    data['reserveNumber'] = reserve_number
     is_valid, errors = validate(data, 'location', 'mhr')
 
     if errors:
