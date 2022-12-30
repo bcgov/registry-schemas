@@ -71,8 +71,7 @@ TEST_DATA_DETAILS = [
     ('Valid all', True, 60000, MAX_CONSIDERATION, '2022-09-20T10:39:03-07:53', False),
     ('Valid none', True, None, None, None, None),
     ('Invalid declared', False, 'xxxx', MAX_CONSIDERATION, '2022-09-20T10:39:03-07:53', False),
-    ('Invalid consideration', False, 60000, MAX_CONSIDERATION + 'X', '2022-09-20T10:39:03-07:53', False),
-    ('Invalid date', False, 60000, MAX_CONSIDERATION, 'XXXXXXXX', False)
+    ('Invalid consideration', False, 60000, MAX_CONSIDERATION + 'X', '2022-09-20T10:39:03-07:53', False)
 ]
 
 
