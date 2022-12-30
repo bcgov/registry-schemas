@@ -54,7 +54,6 @@ def test_permit(desc, valid, sub_party, owner, existing, new, is_request, client
         del data['note']
     else:
         del data['landStatusConfirmation']
-        del data['note']
     if not owner:
         del data['owner']
     if not existing:
