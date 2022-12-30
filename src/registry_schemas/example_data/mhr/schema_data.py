@@ -781,7 +781,7 @@ PERMIT = {
   'createDateTime': '2022-10-21T18:56:00+00:00',
   'note': {
     'documentType': 'REG_103',
-    'remarks': ' ',
+    'remarks': 'test',
     'expiryDate': '2022-11-21T08:00:00+00:00'
   },
   'submittingParty': {
