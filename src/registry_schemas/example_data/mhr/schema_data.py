@@ -770,3 +770,73 @@ TRANSFER = {
     'invoiceId': '2199900'
   }
 }
+
+PERMIT = {
+  'mhrNumber': '101036',
+  'documentId': '80035947',
+  'documentDescription': 'TRANSPORT PERMIT',
+  'documentRegistrationNumber': '00402332',
+  'registrationType': 'PERMIT',
+  'clientReferenceId': 'EX-TP001234',
+  'createDateTime': '2022-10-21T18:56:00+00:00',
+  'note': {
+    'documentType': 'REG_103',
+    'remarks': 'test',
+    'expiryDate': '2022-11-21T08:00:00+00:00'
+  },
+  'submittingParty': {
+    'businessName': 'BOB PATERSON HOMES INC.',
+    'address': {
+      'street': '1200 S. MACKENZIE AVE.',
+      'city': 'WILLIAMS LAKE',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': 'V2G 3Y1'
+    },
+    'phoneNumber': '6044620279',
+    'emailAddress': 'bphomes@bphomes.com'
+  },
+  'owner': {
+    'organizationName': 'BOB PATERSON HOMES INC.',
+    'address': {
+      'street': '1200 S. MACKENZIE AVE.',
+      'city': 'WILLIAMS LAKE',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': 'V2G 3Y1'
+    },
+    'phoneNumber': '6044620279'
+  },
+  'existingLocation': {
+    'locationType': 'MANUFACTURER',
+    'address': {
+      'street': '1200 S. MACKENZIE AVE.',
+      'city': 'WILLIAMS LAKE',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': 'V2G 3Y1'
+    },
+    'leaveProvince': False,
+    'taxCertificate': False,
+    'dealerName': 'CHAMPION CANADA INTERNATIONAL ULC - MODULINE INDUSTRIES'
+  },
+  'newLocation': {
+    'locationType': 'STRATA',
+    'address': {
+      'street': '7612 LUDLOM RD.',
+      'city': 'DEKA LAKE',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': ''
+    },
+    'leaveProvince': False,
+    'pidNumber': '007351119',
+    'taxCertificate': True,
+    'taxExpiryDate': '2024-01-31T08:00:00+00:00'
+  },
+  'landStatusConfirmation': True,
+  'payment': {
+    'receipt': '/pay/api/v1/payment-requests/2198744/receipts',
+    'invoiceId': '2198744'
+  }
+}

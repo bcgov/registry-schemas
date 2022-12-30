@@ -31,8 +31,6 @@ TEST_DATA_TRANSFER = [
     ('Invalid missing type', False, None, True, None, None, None),
     ('Invalid type', False, 'XXXXX', True, None, None, None),
     ('Invalid missing registration', False, 'TRANS', False, None, None, None),
-    ('Invalid create', False, 'TRANS', True, 'XXXXXXXXXXXX', None, None),
-    ('Invalid update', False, 'TRANS', True, None, 'XXXXXXXXXXXX', None),
     ('Invalid draft id too long', False, 'TRANS', True, None, None, '01234567891')
 ]
 
