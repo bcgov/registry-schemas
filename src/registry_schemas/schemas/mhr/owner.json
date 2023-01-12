@@ -33,6 +33,17 @@
             "enum": ["ACTIVE", "EXEMPT", "PREVIOUS"],
             "description": "The status of the owner."
         },
+        "partyType": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": ["OWNER_BUS", "OWNER_IND", "EXECUTOR", "TRUSTEE", "ADMINISTRATOR"],
+            "description": "The type of owner. Always included in responses. Only required in requests when specifying an executor, trustee, or administrator. OWNER_IND - individual owner; OWNER_BUS - organization or business owner; EXECUTOR - executor of an estate; TRUSTEE - trustee of an estate; ADMINISTRATOR - administrator of an estate."
+        },
+        "description": {
+            "type": "string",
+            "maxLength": 150,
+            "description": "Required and only used when the partyType value is EXECUTOR, TRUSTEE, or ADMINISTRATOR. Describes the party."
+        },
         "phoneNumber": {
             "type": "string",
             "maxLength": 20,

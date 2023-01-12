@@ -52,8 +52,17 @@
                 "includeLienInfo": {
                     "type": ["boolean", "null"],
                     "description": "Set to true to specify PPR information associated with the MHR number is to be included in the search detail results (search step 2). The default is false."
-                }
-            },
+                },
+                "activeCount": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The number of exact matches within the same MH registration that are active."
+                },
+                "historicalCount": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The number of exact matches within the same MH registration that are historical."
+                }                            },
             "required": [
                 "mhrNumber",
                 "status",

@@ -12,11 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test Suite to ensure the MHR base information schema is valid."""
+import copy
 
 import pytest
 
 from registry_schemas import validate
-from registry_schemas.example_data.mhr import ADDRESS, PERSON_NAME
+from registry_schemas.example_data.mhr import ADDRESS, OWNER, PERSON_NAME
 
 
 # testdata pattern is ({desc}, {valid}, {org}, {individual}, {address}, {type}, {status}, {phone}, {suffix})
@@ -40,6 +41,16 @@ TEST_DATA_OWNER = [
     ('Invalid suffix too long', False, LONG_ORG_NAME, None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567',
      SUFFIX_MAX_LENGTH + 'X')
 ]
+# testdata pattern is ({valid}, {party_type}, {party_desc})
+TEST_DATA_OWNER_PARTY_TYPE = [
+    (True, 'OWNER_BUS', None),
+    (True, 'OWNER_IND', None),
+    (True, None, None),
+    (True, 'EXECUTOR', 'EXECUTOR'),
+    (True, 'TRUSTEE', 'TRUSTEE'),
+    (True, 'ADMINISTRATOR', 'ADMINISTRATOR'),
+    (False, 'JUNK', None)
+]
 
 
 @pytest.mark.parametrize('desc,valid,org,individual,address,type,status,phone,suffix', TEST_DATA_OWNER)
@@ -60,6 +71,31 @@ def test_owner(desc, valid, org, individual, address, type, status, phone, suffi
         data['phoneNumber'] = phone
     if suffix:
         data['suffix'] = suffix
+
+    is_valid, errors = validate(data, 'owner', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('valid,party_type,party_desc', TEST_DATA_OWNER_PARTY_TYPE)
+def test_owner_party_type(valid, party_type, party_desc):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(OWNER)
+    if party_type:
+        data['partyType'] = party_type
+    elif data.get('partyType'):
+        del data['partyType']
+    if party_desc:
+        data['description'] = party_desc
+    elif data.get('description'):
+        del data['description']
 
     is_valid, errors = validate(data, 'owner', 'mhr')
 
