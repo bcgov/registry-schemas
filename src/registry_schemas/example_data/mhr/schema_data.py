@@ -670,6 +670,7 @@ SEARCH_SUMMARY = [
     'status': 'ACTIVE',
     'includeLienInfo': False,
     'activeCount': 1,
+    'exemptCount': 0,
     'historicalCount': 0,
     'homeLocation': 'PENTICTON',
     'ownerName': {

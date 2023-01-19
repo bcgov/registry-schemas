@@ -58,6 +58,11 @@
                     "minimum": 0,
                     "description": "The number of exact matches within the same MH registration that are active."
                 },
+                "exemptCount": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The number of exact matches within the same MH registration that are exempt."
+                },
                 "historicalCount": {
                     "type": "integer",
                     "minimum": 0,

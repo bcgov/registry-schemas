@@ -48,6 +48,7 @@ TEST_DATA_OWNER_PARTY_TYPE = [
     (True, None, None),
     (True, 'EXECUTOR', 'EXECUTOR'),
     (True, 'TRUSTEE', 'TRUSTEE'),
+    (True, 'TRUST', 'TRUST'),
     (True, 'ADMINISTRATOR', 'ADMINISTRATOR'),
     (False, 'JUNK', None)
 ]

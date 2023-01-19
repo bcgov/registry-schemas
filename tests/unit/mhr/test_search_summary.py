@@ -27,6 +27,7 @@ SEARCH_SUMMARY_MINIMAL = [
     'status': 'ACTIVE',
     'includeLienInfo': False,
     'activeCount': 1,
+    'exemptCount': 0,
     'historicalCount': 0,
     'homeLocation': 'PENTICTON',
     'ownerName': {
@@ -73,14 +74,16 @@ TEST_DATA_ALL = [
     (True, SEARCH_SUMMARY),
     (True, SEARCH_SUMMARY_ORG)
 ]
-# testdata pattern is ({is valid}, {active}, {historical})
+# testdata pattern is ({is valid}, {active}, {exempt}, {historical})
 TEST_DATA_COUNTS = [
-    (True, 0, 0),
-    (True, 1, 0),
-    (True, 0, 1),
-    (True, 1, 1),
-    (False, -1, 1),
-    (False, 1, -1)
+    (True, 0, 0, 0),
+    (True, 1, 0, 0),
+    (True, 0, 1, 0),
+    (True, 0, 0, 1),
+    (True, 1, 1, 1),
+    (False, -1, 1, 1),
+    (False, 1, 1, -1),
+    (False, 1, -1, 1)
 ]
 
 
@@ -140,11 +143,12 @@ def test_search_summary_all(valid, summary_data):
         assert not is_valid
 
 
-@pytest.mark.parametrize('valid, active, historical', TEST_DATA_COUNTS)
-def test_search_summary_counts(valid, active, historical):
+@pytest.mark.parametrize('valid, active, exempt, historical', TEST_DATA_COUNTS)
+def test_search_summary_counts(valid, active, exempt, historical):
     """Assert the validation of a active and historical counts."""
     search = copy.deepcopy(SEARCH_SUMMARY_MINIMAL)
     search[0]['activeCount'] = active
+    search[0]['exemptCount'] = exempt
     search[0]['historicalCount'] = historical
 
     is_valid, errors = validate(search, 'searchSummary', 'mhr')

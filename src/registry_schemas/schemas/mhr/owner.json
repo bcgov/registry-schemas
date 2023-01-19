@@ -36,8 +36,8 @@
         "partyType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["OWNER_BUS", "OWNER_IND", "EXECUTOR", "TRUSTEE", "ADMINISTRATOR"],
-            "description": "The type of owner. Always included in responses. Only required in requests when specifying an executor, trustee, or administrator. OWNER_IND - individual owner; OWNER_BUS - organization or business owner; EXECUTOR - executor of an estate; TRUSTEE - trustee of an estate; ADMINISTRATOR - administrator of an estate."
+            "enum": ["OWNER_BUS", "OWNER_IND", "EXECUTOR", "TRUSTEE", "TRUST", "ADMINISTRATOR"],
+            "description": "The type of owner. Always included in responses. Only required in requests when specifying an executor, trustee, trust, or administrator. OWNER_IND - individual owner; OWNER_BUS - organization or business owner; EXECUTOR - executor of an estate; TRUSTEE - trustee of an estate; TRUST - trust beneficiary company; ADMINISTRATOR - administrator of an estate."
         },
         "description": {
             "type": "string",
