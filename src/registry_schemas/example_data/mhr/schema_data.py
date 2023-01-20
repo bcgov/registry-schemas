@@ -275,6 +275,7 @@ OWNER = {
     'country': 'CA'
   },
   'type': 'SOLE',
+  'partyType': 'OWNER_BUS',
   'phoneNumber': '6041234567',
   'status': 'EXEMPT',
   'suffix': 'EXECUTOR OF THE WILL OF JUDITH ANN JANZEN, DECEASED'
@@ -668,6 +669,9 @@ SEARCH_SUMMARY = [
     'createDateTime': '2020-02-21T18:56:20Z',
     'status': 'ACTIVE',
     'includeLienInfo': False,
+    'activeCount': 1,
+    'exemptCount': 0,
+    'historicalCount': 0,
     'homeLocation': 'PENTICTON',
     'ownerName': {
       'first': 'James',
