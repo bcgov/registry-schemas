@@ -35,8 +35,8 @@
         "type": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["JOINT", "SOLE", "COMMON", "JT", "SO", "TC"],
-            "description": "The type of owner group. JOINT - joint tenancy; SOLE - sole ownership; COMMON - tenants in common; JT - joint tenancy (deprecated); SO - sole ownership (deprecated); TC - tenants in common (deprecated)."
+            "enum": ["COMMON", "JOINT", "SOLE", "NA", "JT", "SO", "TC"],
+            "description": "The type of owner group (tenancy type). COMMON - tenants in common; JOINT - joint tenancy; SOLE - sole ownership; NA - not applicable; JT - joint tenancy (deprecated); SO - sole ownership (deprecated); TC - tenants in common (deprecated)."
         },
         "status": {
             "type": "string",

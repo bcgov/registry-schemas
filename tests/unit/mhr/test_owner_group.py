@@ -21,29 +21,31 @@ from registry_schemas.example_data.mhr import OWNER_GROUP
 
 
 LONG_INTEREST = '01234567890123456789'
-# testdata pattern is ({desc}, {valid}, {group_id}, {owners}, {interest}, {numerator}, {type}, {status})
+# testdata pattern is ({desc}, {valid}, {group_id}, {owners}, {interest}, {numerator}, {type}, {status}, {denominator})
 TEST_DATA_OWNER_GROUP = [
-    ('Valid SOLE type', True, 1, True, None, 0, 'SOLE', None),
-    ('Valid no group id', True, None, True, None, 0, 'SOLE', 'ACTIVE'),
-    ('Valid active', True, 1, True, None, 0, 'SOLE', 'ACTIVE'),
-    ('Valid exempt', True, 1, True, None, 0, 'SOLE', 'EXEMPT'),
-    ('Valid previous', True, 1, True, None, 0, 'SOLE', 'PREVIOUS'),
-    ('Valid JOINT type', True, 1, True, 'UNDIVIDED 1/2', 1, 'JOINT', 'ACTIVE'),
-    ('Valid COMMON type', True, 1, True, LONG_INTEREST, 1, 'COMMON', 'ACTIVE'),
-    ('Valid SO type', True, 1, True, None, 0, 'SO', None),
-    ('Valid JT type', True, 1, True, 'UNDIVIDED 1/2', 1, 'JT', 'ACTIVE'),
-    ('Valid TC type', True, 1, True, LONG_INTEREST, 1, 'TC', 'ACTIVE'),
-    ('Invalid missing owner', False, 1, False, None, 0, 'SOLE', None),
-    ('Invalid missing type', False, 1, True, None, 0, None, None),
-    ('Invalid type', False, 1, True, None, 0, 'XX', None),
-    ('Invalid status', False, 1, True, None, 0, 'JOINT', 'XX'),
-    ('Invalid numerator', False, 1, True, None, -1, None, None),
-    ('Invalid interest too long', False, 1, True, LONG_INTEREST + 'X', 1, 'COMMON', None)
+    ('Valid SOLE type', True, 1, True, None, 0, 'SOLE', None, None),
+    ('Valid no group id', True, None, True, None, 0, 'SOLE', 'ACTIVE', None),
+    ('Valid active', True, 1, True, None, 0, 'SOLE', 'ACTIVE', None),
+    ('Valid exempt', True, 1, True, None, 0, 'SOLE', 'EXEMPT', None),
+    ('Valid previous', True, 1, True, None, 0, 'SOLE', 'PREVIOUS', None),
+    ('Valid JOINT type', True, 1, True, 'UNDIVIDED', 1, 'JOINT', 'ACTIVE', 2),
+    ('Valid COMMON type', True, 1, True, LONG_INTEREST, 1, 'COMMON', 'ACTIVE', 2),
+    ('Valid NA type', True, 1, True, 'UNDIVIDED', 1, 'NA', 'ACTIVE', 2),
+    ('Valid SO type', True, 1, True, None, 0, 'SO', None, None),
+    ('Valid JT type', True, 1, True, 'UNDIVIDED', 0, 'JT', 'ACTIVE', None),
+    ('Valid TC type', True, 1, True, LONG_INTEREST, 1, 'TC', 'ACTIVE', 2),
+    ('Invalid missing owner', False, 1, False, None, 0, 'SOLE', None, None),
+    ('Invalid missing type', False, 1, True, None, 0, None, None, None),
+    ('Invalid type', False, 1, True, None, 0, 'XX', None, None),
+    ('Invalid status', False, 1, True, None, 0, 'JOINT', 'XX', None),
+    ('Invalid numerator', False, 1, True, None, -1, None, None, 2),
+    ('Invalid denominator', False, 1, True, None, 1, None, None, -1),
+    ('Invalid interest too long', False, 1, True, LONG_INTEREST + 'X', 1, 'COMMON', None, None)
 ]
 
 
-@pytest.mark.parametrize('desc,valid,group_id,owners,interest,numerator,type,status', TEST_DATA_OWNER_GROUP)
-def test_owner_group(desc, valid, group_id, owners, interest, numerator, type, status):
+@pytest.mark.parametrize('desc,valid,group_id,owners,interest,numerator,type,status,denominator', TEST_DATA_OWNER_GROUP)
+def test_owner_group(desc, valid, group_id, owners, interest, numerator, type, status, denominator):
     """Assert that the schema is performing as expected."""
     data = copy.deepcopy(OWNER_GROUP)
     if not owners:
@@ -60,6 +62,10 @@ def test_owner_group(desc, valid, group_id, owners, interest, numerator, type, s
         data['interestNumerator'] = numerator
     else:
         del data['interestNumerator']
+    if denominator:
+        data['interesDenominator'] = denominator
+    else:
+        del data['interestDenominator']
     if type:
         data['type'] = type
     else:
