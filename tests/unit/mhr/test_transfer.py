@@ -73,6 +73,16 @@ TEST_DATA_DETAILS = [
     ('Invalid declared', False, 'xxxx', MAX_CONSIDERATION, '2022-09-20T10:39:03-07:53', False),
     ('Invalid consideration', False, 60000, MAX_CONSIDERATION + 'X', '2022-09-20T10:39:03-07:53', False)
 ]
+# testdata pattern is ({desc},{valid},{reg_type})
+TEST_DATA_REG_TYPE = [
+    ('Valid no type', True,  None),
+    ('Valid TRANS', True,  'TRANS'),
+    ('Valid TRAND', True,  'TRANS'),
+    ('Valid TRANS_AFFIDAVIT', True,  'TRANS_AFFIDAVIT'),
+    ('Valid TRANS_ADMIN', True,  'TRANS_ADMIN'),
+    ('Valid TRANS_WILL', True,  'TRANS_WILL'),
+    ('Invalid type', False,  'MH_REG')
+]
 
 
 @pytest.mark.parametrize('desc,valid,sub_party,add,delete,is_request,client_ref', TEST_DATA)
@@ -136,6 +146,26 @@ def test_transfer_details(desc, valid, declared, consideration, tran_dt, own_lan
     if errors:
         for err in errors:
             print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,reg_type', TEST_DATA_REG_TYPE)
+def test_transfer_reg_type(desc, valid, reg_type):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(TRANSFER)
+    del data['createDateTime']
+    del data['payment']
+    del data['mhrNumber']
+    del data['documentId']
+    del data['documentDescription']
+    if reg_type:
+        data['registrationType'] = reg_type
+
+    is_valid, errors = validate(data, 'transfer', 'mhr')
 
     if valid:
         assert is_valid

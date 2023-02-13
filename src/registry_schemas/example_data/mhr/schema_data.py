@@ -144,8 +144,7 @@ DRAFT_TRANSFER = {
         'type': 'SOLE',
         'status': 'ACTIVE'
       }
-    ],
-    'deathOfOwner': False
+    ]
   },
   'createDateTime': '2020-02-21T18:56:20+00:00',
   'lastUpdateDateTime': '2020-02-21T18:56:20+00:00'
@@ -768,7 +767,6 @@ TRANSFER = {
   'transferDate': '2022-10-04T20:29:36+00:00',
   'ownLand': False,
   'createDateTime': '2020-02-21T18:56:20+00:00',
-  'deathOfOwner': False,
   'payment': {
     'receipt': '/pay/api/v1/payment-requests/2199900/receipts',
     'invoiceId': '2199900'
