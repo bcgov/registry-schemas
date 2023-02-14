@@ -34,7 +34,8 @@
         "registrationType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND"]
+            "enum": ["TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL"],
+            "description": "<p><ol><li>TRAND - transfer due to the death of a joint tenant</li><li>TRANS - transfer sale or gift</li><li>TRANS_AFFIDAVIT - transfer due to death affidavit of executor</li><li>TRANS_ADMIN - transfer due to death letter of administrator</li><li>TRANS_WILL - transfer due to death probate of will.</li></ol></p>"
         },
         "clientReferenceId": {
             "type": [ "string", "null" ],
@@ -85,10 +86,6 @@
         "ownLand": {
             "type": "boolean",
             "description": "True if the manufactured home is located on land that the new owners own or have a registered lease of not less than 3 years."
-        },
-        "deathOfOwner": {
-            "type": "boolean",
-            "description": "Set to true when transfering fractional interest in a home because a partner in a joint tenancy has died."
         },
         "payment": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"
