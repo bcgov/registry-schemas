@@ -53,6 +53,16 @@
             "type": "string",
             "maxLength": 70,
             "description": "The organization or individual name suffix."
+        },
+        "deathCertificateNumber": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Include only for a transfer due to death registration types when the owner in the deleteOwnerGroups is deceased."
+        },
+        "deathDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Include only for a transfer due to death registration types when the owner in the deleteOwnerGroups is deceased. Must be in the past when the registration is submitted."
         }
     },
     "oneOf":[
