@@ -61,8 +61,8 @@ TEST_DATA_REG_TYPE = [
     ('MD', True),
     ('PT', True),
     ('SC', True),
-    ('TO', True),
     ('SV', True),
+    ('TO', True),
     ('XX', False),
 ]
 # testdata pattern is ({other type description}, {is valid})
@@ -438,3 +438,22 @@ def test_authorization_received():
         for err in errors:
             print(err.message)
     assert not is_valid
+
+
+def test_valid_financing_response_transition():
+    """Assert that the schema is performing as expected for a transition registration response."""
+    statement = copy.deepcopy(FINANCING_STATEMENT)
+    del statement['lifeInfinite']
+    del statement['lienAmount']
+    del statement['surrenderDate']
+    statement['transitionDescription'] = 'COMPANY ACT DOCUMENT'
+    statement['transitionDate'] = '1986-12-29T00:00:01-08:53'
+    statement['transitionNumber'] = 'BC0021615'
+    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+    print(errors)
+
+    assert is_valid
