@@ -244,7 +244,7 @@ def test_invalid_search_query_firstname():
     query = copy.deepcopy(SEARCH_QUERY)
     del query['criteria']['value']
     del query['criteria']['debtorName']['business']
-    query['criteria']['debtorName']['first'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    query['criteria']['debtorName']['first'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 
@@ -261,7 +261,7 @@ def test_invalid_search_query_secondname():
     query = copy.deepcopy(SEARCH_QUERY)
     del query['criteria']['value']
     del query['criteria']['debtorName']['business']
-    query['criteria']['debtorName']['second'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    query['criteria']['debtorName']['second'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 
@@ -278,7 +278,7 @@ def test_invalid_search_query_lastname():
     query = copy.deepcopy(SEARCH_QUERY)
     del query['criteria']['value']
     del query['criteria']['debtorName']['business']
-    query['criteria']['debtorName']['last'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    query['criteria']['debtorName']['last'] = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 
     is_valid, errors = validate(query, 'searchQuery', 'ppr')
 

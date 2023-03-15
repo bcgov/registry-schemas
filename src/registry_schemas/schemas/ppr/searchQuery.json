@@ -9,17 +9,17 @@
             "properties": {
                 "first": {
                     "type": "string",
-                    "maxLength": 30,
+                    "maxLength": 50,
                     "description": "First name of debtor if search type is INDIVIDUAL_DEBTOR."
                 },
                 "second": {
                     "type": "string",
-                    "maxLength": 30,
+                    "maxLength": 50,
                     "description": "Second/middle name or initial of debtor if search type is INDIVIDUAL_DEBTOR."
                 },
                 "last": {
                     "type": "string",
-                    "maxLength": 30,
+                    "maxLength": 50,
                     "description": "Last name of debtor if search type is INDIVIDUAL_DEBTOR."
                 },
                 "business": {
