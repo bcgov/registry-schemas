@@ -29,6 +29,7 @@ TEST_DATA_NOTE = [
     ('Valid no address', True, 'type', '123456', True, True, 'remarks', 'contact', None),
     ('Valid no createTS', True, 'type', '123456', False, True, 'remarks', 'contact', ADDRESS),
     ('Valid no doc id', True, 'type', None, True, True, 'remarks', 'contact', ADDRESS),
+    ('Valid no doc_reg num', True, 'type', '123456', True, True, 'remarks', 'contact', ADDRESS),
     ('Invalid no remarks', False, 'type', '123456', True, True, None, 'contact', ADDRESS),
     ('Invalid no type', False, None, '123456', True, True, 'remarks', 'contact', ADDRESS),
     ('Invalid type too long', False, '01234567891', '123456', True, True, 'remarks', 'contact', ADDRESS),
@@ -60,6 +61,8 @@ def test_note(desc, valid, type, doc_id, has_create, has_expiry, remarks, contac
         del data['contactName']
     if not address:
         del data['contactAddress']
+    if desc == 'Valid no doc_reg num':
+        del data['documentRegistrationNumber']
 
     is_valid, errors = validate(data, 'note', 'mhr')
 

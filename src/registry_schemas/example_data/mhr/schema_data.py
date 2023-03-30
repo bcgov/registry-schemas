@@ -250,6 +250,7 @@ MANUFACTURER_INFO = {
 NOTE = {
   'documentType': 'CONV',
   'documentId': 'REG01234',
+  'documentRegistrationNumber': '00402332',
   'createDateTime': '2018-02-21T18:56:00+00:00',
   'expiryDate': '2023-02-22T07:59:00+00:00',
   'remarks': '',
@@ -600,10 +601,11 @@ SEARCH_DETAIL_RESULT = {
       },
       'notes': [
         {
-          'documentType': 'CONV',
-          'documentId': 'REG01234',
+          'documentType': 'EXRS',
+          'documentId': '80035947',
+          'documentRegistrationNumber': '00402332',
           'createDateTime': '1995-02-21T18:56:00+00:00',
-          'remarks': '',
+          'remarks': 'HOME IS TO BE USED AS A STORAGE SHED',
           'contactName': 'JOHNNY NUCLEO',
           'contactAddress': {
             'street': '940 BLANSHARD STREET',
@@ -783,6 +785,8 @@ PERMIT = {
   'createDateTime': '2022-10-21T18:56:00+00:00',
   'note': {
     'documentType': 'REG_103',
+    'documentId': '80035947',
+    'documentRegistrationNumber': '00402332',
     'remarks': 'test',
     'expiryDate': '2022-11-21T08:00:00+00:00'
   },

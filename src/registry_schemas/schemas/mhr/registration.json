@@ -34,13 +34,13 @@
         "registrationType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND"]
+            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL"]
         },
         "status": {
             "type": [ "string", "null" ],
             "maxLength": 20,
-            "enum": ["ACTIVE", "DRAFT", "EXEMPT", "HISTORICAL"],
-            "description": "The status of the registration. ACTIVE - registered; DRAFT; EXEMPT; HISTORICAL - cancelled."
+            "enum": ["ACTIVE", "DRAFT", "EXEMPT", "FROZEN", "HISTORICAL"],
+            "description": "The status of the registration. ACTIVE - registered; DRAFT; FROZEN; EXEMPT; HISTORICAL - cancelled. FROZEN is a temporary state where only BC Registries staff can make a change to the manufactured home."
         },
         "clientReferenceId": {
             "type": [ "string", "null" ],

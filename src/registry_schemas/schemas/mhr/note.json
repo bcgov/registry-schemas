@@ -13,7 +13,12 @@
        "documentId": {
             "type": "string",
             "maxLength": 8,
-            "description": "The unique document ID."
+            "description": "The unique document ID for the registration associated with the note."
+        },
+        "documentRegistrationNumber": {
+            "type": [ "string", "null" ],
+            "maxLength": 8,
+            "description": "The unique document registration number for the registration associated with the note."
         },
         "createDateTime": {
             "type": "string",
