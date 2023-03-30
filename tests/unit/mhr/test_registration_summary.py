@@ -36,12 +36,6 @@ TEST_VALID_MINIMUM = {
     'path': '/mhr/api/v1/registrations/020000',
     'createDateTime': '2021-06-03T22:58:45+00:00'
 }
-TEST_INVALID_STATUS_TYPE = {
-    'mhrNumber': '020000',
-    'statusType': 'X',
-    'path': '/mhr/api/v1/registrations/020000',
-    'createDateTime': '2021-06-03T22:58:45+00:00'
-}
 TEST_INVALID_MHR_NUMBER = {
     'mhrNumber': '2020000',
     'statusType': 'ACTIVE',
@@ -71,23 +65,28 @@ TEST_INVALID_MISSING_CREATE_TS = {
 TEST_EMPTY_JSON = {
 }
 
-# testdata pattern is ({description}, {is valid}, {data})
+# testdata pattern is ({description}, {is valid}, {data}, {status})
 TEST_DATA = [
-    ('All valid', True, TEST_VALID_ALL),
-    ('Minimum valid', True, TEST_VALID_MINIMUM),
-    ('Invalid status type', False, TEST_INVALID_STATUS_TYPE),
-    ('Invalid mhr number length', False, TEST_INVALID_MHR_NUMBER),
-    ('Invalid missing mhr num', False, TEST_INVALID_MISSING_MHR_NUMBER),
-    ('Invalid missing status', False, TEST_INVALID_MISSING_STATUS),
-    ('Invalid missing path', False, TEST_INVALID_MISSING_PATH),
-    ('Invalid missing create_ts', False, TEST_INVALID_MISSING_CREATE_TS),
-    ('No settings', False, TEST_EMPTY_JSON)
+    ('All valid', True, TEST_VALID_ALL, 'ACTIVE'),
+    ('Minimum valid', True, TEST_VALID_MINIMUM, 'ACTIVE'),
+    ('Valid EXEMPT', True, TEST_VALID_MINIMUM, 'EXEMPT'),
+    ('Valid HISTORICAL', True, TEST_VALID_MINIMUM, 'HISTORICAL'),
+    ('Valid FROZEN', True, TEST_VALID_MINIMUM, 'FROZEN'),
+    ('Invalid status type', False, TEST_VALID_MINIMUM, 'X'),
+    ('Invalid mhr number length', False, TEST_INVALID_MHR_NUMBER, 'ACTIVE'),
+    ('Invalid missing mhr num', False, TEST_INVALID_MISSING_MHR_NUMBER, 'ACTIVE'),
+    ('Invalid missing status', False, TEST_INVALID_MISSING_STATUS, None),
+    ('Invalid missing path', False, TEST_INVALID_MISSING_PATH, 'ACTIVE'),
+    ('Invalid missing create_ts', False, TEST_INVALID_MISSING_CREATE_TS, 'ACTIVE'),
+    ('No settings', False, TEST_EMPTY_JSON, None)
 ]
 
 
-@pytest.mark.parametrize('desc,valid,data', TEST_DATA)
-def test_registration_summary(desc, valid, data):
+@pytest.mark.parametrize('desc,valid,data,status', TEST_DATA)
+def test_registration_summary(desc, valid, data, status):
     """Assert that the schema is performing as expected for a registration summary."""
+    if status:
+        data['statusType'] = status
     is_valid, errors = validate(data, 'registrationSummary', 'mhr')
 
     if errors:

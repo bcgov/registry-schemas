@@ -59,7 +59,7 @@ TEST_DATA_STATUS = [
     ('ACTIVE', True),
     ('EXEMPT', True),
     ('HISTORICAL', True),
-    ('HISTORIC', True),
+    ('FROZEN', True),
     ('XX', False)
 ]
 # testdata pattern is ({is valid}, {has_mrh}, {has_status}, {has_base})
