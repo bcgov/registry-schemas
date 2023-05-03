@@ -15,7 +15,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "maxLength": 10,
+                    "maxLength": 20,
                     "enum": ["ACTIVE", "EXEMPT", "FROZEN", "HISTORICAL"],
                     "description": "The status of a manufactured home registration: one of ACTIVE, EXEMPT, FROZEN, or HISTORICAL."
                 },

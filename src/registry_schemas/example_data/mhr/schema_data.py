@@ -62,7 +62,8 @@ DRAFT_SUMMARY = [
     'lastUpdateDateTime': '2022-02-21T18:56:20+00:00',
     'registeringName': 'Michael Smith',
     'clientReferenceId': 'D-100001020',
-    'submittingParty': 'JOHN SMITH NOTARY PUBLIC'
+    'submittingParty': 'JOHN SMITH NOTARY PUBLIC',
+    'outOfDate': False
   },
   {
     'draftNumber': '150234',
@@ -74,13 +75,15 @@ DRAFT_SUMMARY = [
     'lastUpdateDateTime': '2022-11-30T18:22:22+00:00',
     'registeringName': 'Michael Smith',
     'clientReferenceId': 'D-100001005',
-    'submittingParty': 'JOHN SMITH NOTARY PUBLIC'
+    'submittingParty': 'JOHN SMITH NOTARY PUBLIC',
+    'outOfDate': False
   }
 ]
 
 DRAFT_TRANSFER = {
   'draftNumber': '150234',
   'type': 'TRANS',
+  'outOfDate': False,
   'registration': {
     'draftNumber': '150234',
     'mhrNumber': '125234',
@@ -460,6 +463,7 @@ REGISTRATION_SUMMARY = [
   {
     'mhrNumber': '002000',
     'registrationDescription': 'REGISTER NEW UNIT',
+    'registrationType': 'MHREG',
     'documentId': '10200000',
     'documentRegistrationNumber': '00442217',
     'username': 'Michael Scott',

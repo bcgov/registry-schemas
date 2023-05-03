@@ -29,6 +29,22 @@ TEST_DATA = [
     ('Invalid missing path', False, False, True, True, False, True),
     ('Invalid missing createDateTime', False, False, True, True, True, False)
 ]
+# testdata pattern is ({desc}, {valid}, {type})
+TEST_DATA_REGISTRATION_TYPE = [
+    ('Valid DECAL_REPLACE', True, 'DECAL_REPLACE'),
+    ('Valid EXEMPTION_RES', True, 'EXEMPTION_RES'),
+    ('Valid EXEMPTION_NON_RES', True, 'EXEMPTION_NON_RES'),
+    ('Valid MHREG', True, 'MHREG'),
+    ('Valid PERMIT', True, 'PERMIT'),
+    ('Valid PERMIT_EXTENSION', True, 'PERMIT_EXTENSION'),
+    ('Valid TRANS', True, 'TRANS'),
+    ('Valid TRANS_AFFIDAVIT', True, 'TRANS_AFFIDAVIT'),
+    ('Valid TRANS_ADMIN', True, 'TRANS_ADMIN'),
+    ('Valid TRANS_WILL', True, 'TRANS_WILL'),
+    ('Valid TRAND', True, 'TRAND'),
+    ('Valid REG_STAFF_ADMIN', True, 'REG_STAFF_ADMIN'),
+    ('Invalid', False, 'JUNKJ')
+]
 
 
 @pytest.mark.parametrize('desc,valid,empty,has_id,has_type,has_path,has_create', TEST_DATA)
@@ -52,6 +68,20 @@ def test_draft_summary(desc, valid, empty, has_id, has_type, has_path, has_creat
         for err in errors:
             print(err.message)
     print(errors)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,reg_type', TEST_DATA_REGISTRATION_TYPE)
+def test_draft_summary_reg_type(desc, valid, reg_type):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(DRAFT_SUMMARY)
+    data[0]['registrationType'] = reg_type
+
+    is_valid, errors = validate(data, 'draftSummary', 'mhr')
 
     if valid:
         assert is_valid

@@ -43,7 +43,7 @@
         },
         "clientReferenceId": {
             "type": [ "string", "null" ],
-            "maxLength": 40,
+            "maxLength": 50,
             "description": "An optional client reference identifier associated with a change. Provided to facilitate client tracking of MHR activity."
         }
     },

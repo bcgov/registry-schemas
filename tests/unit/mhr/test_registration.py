@@ -111,6 +111,24 @@ TEST_DATA_LOCATION_TYPE = [
     ('Invalid missing', False, None)
 ]
 
+# testdata pattern is ({desc}, {valid}, {type})
+TEST_DATA_REGISTRATION_TYPE = [
+    ('Valid DECAL_REPLACE', True, 'DECAL_REPLACE'),
+    ('Valid EXEMPTION_RES', True, 'EXEMPTION_RES'),
+    ('Valid EXEMPTION_NON_RES', True, 'EXEMPTION_NON_RES'),
+    ('Valid MHREG', True, 'MHREG'),
+    ('Valid MHREG_CONVERSION', True, 'MHREG_CONVERSION'),
+    ('Valid PERMIT', True, 'PERMIT'),
+    ('Valid PERMIT_EXTENSION', True, 'PERMIT_EXTENSION'),
+    ('Valid TRANS', True, 'TRANS'),
+    ('Valid TRANS_AFFIDAVIT', True, 'TRANS_AFFIDAVIT'),
+    ('Valid TRANS_ADMIN', True, 'TRANS_ADMIN'),
+    ('Valid TRANS_WILL', True, 'TRANS_WILL'),
+    ('Valid TRAND', True, 'TRAND'),
+    ('Valid REG_STAFF_ADMIN', True, 'REG_STAFF_ADMIN'),
+    ('Invalid', False, 'JUNKJ')
+]
+
 
 @pytest.mark.parametrize('desc,valid,mhr,status,ref,decv,haso,hasl,hasd,hasn,hasdt,hasp', TEST_DATA_REG)
 def test_registration(desc, valid, mhr, status, ref, decv, haso, hasl, hasd, hasn, hasdt, hasp):
@@ -185,6 +203,20 @@ def test_registration_loc_type(desc, valid, type):
     """Assert that the schema is performing as expected."""
     data = copy.deepcopy(REGISTRATION)
     data['location']['locationType'] = type
+
+    is_valid, errors = validate(data, 'registration', 'mhr')
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,reg_type', TEST_DATA_REGISTRATION_TYPE)
+def test_registration_reg_type(desc, valid, reg_type):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(REGISTRATION)
+    data['registrationType'] = reg_type
 
     is_valid, errors = validate(data, 'registration', 'mhr')
 
