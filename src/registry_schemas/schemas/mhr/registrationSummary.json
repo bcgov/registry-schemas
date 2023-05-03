@@ -70,6 +70,11 @@
             "type": "string",
             "maxlength": 2,
             "description": "The Personal Property Registry (PPR) registration type if a lien exists for the MH registration. Change registrations such as transfers may not be allowed if a lien exists."
+        },
+        "registrationType": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "MHREG_CONVERSION", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL", "REG_STAFF_ADMIN"]
         }
     },
     "required": [

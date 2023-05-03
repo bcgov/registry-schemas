@@ -34,6 +34,23 @@ TEST_DATA_TRANSFER = [
     ('Invalid draft id too long', False, 'TRANS', True, None, None, '01234567891')
 ]
 
+# testdata pattern is ({desc}, {valid}, {type})
+TEST_DATA_REGISTRATION_TYPE = [
+    ('Valid DECAL_REPLACE', True, 'DECAL_REPLACE'),
+    ('Valid EXEMPTION_RES', True, 'EXEMPTION_RES'),
+    ('Valid EXEMPTION_NON_RES', True, 'EXEMPTION_NON_RES'),
+    ('Valid MHREG', True, 'MHREG'),
+    ('Valid PERMIT', True, 'PERMIT'),
+    ('Valid PERMIT_EXTENSION', True, 'PERMIT_EXTENSION'),
+    ('Valid TRANS', True, 'TRANS'),
+    ('Valid TRANS_AFFIDAVIT', True, 'TRANS_AFFIDAVIT'),
+    ('Valid TRANS_ADMIN', True, 'TRANS_ADMIN'),
+    ('Valid TRANS_WILL', True, 'TRANS_WILL'),
+    ('Valid TRAND', True, 'TRAND'),
+    ('Valid REG_STAFF_ADMIN', True, 'REG_STAFF_ADMIN'),
+    ('Invalid', False, 'JUNKJ')
+]
+
 
 @pytest.mark.parametrize('desc,valid,type,has_reg,create,update,draft_id', TEST_DATA_TRANSFER)
 def test_draft(desc, valid, type, has_reg, create, update, draft_id):
@@ -58,6 +75,20 @@ def test_draft(desc, valid, type, has_reg, create, update, draft_id):
         for err in errors:
             print(err.message)
     print(errors)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,reg_type', TEST_DATA_REGISTRATION_TYPE)
+def test_draft_type(desc, valid, reg_type):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(DRAFT_TRANSFER)
+    data['type'] = reg_type
+
+    is_valid, errors = validate(data, 'draft', 'mhr')
 
     if valid:
         assert is_valid

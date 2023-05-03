@@ -12,9 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test Suite to ensure the MHR registration summary schema is valid."""
+import copy
+
 import pytest
 
 from registry_schemas import validate
+from registry_schemas.example_data.mhr import REGISTRATION_SUMMARY
 
 
 TEST_VALID_ALL = {
@@ -81,6 +84,24 @@ TEST_DATA = [
     ('No settings', False, TEST_EMPTY_JSON, None)
 ]
 
+# testdata pattern is ({desc}, {valid}, {type})
+TEST_DATA_REGISTRATION_TYPE = [
+    ('Valid DECAL_REPLACE', True, 'DECAL_REPLACE'),
+    ('Valid EXEMPTION_RES', True, 'EXEMPTION_RES'),
+    ('Valid EXEMPTION_NON_RES', True, 'EXEMPTION_NON_RES'),
+    ('Valid MHREG', True, 'MHREG'),
+    ('Valid MHREG_CONVERSION', True, 'MHREG_CONVERSION'),
+    ('Valid PERMIT', True, 'PERMIT'),
+    ('Valid PERMIT_EXTENSION', True, 'PERMIT_EXTENSION'),
+    ('Valid TRANS', True, 'TRANS'),
+    ('Valid TRANS_AFFIDAVIT', True, 'TRANS_AFFIDAVIT'),
+    ('Valid TRANS_ADMIN', True, 'TRANS_ADMIN'),
+    ('Valid TRANS_WILL', True, 'TRANS_WILL'),
+    ('Valid TRAND', True, 'TRAND'),
+    ('Valid REG_STAFF_ADMIN', True, 'REG_STAFF_ADMIN'),
+    ('Invalid', False, 'JUNKJ')
+]
+
 
 @pytest.mark.parametrize('desc,valid,data,status', TEST_DATA)
 def test_registration_summary(desc, valid, data, status):
@@ -95,3 +116,17 @@ def test_registration_summary(desc, valid, data, status):
             print(err.message)
 
     assert is_valid == valid
+
+
+@pytest.mark.parametrize('desc,valid,reg_type', TEST_DATA_REGISTRATION_TYPE)
+def test_registration_summary_reg_type(desc, valid, reg_type):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(REGISTRATION_SUMMARY)
+    data[0]['registrationType'] = reg_type
+
+    is_valid, errors = validate(data[0], 'registrationSummary', 'mhr')
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
