@@ -78,6 +78,10 @@
                 "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/note"
             }
         },
+        "ownLand": {
+            "type": "boolean",
+            "description": "True if the manufactured home is located on land that the owners own or have a registered lease of not less than 3 years."
+        },
         "pprRegistrations": {
             "type": "array",
             "items": {

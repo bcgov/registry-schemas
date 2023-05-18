@@ -332,6 +332,7 @@ REGISTRATION = {
   'clientReferenceId': 'EX-MH001234',
   'declaredValue': 120000,
   'attentionReference': 'GWB14768.100',
+  'ownLand': False,
   'submittingParty': {
     'businessName': 'ABC SEARCHING COMPANY',
     'address': {
@@ -458,6 +459,55 @@ REGISTRATION = {
     'invoiceId': '2199700'
   }
 }
+
+REGISTRATION_MANUFACTURER = {
+  'submittingParty': {
+    'businessName': 'REAL ENGINEERED HOMES INC',
+    'address': {
+      'street': '1704 GOVERNMENT ST.',
+      'city': 'PENTICTON',
+      'region': 'BC',
+      'postalCode': 'V2A 7A1',
+      'country': 'CA'
+    },
+    'phoneNumber': '2507701067'
+  },
+  'ownerGroups': [
+    {
+      'groupId': 1,
+      'owners': [
+        {
+          'businessName': 'REAL ENGINEERED HOMES INC',
+          'partyType': 'OWNER_BUS',
+          'address': {
+            'street': '1704 GOVERNMENT ST.',
+            'city': 'PENTICTON',
+            'region': 'BC',
+            'postalCode': 'V2A 7A1',
+            'country': 'CA'
+          }
+        }
+      ],
+      'type': 'SOLE'
+    }
+  ],
+  'location': {
+    'locationType': 'MANUFACTURER',
+    'dealerName': 'REAL ENGINEERED HOMES INC',
+    'address': {
+      'street': '1704 GOVERNMENT ST.',
+      'city': 'PENTICTON',
+      'region': 'BC',
+      'postalCode': 'V2A 7A1',
+      'country': 'CA'
+    },
+    'leaveProvince': False
+  },
+  'description': {
+    'manufacturer': 'REAL ENGINEERED HOMES INC',
+  }
+}
+
 
 REGISTRATION_SUMMARY = [
   {
