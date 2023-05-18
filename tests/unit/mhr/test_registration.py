@@ -129,6 +129,14 @@ TEST_DATA_REGISTRATION_TYPE = [
     ('Invalid', False, 'JUNKJ')
 ]
 
+# testdata pattern is ({desc}, {valid}, {value})
+TEST_DATA_OWN_LAND = [
+    ('Valid False', True, False),
+    ('Valid True', True, True),
+    ('Invalid data type int', False, 20),
+    ('Invalid data type str', False, 'junk')
+]
+
 
 @pytest.mark.parametrize('desc,valid,mhr,status,ref,decv,haso,hasl,hasd,hasn,hasdt,hasp', TEST_DATA_REG)
 def test_registration(desc, valid, mhr, status, ref, decv, haso, hasl, hasd, hasn, hasdt, hasp):
@@ -217,6 +225,20 @@ def test_registration_reg_type(desc, valid, reg_type):
     """Assert that the schema is performing as expected."""
     data = copy.deepcopy(REGISTRATION)
     data['registrationType'] = reg_type
+
+    is_valid, errors = validate(data, 'registration', 'mhr')
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,value', TEST_DATA_OWN_LAND)
+def test_registration_own_land(desc, valid, value):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(REGISTRATION)
+    data['ownLand'] = value
 
     is_valid, errors = validate(data, 'registration', 'mhr')
 
