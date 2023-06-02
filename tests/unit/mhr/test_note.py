@@ -21,15 +21,17 @@ from registry_schemas.example_data.mhr import ADDRESS, NOTE
 
 
 # testdata pattern is ({desc},{valid},{type},{doc_id},{has_create},{has_expiry},{remarks},{contact_name},{address})
-LONG_NAME = '01234567890123456789012345678901234567890'
+LONG_NAME = '012345678901234567890123456789012345678901234567890'
 TEST_DATA_NOTE = [
     ('Valid all', True, 'type', '123456', True, True, 'remarks', 'contact', ADDRESS),
     ('Valid no expiry', True, 'type', '123456', True, False, 'remarks', 'contact', ADDRESS),
-    ('Valid no contact', True, 'type', '123456', True, True, 'remarks', None, ADDRESS),
-    ('Valid no address', True, 'type', '123456', True, True, 'remarks', 'contact', None),
+    ('Valid no contact name', False, 'type', '123456', True, True, 'remarks', None, ADDRESS),
+    ('Valid no contact name or address', True, 'type', '123456', True, True, 'remarks', None, None),
+    ('Valid no contact address', False, 'type', '123456', True, True, 'remarks', 'contact', None),
     ('Valid no createTS', True, 'type', '123456', False, True, 'remarks', 'contact', ADDRESS),
     ('Valid no doc id', True, 'type', None, True, True, 'remarks', 'contact', ADDRESS),
     ('Valid no doc_reg num', True, 'type', '123456', True, True, 'remarks', 'contact', ADDRESS),
+    ('Valid empty remarks', True, 'type', '123456', True, True, ' ', 'contact', ADDRESS),
     ('Invalid no remarks', False, 'type', '123456', True, True, None, 'contact', ADDRESS),
     ('Invalid no type', False, None, '123456', True, True, 'remarks', 'contact', ADDRESS),
     ('Invalid type too long', False, '01234567891', '123456', True, True, 'remarks', 'contact', ADDRESS),
@@ -49,18 +51,23 @@ def test_note(desc, valid, type, doc_id, has_create, has_expiry, remarks, contac
         del data['documentId']
     if not has_create:
         del data['createDateTime']
+        del data['effectiveDateTime']
     if not has_expiry:
-        del data['expiryDate']
+        del data['expiryDateTime']
     if remarks:
         data['remarks'] = remarks
     else:
         del data['remarks']
-    if contact:
-        data['contactName'] = contact
+    if not contact and not address:
+        del data['givingNoticeParty']
+    elif desc == 'Invalid contact too long':
+        data['givingNoticeParty']['personName']['last'] = contact
     else:
-        del data['contactName']
-    if not address:
-        del data['contactAddress']
+        del data['givingNoticeParty']['personName']
+        if contact:
+            data['givingNoticeParty']['businessName'] = contact
+        if not address:
+            del data['givingNoticeParty']['address']
     if desc == 'Valid no doc_reg num':
         del data['documentRegistrationNumber']
 
