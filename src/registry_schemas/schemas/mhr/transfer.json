@@ -44,7 +44,7 @@
         },
         "attentionReference": {
             "type": [ "string", "null" ],
-            "maxLength": 40,
+            "maxLength": 50,
             "description": "The registration document attention or reference information."
         },
         "submittingParty": {

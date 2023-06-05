@@ -251,19 +251,81 @@ MANUFACTURER_INFO = {
 }
 
 NOTE = {
-  'documentType': 'CONV',
-  'documentId': 'REG01234',
-  'documentRegistrationNumber': '00402332',
-  'createDateTime': '2018-02-21T18:56:00+00:00',
-  'expiryDate': '2023-02-22T07:59:00+00:00',
-  'remarks': '',
-  'contactName': 'JOHNNY NUCLEO',
-  'contactAddress': {
-    'street': '940 BLANSHARD STREET',
-    'city': 'VICTORIA',
-    'region': 'BC',
-    'postalCode': 'V8W 3E6',
-    'country': 'CA'
+  'documentType': 'CAU',
+  'documentId': '62133670',
+  'documentRegistrationNumber': '00358551',
+  'documentDescription': 'NOTICE OF CAUTION',
+  'createDateTime': '2023-02-21T18:56:00+00:00',
+  'effectiveDateTime': '2023-02-21T18:56:00+00:00',
+  'expiryDateTime': '2023-05-21T18:56:00+00:00',
+  'remarks': 'NOTICE OF ACTION COMMENCED MARCH 1 2022 WITH CRANBROOK COURT REGISTRY COURT FILE NO. 3011.',
+  'givingNoticeParty': {
+    'personName': {
+      'first': 'JOHNNY',
+      'middle': 'B',
+      'last': 'SMITH'
+    },
+    'address': {
+      'street': '222 SUMMER STREET',
+      'city': 'VICTORIA',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': 'V8W 2V8'
+    },
+    'phoneNumber': '2504930122'
+  },
+  'status': 'EXPIRED',
+  'destroyed': False
+}
+
+NOTE_REGISTRATION = {
+  'mhrNumber': '101036',
+  'registrationType': 'REG_STAFF_ADMIN',
+  'clientReferenceId': 'EX-TP001234',
+  'attentionReference': 'JOHN SMITH',
+  'createDateTime': '2022-10-21T18:56:00+00:00',
+  'submittingParty': {
+    'businessName': 'BOB PATERSON HOMES INC.',
+    'address': {
+      'street': '1200 S. MACKENZIE AVE.',
+      'city': 'WILLIAMS LAKE',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': 'V2G 3Y1'
+    },
+    'phoneNumber': '6044620279',
+    'emailAddress': 'bphomes@bphomes.com'
+  },
+  'note': {
+    'documentType': 'CAU',
+    'documentId': '62133670',
+    'documentRegistrationNumber': '00358551',
+    'documentDescription': 'NOTICE OF CAUTION',
+    'createDateTime': '2023-02-21T18:56:00+00:00',
+    'effectiveDateTime': '2023-02-21T18:56:00+00:00',
+    'expiryDateTime': '2023-05-21T18:56:00+00:00',
+    'remarks': 'NOTICE OF ACTION COMMENCED MARCH 1 2022 WITH CRANBROOK COURT REGISTRY COURT FILE NO. 3011.',
+    'givingNoticeParty': {
+      'personName': {
+        'first': 'JOHNNY',
+        'middle': 'B',
+        'last': 'SMITH'
+      },
+      'address': {
+        'street': '222 SUMMER STREET',
+        'city': 'VICTORIA',
+        'region': 'BC',
+        'country': 'CA',
+        'postalCode': 'V8W 2V8'
+      },
+      'phoneNumber': '2504930122'
+    },
+    'status': 'EXPIRED',
+    'destroyed': False
+  },
+  'payment': {
+    'receipt': '/pay/api/v1/payment-requests/2198744/receipts',
+    'invoiceId': '2198744'
   }
 }
 
@@ -440,20 +502,33 @@ REGISTRATION = {
   'createDateTime': '2020-02-21T18:56:20+00:00',
   'notes': [
     {
-      'documentType': 'CONV',
-      'documentId': 'REG01234',
+      'documentType': 'EXRS',
+      'documentId': '10104509',
+      'documentRegistrationNumber': '00500243',
+      'documentDescription': 'RESIDENTIAL EXEMPTION',
       'createDateTime': '1995-02-21T18:56:00+00:00',
-      'remarks': '',
-      'contactName': 'JOHNNY NUCLEO',
-      'contactAddress': {
-        'street': '940 BLANSHARD STREET',
-        'city': 'VICTORIA',
-        'region': 'BC',
-        'postalCode': 'V8W 3E6',
-        'country': 'CA'
-      }
+      'effectiveDateTime': '1995-02-21T18:56:00+00:00',
+      'remarks': 'HOME IS TO BE USED AS A STORAGE SHED',
+      'givingNoticeParty': {
+        'personName': {
+          'first': 'JOHNNY',
+          'middle': 'B',
+          'last': 'SMITH'
+        },
+        'address': {
+          'street': '222 SUMMER STREET',
+          'city': 'VICTORIA',
+          'region': 'BC',
+          'country': 'CA',
+          'postalCode': 'V8W 2V8'
+        },
+        'phoneNumber': '2504930122',
+      },
+      'status': 'ACTIVE',
+      'destroyed': False
     }
   ],
+  'hasCaution': False,
   'payment': {
     'receipt': '/pay/api/v1/payment-requests/2199700/receipts',
     'invoiceId': '2199700'
@@ -524,7 +599,9 @@ REGISTRATION_SUMMARY = [
     'submittingParty': 'Bank of British Columbia',
     'ownerNames': 'GRAEME THOMAS CUNNINGHAM, NEIL MARTIN FOLEY',
     'inUserList': False,
-    'lienRegistrationType': 'SA'
+    'lienRegistrationType': 'SA',
+    'expireDays': 90,
+    'hasCaution': False
   }
 ]
 
@@ -656,18 +733,29 @@ SEARCH_DETAIL_RESULT = {
       'notes': [
         {
           'documentType': 'EXRS',
-          'documentId': '80035947',
-          'documentRegistrationNumber': '00402332',
+          'documentId': '10104509',
+          'documentRegistrationNumber': '00500243',
+          'documentDescription': 'RESIDENTIAL EXEMPTION',
           'createDateTime': '1995-02-21T18:56:00+00:00',
+          'effectiveDateTime': '1995-02-21T18:56:00+00:00',
           'remarks': 'HOME IS TO BE USED AS A STORAGE SHED',
-          'contactName': 'JOHNNY NUCLEO',
-          'contactAddress': {
-            'street': '940 BLANSHARD STREET',
-            'city': 'VICTORIA',
-            'region': 'BC',
-            'postalCode': 'V8W 3E6',
-            'country': 'CA'
-          }
+          'givingNoticeParty': {
+            'personName': {
+              'first': 'JOHNNY',
+              'middle': 'B',
+              'last': 'SMITH'
+            },
+            'address': {
+              'street': '222 SUMMER STREET',
+              'city': 'VICTORIA',
+              'region': 'BC',
+              'country': 'CA',
+              'postalCode': 'V8W 2V8'
+            },
+            'phoneNumber': '2504930122',
+          },
+          'status': 'ACTIVE',
+          'destroyed': False
         }
       ]
     }
@@ -836,13 +924,14 @@ PERMIT = {
   'documentRegistrationNumber': '00402332',
   'registrationType': 'PERMIT',
   'clientReferenceId': 'EX-TP001234',
+  'attentionReference': 'JOHN SMITH',
   'createDateTime': '2022-10-21T18:56:00+00:00',
   'note': {
     'documentType': 'REG_103',
     'documentId': '80035947',
     'documentRegistrationNumber': '00402332',
     'remarks': 'test',
-    'expiryDate': '2022-11-21T08:00:00+00:00'
+    'expiryDateTime': '2022-11-21T08:00:00+00:00'
   },
   'submittingParty': {
     'businessName': 'BOB PATERSON HOMES INC.',

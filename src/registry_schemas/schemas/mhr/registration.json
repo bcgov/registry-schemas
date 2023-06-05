@@ -49,7 +49,7 @@
         },
         "attentionReference": {
             "type": [ "string", "null" ],
-            "maxLength": 40,
+            "maxLength": 50,
             "description": "The registration document attention or reference information."
         },
         "declaredValue": {
@@ -81,6 +81,10 @@
         "ownLand": {
             "type": "boolean",
             "description": "True if the manufactured home is located on land that the owners own or have a registered lease of not less than 3 years."
+        },
+        "hasCaution": {
+            "type": "boolean",
+            "description": "Included for the MHREG registration type. True if a caution on the manufacuted home exists that has not expired and has not been cancelled. Allows for cautions that have been continued or extended."
         },
         "pprRegistrations": {
             "type": "array",

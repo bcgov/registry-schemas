@@ -24,7 +24,7 @@
         "type": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["JOINT", "SOLE", "COMMON", "JT", "SO", "TC"],
+            "enum": ["JOINT", "SOLE", "COMMON", "NA", "JT", "SO", "TC"],
             "description": "The type of owner group. JOINT - joint tenancy; SOLE - sole ownership; COMMON - tenants in common; JT - joint tenancy (deprecated); SO - sole ownership (deprecated); TC - tenants in common (deprecated)."
         },
         "status": {
@@ -62,7 +62,7 @@
         "deathDateTime": {
             "type": "string",
             "format": "date-time",
-            "description": "Include only for a transfer due to death registration types when the owner in the deleteOwnerGroups is deceased. Must be in the past when the registration is submitted."
+            "description": "Include only for transfer due to death registration types when the owner in the deleteOwnerGroups is deceased. Must be in the past when the registration is submitted."
         }
     },
     "oneOf":[

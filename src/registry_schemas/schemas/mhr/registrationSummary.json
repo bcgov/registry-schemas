@@ -75,6 +75,14 @@
             "type": "string",
             "maxLength": 20,
             "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "MHREG_CONVERSION", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL", "REG_STAFF_ADMIN"]
+        },
+        "hasCaution": {
+            "type": "boolean",
+            "description": "Included for the MHREG registration type. True if a caution on the manufacuted home exists that has not expired and has not been cancelled. Allows for cautions that have been continued or extended."
+        },
+        "expireDays": {
+            "type": "integer",
+            "description": "Conditionally included for the CAU, CAUC, and CAUE caution document types. The value may be negative, and represents the number of days from the current timestamp before a caution unit note registration expires. For CAUC regisrations that have no expiry date, the unreachable value of -9999 is returned."
         }
     },
     "required": [

@@ -31,7 +31,9 @@ TEST_VALID_ALL = {
     'submittingParty': 'Bank of British Columbia',
     'ownerNames': 'GRAEME THOMAS CUNNINGHAM, NEIL MARTIN FOLEY',
     'inUserList': False,
-    'lienRegistrationType': 'SA'
+    'lienRegistrationType': 'SA',
+    'hasCaution': False,
+    'expireDays': 0
 }
 TEST_VALID_MINIMUM = {
     'mhrNumber': '020000',
@@ -101,6 +103,13 @@ TEST_DATA_REGISTRATION_TYPE = [
     ('Valid REG_STAFF_ADMIN', True, 'REG_STAFF_ADMIN'),
     ('Invalid', False, 'JUNKJ')
 ]
+# testdata pattern is ({description}, {is valid}, {data})
+TEST_DATA_EXPIRY = [
+    ('Valid 0', True, 0),
+    ('Valid > 0', True, 90),
+    ('Valid < 0', True, -9999),
+    ('Invalid data type', False, 'junk')
+]
 
 
 @pytest.mark.parametrize('desc,valid,data,status', TEST_DATA)
@@ -125,6 +134,20 @@ def test_registration_summary_reg_type(desc, valid, reg_type):
     data[0]['registrationType'] = reg_type
 
     is_valid, errors = validate(data[0], 'registrationSummary', 'mhr')
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,value', TEST_DATA_EXPIRY)
+def test_registration_summary_expiry(desc, valid, value):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(TEST_VALID_ALL)
+    data['expireDays'] = value
+
+    is_valid, errors = validate(data, 'registrationSummary', 'mhr')
 
     if valid:
         assert is_valid

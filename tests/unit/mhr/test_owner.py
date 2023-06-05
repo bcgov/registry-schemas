@@ -29,6 +29,7 @@ TEST_DATA_OWNER = [
     ('Valid ind exempt', True, None, PERSON_NAME, ADDRESS, 'SOLE', 'EXEMPT', None, 'suffix'),
     ('Valid JOINT type previous', True, 'org name', None, ADDRESS, 'JOINT', 'PREVIOUS', None, 'suffix'),
     ('Valid COMMON type', True, 'org name', None, ADDRESS, 'COMMON', 'ACTIVE', '2501234567', SUFFIX_MAX_LENGTH),
+    ('Valid NA type', True, 'org name', None, ADDRESS, 'NA', 'ACTIVE', '2501234567', 'suffix'),
     ('Valid SO type', True, 'org name', None, ADDRESS, 'SO', 'ACTIVE', None, None),
     ('Valid JT type', True, 'org name', None, ADDRESS, 'JT', 'PREVIOUS', None, 'suffix'),
     ('Valid TC type', True, 'org name', None, ADDRESS, 'TC', 'ACTIVE', '2501234567', SUFFIX_MAX_LENGTH),

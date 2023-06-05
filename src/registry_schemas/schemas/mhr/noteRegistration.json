@@ -1,35 +1,19 @@
 {
     "definitions": {},
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/exemption",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/noteRegistration",
     "type": "object",
-    "title": "The MHR Manufactured Home Exemption Schema",
+    "title": "The MHR Unit Note registration Schema",
     "properties": {
         "mhrNumber": {
             "type": [ "string", "null" ],
             "maxLength": 6,
             "description": "Unique manufactured home registration number assigned by the Manufactured Home Registry when a registration is created."
         },
-        "documentId": {
-            "type": [ "string", "null" ],
-            "maxLength": 8,
-            "minLength": 8,
-            "description": "Unique registration document ID/number assigned by the Manufactured Home Registry."
-        },
-        "documentRegistrationNumber": {
-            "type": [ "string", "null" ],
-            "maxLength": 8,
-            "description": "The document registration number that uniquely identifies a registration."
-        },
-        "documentDescription": {
-            "type": [ "string", "null" ],
-            "maxLength": 100,
-            "description": "Included in a response as a description of the registration report document."
-        },
         "registrationType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND"]
+            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "MHREG_CONVERSION", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL", "REG_STAFF_ADMIN"]
         },
         "clientReferenceId": {
             "type": [ "string", "null" ],
@@ -52,15 +36,12 @@
         "note": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/note"
         },
-        "nonResidential": {
-            "type": "boolean",
-            "description": "Set to true when the exemption is non-residential."
-        },
         "payment": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"
         }
     },
     "required": [
-        "submittingParty"
+        "submittingParty",
+        "note"
     ]
 }
