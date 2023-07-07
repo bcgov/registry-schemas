@@ -17,6 +17,7 @@ These can be used in other tests as basis for the JSON registration statements.
 """
 from .schema_data import (
     ADDRESS,
+    ADMIN_REGISTRATION,
     BASE_INFORMATION,
     DESCRIPTION,
     DRAFT_SUMMARY,
@@ -44,6 +45,7 @@ from .schema_data import (
 
 __all__ = [
     'ADDRESS',
+    'ADMIN_REGISTRATION',
     'BASE_INFORMATION',
     'DESCRIPTION',
     'DRAFT_SUMMARY',

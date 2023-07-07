@@ -30,6 +30,12 @@ TEST_DATA = [
     ('Invalid missing note', False, False, True, True, None, None),
     ('Invalid missing sub party', False, True, False, True, None, None)
 ]
+# testdata pattern is ({desc},{valid},{cancel_doc_id},{is_request},{doc_type}, {doc_reg_num}, {doc_desc})
+TEST_DATA_CANCEL = [
+    ('Valid request', True, '12345678', True, None, None, None),
+    ('Valid response', True, None, False, 'CAU', '00545678', 'NOTICE OF CAUTION'),
+    ('Invalid request doc id', False, '123456789', True, None, None, None)
+]
 
 
 @pytest.mark.parametrize('desc,valid,has_note,has_sub,is_request,client_ref,attention', TEST_DATA)
@@ -59,6 +65,35 @@ def test_note_registration(desc, valid, has_note, has_sub, is_request, client_re
             del data['note']['status']
             del data['note']['documentDescription']
             del data['note']['documentRegistrationNumber']
+    is_valid, errors = validate(data, 'noteRegistration', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,cancel_doc_id,is_request,doc_type,doc_reg_num,doc_desc', TEST_DATA_CANCEL)
+def test_ncan_registration(desc, valid, cancel_doc_id, is_request, doc_type, doc_reg_num, doc_desc):
+    """Assert that the unit note registration schema is performing as expected."""
+    data = copy.deepcopy(NOTE_REGISTRATION)
+    if cancel_doc_id:
+        data['cancelDocumentId'] = cancel_doc_id
+    if doc_type:
+        data['note']['cancelledDocumentType'] = doc_type
+    if doc_reg_num:
+        data['note']['cancelledDocumentRegistrationNumber'] = doc_reg_num
+    if doc_desc:
+        data['note']['cancelledDocumentDescription'] = doc_desc
+    if is_request:
+        del data['mhrNumber']
+        del data['createDateTime']
+        del data['payment']
+        del data['registrationType']
     is_valid, errors = validate(data, 'noteRegistration', 'mhr')
 
     if errors:

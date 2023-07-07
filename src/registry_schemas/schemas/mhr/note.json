@@ -20,6 +20,11 @@
             "maxLength": 8,
             "description": "The unique document registration number for the registration associated with the note."
         },
+        "documentDescription": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "The description of the document type."
+        },
         "createDateTime": {
             "type": "string",
             "format": "date-time",
@@ -52,6 +57,22 @@
         "destroyed": {
             "type": "boolean",
             "description": "True if the unit note has been destroyed. Set by the system and included in API responses."
+        },
+        "cancelledDocumentType": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 10,
+            "description": "Conditionally included with the NCAN document type as the document type for the unit note registration that has been cancelled."
+        },
+        "cancelledDocumentDescription": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "Conditionally included with the NCAN document type as the document type description for the unit note registration that has been cancelled."
+        },
+        "cancelledDocumentRegistrationNumber": {
+            "type": [ "string", "null" ],
+            "maxLength": 8,
+            "description": "Conditionally included with the NCAN document type as the unique document registration number for the unit note registration that has been cancelled."
         }
     },
     "required": [
