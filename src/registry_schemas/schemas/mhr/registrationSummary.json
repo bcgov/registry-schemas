@@ -83,6 +83,17 @@
         "expireDays": {
             "type": "integer",
             "description": "Conditionally included for the CAU, CAUC, and CAUE caution document types. The value may be negative, and represents the number of days from the current timestamp before a caution unit note registration expires. For CAUC regisrations that have no expiry date, the unreachable value of -9999 is returned."
+        },
+        "cancelledDocumentType": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 10,
+            "description": "Conditionally included with the NCAN document type registration as the document type for the unit note registration that has been cancelled."
+        },
+        "cancelledDocumentDescription": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "Conditionally included with the NCAN document type registration as the document type description for the unit note registration that has been cancelled."
         }
     },
     "required": [

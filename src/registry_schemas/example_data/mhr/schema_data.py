@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Sample data used across many tests."""
+# pylint: disable=too-many-lines
 
 ADDRESS = {
   'street': 'delivery_address - address line one',
@@ -20,6 +21,33 @@ ADDRESS = {
   'postalCode': ' ',
   'country': 'CA'
 }
+
+ADMIN_REGISTRATION = {
+  'mhrNumber': '004816',
+  'registrationType': 'REG_STAFF_ADMIN',
+  'clientReferenceId': 'EX-NRED-001',
+  'attentionReference': 'JOHN SMITH',
+  'createDateTime': '2022-10-21T18:56:00+00:00',
+  'submittingParty': {
+    'businessName': 'BOB PATERSON HOMES INC.',
+    'address': {
+      'street': '1200 S. MACKENZIE AVE.',
+      'city': 'WILLIAMS LAKE',
+      'region': 'BC',
+      'country': 'CA',
+      'postalCode': 'V2G 3Y1'
+    },
+    'phoneNumber': '6044620279',
+    'emailAddress': 'bphomes@bphomes.com'
+  },
+  'documentType': 'NRED',
+  'updateDocumentId': '62754188',
+  'payment': {
+    'receipt': '/pay/api/v1/payment-requests/2198744/receipts',
+    'invoiceId': '2198744'
+  }
+}
+
 
 BASE_INFORMATION = {
   'year': 2018,
@@ -582,7 +610,6 @@ REGISTRATION_MANUFACTURER = {
     'manufacturer': 'REAL ENGINEERED HOMES INC',
   }
 }
-
 
 REGISTRATION_SUMMARY = [
   {
