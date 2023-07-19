@@ -34,8 +34,8 @@
         "statusType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["ACTIVE", "DRAFT", "EXEMPT", "FROZEN", "HISTORICAL"],
-            "description": "The status of the registration. ACTIVE - registered; DRAFT; EXEMPT; FROZEN; HISTORICAL - cancelled. FROZEN is a temporary state where only BC Registries staff can make a change to the manufactured home."
+            "enum": ["ACTIVE", "DRAFT", "EXEMPT", "FROZEN", "HISTORICAL", "CANCELLED"],
+            "description": "The status of the registration. ACTIVE - registered; DRAFT; EXEMPT; FROZEN; CANCELLED or HISTORICAL - cancelled. FROZEN is a temporary state where only BC Registries staff can make a change to the manufactured home."
         },
         "path": {
             "type": "string",
