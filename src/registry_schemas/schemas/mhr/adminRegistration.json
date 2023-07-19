@@ -10,6 +10,22 @@
             "maxLength": 6,
             "description": "Unique manufactured home registration number assigned by the Manufactured Home Registry when a registration is created."
         },
+        "documentId": {
+            "type": [ "string", "null" ],
+            "maxLength": 8,
+            "minLength": 8,
+            "description": "Unique registration document ID/number assigned by the Manufactured Home Registry."
+        },
+        "documentRegistrationNumber": {
+            "type": [ "string", "null" ],
+            "maxLength": 8,
+            "description": "The document registration number that uniquely identifies a registration."
+        },
+        "documentDescription": {
+            "type": [ "string", "null" ],
+            "maxLength": 100,
+            "description": "Included in a response as a description of the registration report document."
+        },
         "registrationType": {
             "type": "string",
             "maxLength": 20,
@@ -36,12 +52,15 @@
         "documentType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["COU", "COUR", "EXRE", "FZE", "NREG", "THAW", "ABAN", "ATTA", "ADDI", "BANK", "COMP", "CONF", "DNCH", "FORE", "GENT", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "PUBA", "REBU", "REIV", "REPV", "SZL", "TAXS", "VEST", "WHAL"]
+            "enum": ["COU", "COUR", "EXRE", "FZE", "NRED", "THAW", "ABAN", "ATTA", "ADDI", "BANK", "COMP", "CONF", "DNCH", "FORE", "GENT", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "PUBA", "REBU", "REIV", "REPV", "SZL", "TAXS", "VEST", "WHAL"]
         },
         "updateDocumentId": {
             "type": [ "string", "null" ],
             "maxLength": 8,
             "description": "Only required with NRED and COUR document type requests. It is the document ID of a previously created registration that is being cancelled or updated."
+        },
+        "note": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/note"
         },
         "payment": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"

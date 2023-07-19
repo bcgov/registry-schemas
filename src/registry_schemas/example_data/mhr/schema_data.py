@@ -24,6 +24,10 @@ ADDRESS = {
 
 ADMIN_REGISTRATION = {
   'mhrNumber': '004816',
+  'documentDescription': 'NOTICE OF REDEMPTION',
+  'documentId': '90051583',
+  'documentRegistrationNumber': '00504168',
+  'documentType': 'NRED',
   'registrationType': 'REG_STAFF_ADMIN',
   'clientReferenceId': 'EX-NRED-001',
   'attentionReference': 'JOHN SMITH',
@@ -40,8 +44,36 @@ ADMIN_REGISTRATION = {
     'phoneNumber': '6044620279',
     'emailAddress': 'bphomes@bphomes.com'
   },
-  'documentType': 'NRED',
   'updateDocumentId': '62754188',
+  'note': {
+    'documentType': 'NRED',
+    'documentId': '90051583',
+    'documentRegistrationNumber': '00504168',
+    'documentDescription': 'NOTICE OF CAUTION',
+    'createDateTime': '2023-02-21T18:56:00+00:00',
+    'effectiveDateTime': '2023-02-21T18:56:00+00:00',
+    'cancelledDocumentDescription': 'NOTICE OF TAX SALE',
+    'cancelledDocumentRegistrationNumber': '00102478',
+    'cancelledDocumentType': 'TAXN',
+    'remarks': 'NRED CANCEL A NOTICE PURSUANT TO SECTION 413 OF THE LOCAL GOVERNMENT ACT WAS FILED',
+    'givingNoticeParty': {
+      'personName': {
+        'first': 'JOHNNY',
+        'middle': 'B',
+        'last': 'SMITH'
+      },
+      'address': {
+        'street': '222 SUMMER STREET',
+        'city': 'VICTORIA',
+        'region': 'BC',
+        'country': 'CA',
+        'postalCode': 'V8W 2V8'
+      },
+      'phoneNumber': '2504930122'
+    },
+    'status': 'ACTIVE',
+    'destroyed': False
+  },
   'payment': {
     'receipt': '/pay/api/v1/payment-requests/2198744/receipts',
     'invoiceId': '2198744'

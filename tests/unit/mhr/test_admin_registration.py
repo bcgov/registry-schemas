@@ -23,7 +23,8 @@ from registry_schemas.example_data.mhr import ADMIN_REGISTRATION
 LONG_CLIENT_REF = '012345678901234567890123456789012345678901234567890'
 # testdata pattern is ({desc},{valid},{doc_type},{has_submitting},{is_request},{client_ref}, {attention})
 TEST_DATA = [
-    ('Valid request', True, 'COUR', True, True, None, None),
+    ('Valid request COUR', True, 'COUR', True, True, None, None),
+    ('Valid request NRED', True, 'COUR', True, True, None, None),
     ('Valid response', True, 'THAW', True, False, '1234', 'JOHN SMITH'),
     ('Invalid client ref', False, 'NRED', True, True, LONG_CLIENT_REF, None),
     ('Invalid attention', False, 'EXRE', True, True, None, LONG_CLIENT_REF),
