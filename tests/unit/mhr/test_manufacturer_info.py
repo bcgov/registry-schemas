@@ -20,10 +20,10 @@ from registry_schemas import validate
 from registry_schemas.example_data.mhr import MANUFACTURER_INFO
 
 
-# testdata pattern is ({desc},{valid},{bcol},{dealer},{has_submitting},{has_owner},{manufacturer})
 DEALER_MAX_LENGTH = '012345678901234567890123456789012345678901234567890123456789'
 MANUFACTURER_MAX_LENGTH = '01234567890123456789012345678901234567890123456789012345678901234'
 
+# testdata pattern is ({desc},{valid},{bcol},{dealer},{has_submitting},{has_owner},{manufacturer})
 TEST_DATA_MANUFACTURER = [
     ('Valid all', True, '123456', 'Dealer', True, True, 'manufacturer'),
     ('Valid no owner, bcol', True, None, 'Dealer', True, None, 'manufacturer'),
@@ -32,7 +32,7 @@ TEST_DATA_MANUFACTURER = [
     ('Invalid dealer too long', False, '123456', DEALER_MAX_LENGTH + 'X', True, True, MANUFACTURER_MAX_LENGTH),
     ('Invalid manufacturer too long', False, '123456', DEALER_MAX_LENGTH, True, True, MANUFACTURER_MAX_LENGTH + 'X'),
     ('Invalid missing dealer', False, '123456', None, True, True, MANUFACTURER_MAX_LENGTH),
-    ('Invalid missing submitting', False, '123456', DEALER_MAX_LENGTH, False, True, MANUFACTURER_MAX_LENGTH),
+    ('Valid missing submitting', True, '123456', DEALER_MAX_LENGTH, False, True, MANUFACTURER_MAX_LENGTH),
     ('Invalid missing manufacturer', False, '123456', DEALER_MAX_LENGTH, True, True, None)
 ]
 

@@ -29,7 +29,6 @@
     },
     "required": [
         "dealerName",
-        "submittingParty",
         "manufacturerName"
     ]
 }
