@@ -26,13 +26,14 @@ MANUFACTURER_MAX_LENGTH = '01234567890123456789012345678901234567890123456789012
 # testdata pattern is ({desc},{valid},{bcol},{dealer},{has_submitting},{has_owner},{manufacturer})
 TEST_DATA_MANUFACTURER = [
     ('Valid all', True, '123456', 'Dealer', True, True, 'manufacturer'),
-    ('Valid no owner, bcol', True, None, 'Dealer', True, None, 'manufacturer'),
+    ('Valid no bcol', True, None, 'Dealer', True, True, 'manufacturer'),
     ('Valid max names', True, '123456', DEALER_MAX_LENGTH, True, True, MANUFACTURER_MAX_LENGTH),
     ('Invalid bcol too long', False, '1234567', DEALER_MAX_LENGTH, True, True, MANUFACTURER_MAX_LENGTH),
     ('Invalid dealer too long', False, '123456', DEALER_MAX_LENGTH + 'X', True, True, MANUFACTURER_MAX_LENGTH),
     ('Invalid manufacturer too long', False, '123456', DEALER_MAX_LENGTH, True, True, MANUFACTURER_MAX_LENGTH + 'X'),
     ('Invalid missing dealer', False, '123456', None, True, True, MANUFACTURER_MAX_LENGTH),
     ('Valid missing submitting', True, '123456', DEALER_MAX_LENGTH, False, True, MANUFACTURER_MAX_LENGTH),
+    ('Invalid no owner', False, None, 'Dealer', True, False, 'manufacturer'),
     ('Invalid missing manufacturer', False, '123456', DEALER_MAX_LENGTH, True, True, None)
 ]
 
@@ -46,17 +47,17 @@ def test_manufacturer_info(desc, valid, bcol, dealer, has_submitting, has_owner,
     else:
         data['bcolAccountNumber'] = bcol
     if not dealer:
-        del data['dealerName']
+        del data['location']
     else:
-        data['dealerName'] = dealer
+        data['location']['dealerName'] = dealer
     if not manufacturer:
-        del data['manufacturerName']
+        del data['description']
     else:
-        data['manufacturerName'] = manufacturer
+        data['description']['manufacturer'] = manufacturer
     if not has_submitting:
         del data['submittingParty']
     if not has_owner:
-        del data['owner']
+        del data['ownerGroups'][0]['owners']
 
     is_valid, errors = validate(data, 'manufacturerInfo', 'mhr')
 
