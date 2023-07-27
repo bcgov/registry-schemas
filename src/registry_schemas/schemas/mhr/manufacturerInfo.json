@@ -3,33 +3,45 @@
     "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/manufacturerInfo",
     "type": "object",
     "title": "The MHR Manufacturer Information Schema",
-    "definitions": {},
+    "definitions": {
+        "description": {
+            "type": "object",
+            "description": "The description containing the manufacturer name.",
+            "properties": {
+                "manufacturer": {
+                    "type": "string",
+                    "maxLength": 65,
+                    "description": "The name of the manufacturer."
+                }
+            }
+        }
+    },
     "properties": {
         "bcolAccountNumber": {
             "type": "string",
             "maxLength": 6,
             "description": "The legacy BC Online Account number for the manufacturer."
         },
-       "dealerName": {
-            "type": "string",
-            "maxLength": 60,
-            "description": "The name of the manufacturer dealer."
-        },
         "submittingParty": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
         },
-        "owner": {
-            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/party"
+        "ownerGroups": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/ownerGroup"
+            }
         },
-        "manufacturerName": {
-            "type": "string",
-            "maxLength": 65,
-            "description": "The name of the manufacturer."
+        "location": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/location"
+        },
+        "description": {
+            "$ref": "#/definitions/description"
         }
     },
     "required": [
-        "dealerName",
-        "submittingParty",
-        "manufacturerName"
+        "ownerGroups",
+        "location",
+        "description"
     ]
 }

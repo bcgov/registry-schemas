@@ -76,7 +76,6 @@
         }
     },
     "required": [
-        "documentType",
-        "remarks"
+        "documentType"
     ]
 }

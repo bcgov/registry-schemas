@@ -284,7 +284,6 @@ LOCATION = {
 
 MANUFACTURER_INFO = {
   'bcolAccountNumber': '378521',
-  'dealerName': 'CHAMPION CANADA INTERNATIONAL ULC - MODULINE INDUSTRIES',
   'submittingParty': {
     'businessName': 'CHAMPION CANADA INTERNATIONAL ULC',
     'address': {
@@ -296,18 +295,40 @@ MANUFACTURER_INFO = {
     },
     'phoneNumber': '2507701067'
   },
-  'owner': {
-    'businessName': 'CHAMPION CANADA INTERNATIONAL ULC',
+  'ownerGroups': [
+    {
+      'groupId': 1,
+      'type': 'SOLE',
+      'owners': [
+        {
+          'organizationName': 'CHAMPION CANADA INTERNATIONAL ULC',
+          'partyType': 'OWNER_BUS',
+          'address': {
+            'street': '1175 RAILWAY STREET',
+            'city': 'PENTICTON',
+            'region': 'BC',
+            'country': 'CA',
+            'postalCode': 'V2A 5X5'
+          },
+          'phoneNumber': '6044620279'
+        }
+      ]
+    }
+  ],
+  'location': {
+    'locationType': 'MANUFACTURER',
+    'dealerName': 'CHAMPION CANADA INTERNATIONAL ULC - MODULINE INDUSTRIES',
     'address': {
-      'street': '3122B LYNNLARK PLACE',
+      'street': '1175 RAILWAY STREET',
       'city': 'PENTICTON',
       'region': 'BC',
-      'postalCode': 'V2A 5X5',
-      'country': 'CA'
-    },
-    'phoneNumber': '6044620279'
+      'country': 'CA',
+      'postalCode': 'V2A 5X5'
+    }
   },
-  'manufacturerName': 'MODULINE INDUSTRIES - PENTICTON'
+  'description': {
+    'manufacturer': 'MODULINE INDUSTRIES - PENTICTON'
+  }
 }
 
 NOTE = {

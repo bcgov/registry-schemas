@@ -52,7 +52,7 @@
         "documentType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["COU", "COUR", "EXRE", "FZE", "NRED", "THAW", "ABAN", "ATTA", "ADDI", "BANK", "COMP", "CONF", "DNCH", "FORE", "GENT", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "PUBA", "REBU", "REIV", "REPV", "SZL", "TAXS", "VEST", "WHAL"]
+            "enum": ["COU", "COUR", "EXRE", "FZE", "NCAN", "NRED", "THAW", "ABAN", "ATTA", "ADDI", "BANK", "COMP", "CONF", "DNCH", "FORE", "GENT", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "PUBA", "REBU", "REIV", "REPV", "SZL", "TAXS", "VEST", "WHAL"]
         },
         "updateDocumentId": {
             "type": [ "string", "null" ],
