@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/termsSummary",
+    "type": "object",
+    "title": "The MHR Terms of Agreement (Service) Summary Schema",
+    "definitions": {},
+    "properties": {
+        "agreementType": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Included for future use in responses. Initially only one agreement type is defined - DEFAULT."
+        },
+        "version": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "The version of the terms of agreement document formatted as 'v' followed by an integer. Initially only v1 exists."
+        },
+        "latestVersion": {
+            "type": "boolean",
+            "description": "True if this version is the latest version of the terms of agreement document. Otherwise false."
+        },
+        "accepted": {
+            "type": "boolean",
+            "description": "For version 1, true if this terms of agreement document has been accepted by the account submitting the request. For subsequent versions, true if this version of the document has been accepted by the user submitting the request. Otherwise false."
+        },
+        "createDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The ISO date and time the agreement was added. Conditionally included when getting the list of information about existing agreement documents.",
+            "example": "2023-08-15T18:28:17+00:00"
+        },
+        "acceptedDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "If accepted is true, the ISO date and time the specified version of the agreement was accepted by the account or user. Not included when getting the list of information about existing agreement documents.",
+            "example": "2023-09-22T17:28:17+00:00"
+        }
+    },
+    "required": [
+        "version"
+    ]
+}

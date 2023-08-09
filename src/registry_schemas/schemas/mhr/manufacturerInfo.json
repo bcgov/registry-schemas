@@ -37,6 +37,15 @@
         },
         "description": {
             "$ref": "#/definitions/description"
+        },
+        "dbaName": {
+            "type": "string",
+            "maxLength": 150,
+            "description": "Optional Doing Business As name."
+        },
+        "termsAccepted": {
+            "type": "boolean",
+            "description": "Included in the POST response to indicate the terms of agreement document has been accepted by the account submitting the request."
         }
     },
     "required": [
