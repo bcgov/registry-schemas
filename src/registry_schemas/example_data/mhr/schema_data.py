@@ -328,7 +328,9 @@ MANUFACTURER_INFO = {
   },
   'description': {
     'manufacturer': 'MODULINE INDUSTRIES - PENTICTON'
-  }
+  },
+  'dbaName': 'CHAMPION CANADA',
+  'termsAccepted': True
 }
 
 NOTE = {
@@ -463,6 +465,22 @@ PERSON_NAME = {
     'first': 'Michael',
     'middle': 'J',
     'last': 'Smith'
+}
+
+QUALIFIED_SUPPLIER = {
+    'businessName': 'JASON ROGERS NOTARY PUBLIC INC.',
+    'dbaName': 'JASON ROGERS NOTARY PUBLIC',
+    'termsAccepted': False,
+    'address': {
+        'street': '520 Johnson St',
+        'city': 'Victoria',
+        'region': 'BC',
+        'country': 'CA',
+        'postalCode': 'V8S 2V4'
+    },
+    'emailAddress': 'jtrogers@rogers-np.com',
+    'phoneNumber': '2501234567',
+    'phoneExtension': ''
 }
 
 REGISTRATION = {
@@ -916,6 +934,15 @@ SECTION_INFORMATION = {
   'lengthInches': 0,
   'widthFeet': 12,
   'widthInches': 0
+}
+
+TERMS_SUMMARY = {
+  'agreementType': 'DEFAULT',
+  'version': 'v1',
+  'latestVersion': True,
+  'createDateTime': '2023-08-15T18:28:17+00:00',
+  'accepted': False,
+  'acceptedDateTime': '2023-09-22T17:28:17+00:00'
 }
 
 TRANSFER = {

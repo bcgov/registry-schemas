@@ -32,6 +32,7 @@ from .schema_data import (
     PAYMENT,
     PERMIT,
     PERSON_NAME,
+    QUALIFIED_SUPPLIER,
     REGISTRATION,
     REGISTRATION_SUMMARY,
     SEARCH_DETAIL_RESULT,
@@ -39,6 +40,7 @@ from .schema_data import (
     SEARCH_QUERY_RESULT,
     SEARCH_SUMMARY,
     SECTION_INFORMATION,
+    TERMS_SUMMARY,
     TRANSFER,
 )
 
@@ -60,6 +62,7 @@ __all__ = [
     'PAYMENT',
     'PERMIT',
     'PERSON_NAME',
+    'QUALIFIED_SUPPLIER',
     'REGISTRATION',
     'REGISTRATION_SUMMARY',
     'SEARCH_DETAIL_RESULT',
@@ -67,5 +70,6 @@ __all__ = [
     'SEARCH_QUERY_RESULT',
     'SEARCH_SUMMARY',
     'SECTION_INFORMATION',
+    'TERMS_SUMMARY',
     'TRANSFER'
 ]

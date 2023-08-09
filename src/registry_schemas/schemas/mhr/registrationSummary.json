@@ -84,6 +84,12 @@
             "type": "integer",
             "description": "Conditionally included for the CAU, CAUC, and CAUE caution document types. The value may be negative, and represents the number of days from the current timestamp before a caution unit note registration expires. For CAUC regisrations that have no expiry date, the unreachable value of -9999 is returned."
         },
+        "frozenDocumentType": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 10,
+            "description": "If the statusType is FROZEN, frozenDocumentType is conditionally included in the response as the document type of the registration that put the home in a frozen or locked state."
+        },
         "cancelledDocumentType": {
             "type": "string",
             "minLength": 1,

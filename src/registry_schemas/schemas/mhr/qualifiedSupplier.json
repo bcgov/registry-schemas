@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/qualifiedSupplier",
+    "type": "object",
+    "title": "The MHR Qualified Supplier information Schema",
+    "definitions": {},
+    "properties": {
+        "businessName": {
+            "type": "string",
+            "maxLength": 150,
+            "description": "Legal business name."
+        },
+        "dbaName": {
+            "type": "string",
+            "maxLength": 150,
+            "description": "Optional doing business as name."
+        },
+        "personName": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/personName"
+        },
+        "address": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/address"
+        },
+        "emailAddress": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 250,
+            "description": "The email address of the individual or business."
+        },
+        "phoneNumber": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 10,
+            "description": "Free form text with area code for the party contact phone number without an extension value.",
+            "example": "2504772734"
+        },
+        "phoneExtension": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 5,
+            "description": "The contact phone number extension value.",
+            "example": "546"
+        },
+        "termsAccepted": {
+            "type": "boolean",
+            "description": "Included in the POST response to indicate the terms of agreement document has been accepted by the account submitting the request."
+        }
+    },
+    "anyOf":[
+        {
+            "required": [
+                "businessName",
+                "address"
+            ]
+        },
+        {
+            "required": [
+                "personName",
+                "address"
+            ]
+        }
+      ]
+    }
