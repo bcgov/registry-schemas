@@ -10,7 +10,7 @@
             "properties": {
                 "manufacturer": {
                     "type": "string",
-                    "maxLength": 65,
+                    "maxLength": 310,
                     "description": "The name of the manufacturer."
                 }
             }

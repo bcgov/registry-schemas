@@ -23,10 +23,10 @@ from registry_schemas.example_data.mhr import ADDRESS, LOCATION
 TEXT_20 = '01234567890123456789'
 TEXT_70 = '0123456789012345678901234567890123456789012345678901234567890123456789'
 TEXT_80 = '01234567890123456789012345678901234567890123456789012345678901234567890123456789'
-LONG_NAME = '01234567890123456789012345678901234567890'
-LONG_NAME_MAX = '0123456789012345678901234567890123456789'
-DEALER_NAME_MAX = '012345678901234567890123456789012345678901234567890123456789'
-DESCRIPTION_MAX = TEXT_80
+PARK_NAME_MAX = TEXT_80 + TEXT_20
+DEALER_NAME_MAX = TEXT_80 + TEXT_70 + TEXT_80 + TEXT_70 + '0123456789'
+ADDITIONAL_MAX = TEXT_80 + TEXT_80 + TEXT_80 + '0123456789'
+EXCEPTION_MAX = TEXT_80 + TEXT_70
 BAND_NAME_MAX = TEXT_70 + TEXT_80
 RESERVE_NUMBER_MAX = TEXT_20
 VALID_TIMESTAMP = '2022-05-14T21:16:32+00:00'
@@ -38,23 +38,23 @@ LTSA_PLAN_MAX = '012345678901'
 TEST_DATA_LOCATION = [
     ('Valid', True, 'park name', '1234', ADDRESS, None, None, None),
     ('Valid no park name', True, None, '1234', ADDRESS, None, None, None),
-    ('Valid no pad', True, LONG_NAME_MAX, None, ADDRESS, None, None, None),
+    ('Valid no pad', True, PARK_NAME_MAX, None, ADDRESS, None, None, None),
     ('Valid no pad, park name', True, None, None, ADDRESS, None, None, None),
-    ('Valid pid', True, LONG_NAME_MAX, None, ADDRESS, '123456789', None, None),
-    ('Valid tax date', True, LONG_NAME_MAX, None, ADDRESS, '123456789', VALID_TIMESTAMP, None),
-    ('Valid dealer', True, LONG_NAME_MAX, None, ADDRESS, '123456789', None, DEALER_NAME_MAX),
+    ('Valid pid', True, PARK_NAME_MAX, None, ADDRESS, '123456789', None, None),
+    ('Valid tax date', True, PARK_NAME_MAX, None, ADDRESS, '123456789', VALID_TIMESTAMP, None),
+    ('Valid dealer', True, PARK_NAME_MAX, None, ADDRESS, '123456789', None, DEALER_NAME_MAX),
     ('Invalid missing address', False, 'org name', '1234', None, None, None, None),
-    ('Invalid pad too long', False, 'park name', '1234567', ADDRESS, None, None, None),
+    ('Invalid pad too long', False, 'park name', '01234567890', ADDRESS, None, None, None),
     ('Invalid pid too long', False, 'park name', '1234', ADDRESS, '0123456789', None, None),
     ('Invalid dealer too long', False, 'park name', '1234', ADDRESS, None, None, DEALER_NAME_MAX + 'x'),
     # ('Invalid tax date', False, LONG_NAME_MAX, None, ADDRESS, '123456789', 'invalid format', None),
-    ('Invalid park name too long', False, LONG_NAME, None, ADDRESS, None, None, None)
+    ('Invalid park name too long', False, PARK_NAME_MAX + 'X', None, ADDRESS, None, None, None)
 ]
 # testdata pattern is ({desc}, {valid}, {exception}, {additional})
 TEST_DATA_LOCATION_DESCRIPTIONS = [
-    ('Valid both max lengths', True, DESCRIPTION_MAX, DESCRIPTION_MAX),
-    ('Invalid exception plan too long', False, DESCRIPTION_MAX + 'X', DESCRIPTION_MAX),
-    ('Invalid additional too long', False, DESCRIPTION_MAX, DESCRIPTION_MAX + 'X')
+    ('Valid both max lengths', True, EXCEPTION_MAX, ADDITIONAL_MAX),
+    ('Invalid exception plan too long', False, EXCEPTION_MAX + 'X', ADDITIONAL_MAX),
+    ('Invalid additional too long', False, EXCEPTION_MAX, ADDITIONAL_MAX + 'X')
 ]
 # testdata pattern is ({desc},{valid},{lot},{parcel},{block},{dlot},{part},{section},
 # {town},{range},{meridian},{dland},{plan})

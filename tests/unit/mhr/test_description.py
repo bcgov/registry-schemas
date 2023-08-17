@@ -20,25 +20,28 @@ from registry_schemas import validate
 from registry_schemas.example_data.mhr import DESCRIPTION
 
 
+TEXT_60 = '012345678901234567890123456789012345678901234567890123456789'
+TEXT_30 = '012345678901234567890123456789'
+REBUILT_MAX_LENGTH = TEXT_60 + TEXT_60 + TEXT_60 + TEXT_60 + TEXT_60
+OTHER_MAX_LENGTH = TEXT_60 + TEXT_60 + TEXT_30
+MANUFACTURER_MAX_LENGTH = TEXT_60 + TEXT_60 + TEXT_60 + TEXT_60 + TEXT_60 + '0123456789'
+LONG_ENG_NAME = TEXT_60 + TEXT_60 + TEXT_30
 # testdata pattern is ({desc}, {valid}, {manu}, {base}, {sc}, {has_s}, {csa_n}, {csa_s}, {eng_date}, {eng_name})
-LONG_MANUFACTURER = '012345678901234567890123456789012345678901234567890123456789012345'
-LONG_ENG_NAME = '0123456789012345678901234567890'
-LONG_REMARK = '0123456789012345678901234567890123456789012345678901234567890123456789'
-REBUILT_MAX_LENGTH = LONG_REMARK + LONG_REMARK + LONG_REMARK + LONG_REMARK
-OTHER_MAX_LENGTH = LONG_REMARK + LONG_REMARK
 TEST_DATA_DESC = [
     ('Valid all', True, 'manufacturer', True, 1, True, 'csa num', 'csas', True, 'eng name'),
     ('Valid no csa', True, 'manufacturer', True, 1, True, None, None, True, 'eng name'),
     ('Valid no eng', True, 'manufacturer', True, 1, True, 'csa num', 'csas', False, None),
+    ('Valid eng max length', True, 'manufacturer', True, 1, True, 'csa num', 'csas', False, LONG_ENG_NAME),
+    ('Valid manu max long', True, MANUFACTURER_MAX_LENGTH, True, 1, True, 'csa num', 'csas', True, 'eng name'),
     ('Invalid no manufacturer', False, None, True, 1, True, 'csa num', 'csas', True, 'eng name'),
     ('Invalid no base info', False, 'manufacturer', False, 1, True, 'csa num', 'csas', True, 'eng name'),
     ('Invalid no section count', False, 'manufacturer', True, None, True, 'csa num', 'csas', True, 'eng name'),
     ('Invalid no sections', False, 'manufacturer', True, 1, False, 'csa num', 'csas', True, 'eng name'),
     ('Invalid no csa,eng', False, 'manufacturer', True, 1, True, None, None, False, None),
-    ('Invalid manu too long', False, LONG_MANUFACTURER, True, 1, True, 'csa num', 'csas', True, 'eng name'),
+    ('Invalid manu too long', False, MANUFACTURER_MAX_LENGTH + 'X', True, 1, True, 'csa num', 'csas', True, 'eng name'),
     ('Invalid csa num too long', False, 'manufacturer', True, 1, True, '01234567890', 'csas', True, 'eng name'),
     ('Invalid csa standard too long', False, 'manufacturer', True, 1, True, '0123456789', '12345', True, 'eng name'),
-    ('Invalid eng name too long', False, 'manufacturer', True, 1, True, '012345678', 'csas', True, LONG_ENG_NAME)
+    ('Invalid eng name too long', False, 'manufacturer', True, 1, True, '012345678', 'csas', True, LONG_ENG_NAME + 'X')
 ]
 # testdata pattern is ({desc}, {valid}, {rebuilt}, {other})
 TEST_REMARKS_DATA_DESC = [

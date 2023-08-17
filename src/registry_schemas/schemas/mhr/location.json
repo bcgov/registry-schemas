@@ -18,12 +18,12 @@
         },
         "parkName": {
             "type": [ "string", "null" ],
-             "maxLength": 40,
+             "maxLength": 100,
             "description": "The name of the location park."
         },
        "pad": {
             "type": [ "string", "null" ],
-            "maxLength": 6,
+            "maxLength": 10,
             "description": "The location pad (?)."
         },
         "address": {
@@ -49,17 +49,17 @@
         },
         "exceptionPlan": {
             "type": [ "string", "null" ],
-            "maxLength": 80,
+            "maxLength": 150,
             "description": "Exception plan number or description."
         },
         "dealerName": {
             "type": [ "string", "null" ],
-            "maxLength": 60,
+            "maxLength": 310,
             "description": "The name of the manufacured home dealer."
         },
         "additionalDescription": {
             "type": [ "string", "null" ],
-            "maxLength": 80,
+            "maxLength": 250,
             "description": "Additional location information."
         },
         "legalDescription": {
