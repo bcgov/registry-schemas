@@ -37,6 +37,12 @@
             "enum": ["TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL"],
             "description": "<p><ol><li>TRAND - transfer due to the death of a joint tenant</li><li>TRANS - transfer sale or gift</li><li>TRANS_AFFIDAVIT - transfer due to death affidavit of executor</li><li>TRANS_ADMIN - transfer due to death letter of administrator</li><li>TRANS_WILL - transfer due to death probate of will.</li></ol></p>"
         },
+        "transferDocumentType": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": ["TRANS_LAND_TITLE", "TRANS_FAMILY_ACT", "TRANS_INFORMAL_SALE", "TRANS_QUIT_CLAIM", "TRANS_SEVER_GRANT", "TRANS_RECEIVERSHIP", "TRANS_TRUST", "TRANS_LANDLORD"],
+            "description": "<p>An optional sub-type that only applies to a transfer due to sale or gift registration. It should only be included when the registration type is TRANS. One of TRANS_LAND_TITLE (LAND TITLE TRANSFER), TRANS_FAMILY_ACT (FAMILY MAINTENANCE ACT), TRANS_INFORMAL_SALE (INFORMAL BILL OF SALE), TRANS_QUIT_CLAIM (QUIT CLAIM TRANSFER), TRANS_SEVER_GRANT (SEVERING/GRANTING JOINT TENANCY), TRANS_RECEIVERSHIP (RECEIVERSHIP TRANSFER), TRANS_TRUST (TRANSFER TO TRUST), or TRANS_LANDLORD (SEIZURE AND SALE BY LANDLORD).</p>"
+        },
         "clientReferenceId": {
             "type": [ "string", "null" ],
             "maxLength": 50,
