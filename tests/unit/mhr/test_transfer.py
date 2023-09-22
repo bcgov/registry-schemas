@@ -83,6 +83,19 @@ TEST_DATA_REG_TYPE = [
     ('Valid TRANS_WILL', True,  'TRANS_WILL'),
     ('Invalid type', False,  'MH_REG')
 ]
+# testdata pattern is ({desc},{valid},{doc_type})
+TEST_DATA_DOC_TYPE = [
+    ('Valid no type', True,  None),
+    ('Valid TRANS_LAND_TITLE', True,  'TRANS_LAND_TITLE'),
+    ('Valid TRANS_FAMILY_ACT', True,  'TRANS_FAMILY_ACT'),
+    ('Valid TRANS_INFORMAL_SALE', True,  'TRANS_INFORMAL_SALE'),
+    ('Valid TRANS_QUIT_CLAIM', True,  'TRANS_QUIT_CLAIM'),
+    ('Valid TRANS_SEVER_GRANT', True,  'TRANS_SEVER_GRANT'),
+    ('Valid TRANS_RECEIVERSHIP', True,  'TRANS_RECEIVERSHIP'),
+    ('Valid TRANS_TRUST', True,  'TRANS_TRUST'),
+    ('Valid TRANS_LANDLORD', True,  'TRANS_LANDLORD'),
+    ('Invalid type', False,  'WILL')
+]
 
 
 @pytest.mark.parametrize('desc,valid,sub_party,add,delete,is_request,client_ref', TEST_DATA)
@@ -164,6 +177,29 @@ def test_transfer_reg_type(desc, valid, reg_type):
     del data['documentDescription']
     if reg_type:
         data['registrationType'] = reg_type
+
+    is_valid, errors = validate(data, 'transfer', 'mhr')
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,doc_type', TEST_DATA_DOC_TYPE)
+def test_transfer_doc_type(desc, valid, doc_type):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(TRANSFER)
+    del data['createDateTime']
+    del data['payment']
+    del data['mhrNumber']
+    del data['documentId']
+    del data['documentDescription']
+    if doc_type:
+        data['registrationType'] = 'TRANS'
+        data['transferDocumentType'] = doc_type
+    elif data.get('registrationType'):
+        del data['registrationType']
 
     is_valid, errors = validate(data, 'transfer', 'mhr')
 
