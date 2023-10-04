@@ -7,7 +7,7 @@
         "documentType": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 10,
+            "maxLength": 20,
             "description": "The note document type code."
         },
        "documentId": {
@@ -61,7 +61,7 @@
         "cancelledDocumentType": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 10,
+            "maxLength": 20,
             "description": "Conditionally included with the NCAN document type as the document type for the unit note registration that has been cancelled."
         },
         "cancelledDocumentDescription": {

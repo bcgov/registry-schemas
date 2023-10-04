@@ -53,14 +53,21 @@ TEST_DATA_OWNER_PARTY_TYPE = [
     (True, 'ADMINISTRATOR', 'ADMINISTRATOR'),
     (False, 'JUNK', None)
 ]
-# testdata pattern is ({valid}, {party_type}, {cert_number}, {death_ts})
-TEST_DATA_DEATH_CERTIFICATE = [
-    (True, 'OWNER_BUS', None, None),
-    (True, 'OWNER_IND', None, None),
-    (True, 'OWNER_BUS', '01234567890123456789', '2021-02-21T18:56:00+00:00'),
-    (True, 'OWNER_IND', '01234567890123456789', '2021-02-21T18:56:00+00:00'),
-    (False, 'OWNER_BUS', '012345678901234567891', '2021-02-21T18:56:00+00:00'),
-    (False, 'OWNER_IND', '012345678901234567891', '2021-02-21T18:56:00+00:00')
+# testdata pattern is ({valid}, {party_type}, {cert_number}, {death_ts}, {death_corp_num})
+TEST_DATA_DEATH = [
+    (True, 'OWNER_BUS', None, None, None),
+    (True, 'OWNER_IND', None, None, None),
+    (True, 'OWNER_BUS', None, '2021-02-21T18:56:00+00:00', '01234567890123456789'),
+    (True, 'OWNER_IND', '01234567890123456789', '2021-02-21T18:56:00+00:00', None),
+    (False, 'OWNER_BUS', None, '2021-02-21T18:56:00+00:00', '012345678901234567891'),
+    (False, 'OWNER_IND', '012345678901234567891', '2021-02-21T18:56:00+00:00', None)
+]
+# testdata pattern is ({valid}, {party_type}, {corp_num})
+TEST_DATA_CORP_NUM = [
+    (True, 'OWNER_BUS',  None),
+    (True, 'OWNER_IND', None),
+    (True, 'OWNER_BUS', '01234567890123456789'),
+    (False, 'OWNER_BUS', '012345678901234567891')
 ]
 
 
@@ -120,8 +127,8 @@ def test_owner_party_type(valid, party_type, party_desc):
         assert not is_valid
 
 
-@pytest.mark.parametrize('valid,party_type,cert_number,death_ts', TEST_DATA_DEATH_CERTIFICATE)
-def test_owner_death_cert(valid, party_type, cert_number, death_ts):
+@pytest.mark.parametrize('valid,party_type,cert_number,death_ts,death_corp_num', TEST_DATA_DEATH)
+def test_owner_death_cert(valid, party_type, cert_number, death_ts, death_corp_num):
     """Assert that the schema is performing as expected."""
     data = copy.deepcopy(OWNER)
     if party_type:
@@ -134,7 +141,32 @@ def test_owner_death_cert(valid, party_type, cert_number, death_ts):
         data['deathDateTime'] = death_ts
     elif data.get('deathDateTime'):
         del data['deathDateTime']
+    if death_corp_num:
+        data['deathCorpNumber'] = death_corp_num
+    elif data.get('deathCorpNumber'):
+        del data['deathCorpNumber']
+    is_valid, errors = validate(data, 'owner', 'mhr')
 
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('valid,party_type,corp_num', TEST_DATA_CORP_NUM)
+def test_owner_corp_num(valid, party_type, corp_num):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(OWNER)
+    if party_type:
+        data['partyType'] = party_type
+    if corp_num:
+        data['corpNumber'] = corp_num
+    elif data.get('corpNumber'):
+        del data['corpNumber']
     is_valid, errors = validate(data, 'owner', 'mhr')
 
     if errors:
