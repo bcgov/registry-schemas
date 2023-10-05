@@ -100,7 +100,7 @@
         "frozenDocumentType": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 10,
+            "maxLength": 20,
             "description": "If the status is FROZEN, frozenDocumentType is conditionally included in the response as the document type of the registration that put the home in a frozen or locked state."
         },
         "payment": {

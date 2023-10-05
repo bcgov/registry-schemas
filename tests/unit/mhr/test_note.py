@@ -34,7 +34,7 @@ TEST_DATA_NOTE = [
     ('Valid empty remarks', True, 'type', '123456', True, True, ' ', 'contact', ADDRESS),
     ('Valid no remarks', True, 'type', '123456', True, True, None, 'contact', ADDRESS),
     ('Invalid no type', False, None, '123456', True, True, 'remarks', 'contact', ADDRESS),
-    ('Invalid type too long', False, '01234567891', '123456', True, True, 'remarks', 'contact', ADDRESS),
+    ('Invalid type too long', False, '012345678901234567891', '123456', True, True, 'remarks', 'contact', ADDRESS),
     ('Invalid doc id too long', False, '1234', '123456789', True, True, 'remarks', 'contact', ADDRESS),
     ('Invalid contact too long', False, '1234', '123456', True, True, 'remarks', LONG_NAME, ADDRESS)
 ]

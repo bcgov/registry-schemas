@@ -63,6 +63,16 @@
             "type": "string",
             "format": "date-time",
             "description": "Include only for transfer due to death registration types when the owner in the deleteOwnerGroups is deceased. Must be in the past when the registration is submitted."
+        },
+        "corpNumber": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Optional business company number. Include in a request if available and the added owner is a business/organziation."
+        },
+        "deathCorpNumber": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Include only for transfer due to death registration types when the owner is in the deleteOwnerGroups, not added, and is a business/organization."
         }
     },
     "oneOf":[
