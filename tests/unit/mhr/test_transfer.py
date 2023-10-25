@@ -94,6 +94,17 @@ TEST_DATA_DOC_TYPE = [
     ('Valid TRANS_RECEIVERSHIP', True,  'TRANS_RECEIVERSHIP'),
     ('Valid TRANS_TRUST', True,  'TRANS_TRUST'),
     ('Valid TRANS_LANDLORD', True,  'TRANS_LANDLORD'),
+    ('Valid TRANS_WRIT_SEIZURE', True,  'TRANS_WRIT_SEIZURE'),
+    ('Valid ABAN', True,  'ABAN'),
+    ('Valid COU', True,  'COU'),
+    ('Valid BANK', True,  'BANK'),
+    ('Valid FORE', True,  'FORE'),
+    ('Valid GENT', True,  'GENT'),
+    ('Valid REIV', True,  'REIV'),
+    ('Valid REPV', True,  'REPV'),
+    ('Valid SZL', True,  'SZL'),
+    ('Valid TAXS', True,  'TAXS'),
+    ('Valid VEST', True,  'VEST'),
     ('Invalid type', False,  'WILL')
 ]
 
