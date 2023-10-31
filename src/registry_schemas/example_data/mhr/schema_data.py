@@ -1040,6 +1040,26 @@ PERMIT = {
     'remarks': 'test',
     'expiryDateTime': '2022-11-21T08:00:00+00:00'
   },
+  'description': {
+    'manufacturer': 'STARLINE',
+    'baseInformation': {
+      'year': 2018,
+      'make': 'WATSON IND. (ALTA)',
+      'model': 'DUCHESS'
+    },
+    'sectionCount': 1,
+    'sections': [
+      {
+        'serialNumber': '52D70556',
+        'lengthFeet': 52,
+        'lengthInches': 0,
+        'widthFeet': 12,
+        'widthInches': 0
+      }
+    ],
+    'csaNumber': '786356',
+    'csaStandard': 'Z240'
+  },
   'submittingParty': {
     'businessName': 'BOB PATERSON HOMES INC.',
     'address': {
@@ -1051,30 +1071,6 @@ PERMIT = {
     },
     'phoneNumber': '6044620279',
     'emailAddress': 'bphomes@bphomes.com'
-  },
-  'owner': {
-    'organizationName': 'BOB PATERSON HOMES INC.',
-    'address': {
-      'street': '1200 S. MACKENZIE AVE.',
-      'city': 'WILLIAMS LAKE',
-      'region': 'BC',
-      'country': 'CA',
-      'postalCode': 'V2G 3Y1'
-    },
-    'phoneNumber': '6044620279'
-  },
-  'existingLocation': {
-    'locationType': 'MANUFACTURER',
-    'address': {
-      'street': '1200 S. MACKENZIE AVE.',
-      'city': 'WILLIAMS LAKE',
-      'region': 'BC',
-      'country': 'CA',
-      'postalCode': 'V2G 3Y1'
-    },
-    'leaveProvince': False,
-    'taxCertificate': False,
-    'dealerName': 'CHAMPION CANADA INTERNATIONAL ULC - MODULINE INDUSTRIES'
   },
   'newLocation': {
     'locationType': 'STRATA',
