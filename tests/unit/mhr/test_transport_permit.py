@@ -21,20 +21,18 @@ from registry_schemas.example_data.mhr import PERMIT
 
 
 LONG_CLIENT_REF = '012345678901234567890123456789012345678901234567890'
-# testdata pattern is ({desc},{valid},{sub_party},{owner},{existing},{new},{is_request},{client_ref})
+# testdata pattern is ({desc},{valid},{sub_party},{new},{is_request},{client_ref})
 TEST_DATA = [
-    ('Valid request', True, True, True, True, True, True, None),
-    ('Valid response', True, True, True, True, True, False, '1234'),
-    ('Invalid client ref', False, True, True, True, True, True, LONG_CLIENT_REF),
-    ('Invalid missing sub party', False, False, True, True, True, True, '1234'),
-    ('Invalid missing owner', False, True, False, True, True, True, '1234'),
-    ('Invalid missing existing location', False, True, True, False, True, True, ''),
-    ('Invalid missing new location', False, True, True, True, False, True, ''),
+    ('Valid request', True, True, True, True, None),
+    ('Valid response', True, True, True, False, '1234'),
+    ('Invalid client ref', False, True, True, True, LONG_CLIENT_REF),
+    ('Invalid missing sub party', False, False, True, True, '1234'),
+    ('Invalid missing new location', False, True, False, True, ''),
 ]
 
 
-@pytest.mark.parametrize('desc,valid,sub_party,owner,existing,new,is_request,client_ref', TEST_DATA)
-def test_permit(desc, valid, sub_party, owner, existing, new, is_request, client_ref):
+@pytest.mark.parametrize('desc,valid,sub_party,new,is_request,client_ref', TEST_DATA)
+def test_permit(desc, valid, sub_party, new, is_request, client_ref):
     """Assert that the schema is performing as expected."""
     data = copy.deepcopy(PERMIT)
     if not sub_party:
@@ -52,12 +50,9 @@ def test_permit(desc, valid, sub_party, owner, existing, new, is_request, client
         del data['documentRegistrationNumber']
         del data['registrationType']
         del data['note']
+        del data['description']
     else:
         del data['landStatusConfirmation']
-    if not owner:
-        del data['owner']
-    if not existing:
-        del data['existingLocation']
     if not new:
         del data['newLocation']
     is_valid, errors = validate(data, 'permit', 'mhr')
