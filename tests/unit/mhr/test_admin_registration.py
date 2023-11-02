@@ -27,7 +27,7 @@ TEST_DATA = [
     ('Valid request NRED', True, 'NRED', True, True, None, None),
     ('Valid request NCAN', True, 'NCAN', True, True, None, None),
     ('Valid request REGC', True, 'REGC', True, True, None, None),
-    ('Valid request CHANGE_LOCATION', True, 'CHANGE_LOCATION', True, True, None, None),
+    ('Valid request STAT', True, 'STAT', True, True, None, None),
     ('Valid response', True, 'THAW', True, False, '1234', 'JOHN SMITH'),
     ('Invalid client ref', False, 'NRED', True, True, LONG_CLIENT_REF, None),
     ('Invalid attention', False, 'EXRE', True, True, None, LONG_CLIENT_REF),
@@ -63,7 +63,7 @@ def test_note_registration(desc, valid, doc_type, has_sub, is_request, client_re
         del data['registrationType']
     if desc == 'Invalid update doc id':
         data['updateDocumentId'] = '123456789'
-    elif desc in ('Valid request REGC', 'Valid request CHANGE_LOCATION'):
+    elif desc in ('Valid request REGC', 'Valid request STAT'):
         data['location'] = copy.deepcopy(LOCATION)
     is_valid, errors = validate(data, 'adminRegistration', 'mhr')
 

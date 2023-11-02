@@ -52,7 +52,7 @@
         "documentType": {
             "type": "string",
             "maxLength": 20 ,
-            "enum": ["ADDI", "ATTA", "CHANGE_LOCATION", "COMP", "CONF", "COUR", "DNCH", "EXRE", "FZE", "INTE", "INTW", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "NCAN", "NRED", "PDEC", "PUBA", "REBU", "REGC", "REIV", "REPV", "WHAL", "THAW"]
+            "enum": ["ADDI", "ATTA", "COMP", "CONF", "COUR", "DNCH", "EXRE", "FZE", "INTE", "INTW", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "NCAN", "NRED", "PDEC", "PUBA", "REBU", "REGC", "STAT", "THAW", "WHAL"]
         },
         "updateDocumentId": {
             "type": [ "string", "null" ],
