@@ -51,8 +51,8 @@
         },
         "documentType": {
             "type": "string",
-            "maxLength": 20,
-            "enum": ["COU", "COUR", "EXRE", "FZE", "NCAN", "NRED", "THAW", "ABAN", "ATTA", "ADDI", "BANK", "COMP", "CONF", "DNCH", "FORE", "GENT", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "PUBA", "REBU", "REIV", "REPV", "SZL", "TAXS", "VEST", "WHAL"]
+            "maxLength": 20 ,
+            "enum": ["ADDI", "ATTA", "COMP", "CONF", "COUR", "DNCH", "EXRE", "FZE", "INTE", "INTW", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "NCAN", "NRED", "PDEC", "PUBA", "REBU", "REGC", "STAT", "THAW", "WHAL"]
         },
         "updateDocumentId": {
             "type": [ "string", "null" ],
@@ -61,6 +61,19 @@
         },
         "note": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/note"
+        },
+        "ownerGroups": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/ownerGroup"
+            }
+        },
+        "location": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/location"
+        },
+        "description": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/description"
         },
         "payment": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"
