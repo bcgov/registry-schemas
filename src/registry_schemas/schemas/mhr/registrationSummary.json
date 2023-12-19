@@ -74,7 +74,7 @@
         "registrationType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "MHREG_CONVERSION", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL", "REG_STAFF_ADMIN"]
+            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "MHREG_CONVERSION", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL", "REG_STAFF_ADMIN", "AMENDMENT"]
         },
         "hasCaution": {
             "type": "boolean",

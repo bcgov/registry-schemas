@@ -34,7 +34,7 @@
         "registrationType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND"]
+            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "MHREG_CONVERSION", "AMENDMENT"]
         },
         "clientReferenceId": {
             "type": [ "string", "null" ],
@@ -66,6 +66,10 @@
         "landStatusConfirmation": {
             "type": "boolean",
             "description": "Set to true if either the new location type is MH_PARK and the move is not within the same park, or the new location type is STRATA, RESERVE, or OTHER."
+        },
+        "amendment": {
+            "type": "boolean",
+            "description": "True if the registration amends an existing transport permit location."
         },
         "payment": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"

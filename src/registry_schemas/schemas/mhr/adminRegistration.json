@@ -29,7 +29,7 @@
         "registrationType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "MHREG_CONVERSION", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL", "REG_STAFF_ADMIN"]
+            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "MHREG_CONVERSION", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL", "REG_STAFF_ADMIN", "AMENDMENT"]
         },
         "clientReferenceId": {
             "type": [ "string", "null" ],
@@ -52,7 +52,7 @@
         "documentType": {
             "type": "string",
             "maxLength": 20 ,
-            "enum": ["ADDI", "ATTA", "COMP", "CONF", "COUR", "DNCH", "EXRE", "FZE", "INTE", "INTW", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "NCAN", "NRED", "PDEC", "PUBA", "REBU", "REGC", "STAT", "THAW", "WHAL"]
+            "enum": ["ADDI", "ATTA", "COMP", "CONF", "COUR", "DNCH", "EXRE", "FZE", "INTE", "INTW", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "NCAN", "NRED", "PDEC", "PUBA", "REBU", "REGC", "STAT", "THAW", "WHAL", "AMEND_PERMIT", "CANCEL_PERMIT"]
         },
         "updateDocumentId": {
             "type": [ "string", "null" ],

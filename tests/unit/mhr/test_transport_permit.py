@@ -24,6 +24,8 @@ LONG_CLIENT_REF = '012345678901234567890123456789012345678901234567890'
 # testdata pattern is ({desc},{valid},{sub_party},{new},{is_request},{client_ref})
 TEST_DATA = [
     ('Valid request', True, True, True, True, None),
+    ('Valid amendment request', True, True, True, True, None),
+    ('Valid amendment response', True, True, True, True, None),
     ('Valid response', True, True, True, False, '1234'),
     ('Invalid client ref', False, True, True, True, LONG_CLIENT_REF),
     ('Invalid missing sub party', False, False, True, True, '1234'),
@@ -35,6 +37,11 @@ TEST_DATA = [
 def test_permit(desc, valid, sub_party, new, is_request, client_ref):
     """Assert that the schema is performing as expected."""
     data = copy.deepcopy(PERMIT)
+    if desc == 'Valid amendment request':
+        data['amendment'] = True
+    elif desc == 'Valid amendment response':
+        data['amendment'] = True
+        data['registrationType'] = 'AMENDMENT'
     if not sub_party:
         del data['submittingParty']
     if client_ref:
