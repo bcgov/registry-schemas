@@ -34,7 +34,7 @@
         "registrationType": {
             "type": "string",
             "maxLength": 20,
-            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "MHREG_CONVERSION", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL", "REG_STAFF_ADMIN"]
+            "enum": ["DECAL_REPLACE", "EXEMPTION_RES", "EXEMPTION_NON_RES", "MHREG", "MHREG_CONVERSION", "PERMIT", "PERMIT_EXTENSION", "TRANS", "TRAND", "TRANS_AFFIDAVIT", "TRANS_ADMIN", "TRANS_WILL", "REG_STAFF_ADMIN", "AMENDMENT"]
         },
         "status": {
             "type": [ "string", "null" ],
@@ -102,6 +102,27 @@
             "minLength": 1,
             "maxLength": 20,
             "description": "If the status is FROZEN, frozenDocumentType is conditionally included in the response as the document type of the registration that put the home in a frozen or locked state."
+        },
+        "permitStatus": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": ["ACTIVE", "EXPIRED", "CANCELLED"],
+            "description": "The status of the most recent transport permit registration."
+        },
+        "permitRegistrationNumber": {
+            "type": "string",
+            "maxLength": 8,
+            "description": "The document registration number of the most recent transport permit registration."
+        },
+        "permitDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The timestamp of the most recent transport permit registration."
+        },
+        "permitExpiryDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The expiry timestamp of the most recent transport permit registration."
         },
         "payment": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/paymentReference"

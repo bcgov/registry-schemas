@@ -64,6 +64,7 @@ PPR_REG_EMPTY = []
 
 LONG_CLIENT_REF = '012345678901234567890123456789012345678901234567890'
 LONG_ATTENTION_REF = LONG_CLIENT_REF
+TEST_TS = '2024-01-31T08:00:00+00:00'
 
 # testdata pattern is ({desc},{valid},{mhr},{status},{rev},{decv},{haso},{hasl},{hasd},{hasn},{hasdt},{hasp})
 TEST_DATA_REG = [
@@ -135,6 +136,14 @@ TEST_DATA_OWN_LAND = [
     ('Valid True', True, True),
     ('Invalid data type int', False, 20),
     ('Invalid data type str', False, 'junk')
+]
+# testdata pattern is ({desc}, {valid}, {status}, {reg_num})
+TEST_DATA_PERMIT = [
+    ('Valid', True, 'ACTIVE', '88888888'),
+    ('Valid expired', True, 'ACTIVE', '88888888'),
+    ('Valid cancelled', True, 'ACTIVE', '88888888'),
+    ('Invalid status', False, 'JUNK', '88888888'),
+    ('Invalid reg number', False, 'ACTIVE', '888888889')
 ]
 
 
@@ -240,6 +249,22 @@ def test_registration_own_land(desc, valid, value):
     data = copy.deepcopy(REGISTRATION)
     data['ownLand'] = value
 
+    is_valid, errors = validate(data, 'registration', 'mhr')
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,status,reg_num', TEST_DATA_PERMIT)
+def test_registration_permit(desc, valid, status, reg_num):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(REGISTRATION)
+    data['permitStatus'] = status
+    data['permitRegistrationNumber'] = reg_num
+    data['permitDateTime'] = TEST_TS
+    data['permitExpiryDateTime'] = TEST_TS
     is_valid, errors = validate(data, 'registration', 'mhr')
 
     if valid:
