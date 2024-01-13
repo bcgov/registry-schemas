@@ -17,16 +17,18 @@ import copy
 import pytest
 
 from registry_schemas import validate
-from registry_schemas.example_data.mhr import ADMIN_REGISTRATION, LOCATION
+from registry_schemas.example_data.mhr import ADMIN_REGISTRATION, DESCRIPTION, LOCATION, OWNER_GROUP
 
 
 LONG_CLIENT_REF = '012345678901234567890123456789012345678901234567890'
+OWNER_GROUPS = [
+    OWNER_GROUP
+]
 # testdata pattern is ({desc},{valid},{doc_type},{has_submitting},{is_request},{client_ref}, {attention})
 TEST_DATA = [
     ('Valid request COUR', True, 'COUR', True, True, None, None),
     ('Valid request NRED', True, 'NRED', True, True, None, None),
     ('Valid request NCAN', True, 'NCAN', True, True, None, None),
-    ('Valid request REGC', True, 'REGC', True, True, None, None),
     ('Valid request STAT', True, 'STAT', True, True, None, None),
     ('Valid request CANCEL_PERMIT', True, 'CANCEL_PERMIT', True, True, None, None),
     ('Valid response CANCEL_PERMIT', True, 'CANCEL_PERMIT', True, True, None, None),
@@ -38,10 +40,28 @@ TEST_DATA = [
     ('Invalid missing sub party', False, 'NRED', False, True, None, None),
     ('Invalid update doc id', False, 'NRED', True, True, None, None)
 ]
+# testdata pattern is ({desc},{valid},{doc_type},{status},{location},{description}, {owner_group})
+TEST_DATA_AMEND_CORRECT = [
+    ('Valid amendment location', True, 'PUBA', None, LOCATION, None, None),
+    ('Valid staff correction location', True, 'REGC_STAFF', None, LOCATION, None, None),
+    ('Valid client correction location', True, 'REGC_CLIENT', None, LOCATION, None, None),
+    ('Valid amendment description', True, 'PUBA', None, None, DESCRIPTION, None),
+    ('Valid staff correction description', True, 'REGC_STAFF', None, None, DESCRIPTION, None),
+    ('Valid client correction description', True, 'REGC_CLIENT', None, None, DESCRIPTION, None),
+    ('Valid amendment owners', True, 'PUBA', None, None, None, OWNER_GROUPS),
+    ('Valid staff correction owners', True, 'REGC_STAFF', None, None, None, OWNER_GROUPS),
+    ('Valid client correction owners', True, 'REGC_CLIENT', None, None, None, OWNER_GROUPS),
+    ('Valid amendment status', True, 'PUBA', 'ACTIVE', None, None, None),
+    ('Valid staff correction status', True, 'REGC_STAFF', 'EXEMPT', None, None, None),
+    ('Invalid client correction status', False, 'REGC_CLIENT', 'JUNK', None, None, None),
+    ('Invalid client correction location', False, 'REGC_CLIENT', None, LOCATION, None, None),
+    ('Invalid staff correction description', False, 'REGC_STAFF', None, None, DESCRIPTION, None),
+    ('Invalid amendment owners', False, 'PUBA', None, None, None, OWNER_GROUPS),
+]
 
 
 @pytest.mark.parametrize('desc,valid,doc_type,has_sub,is_request,client_ref,attention', TEST_DATA)
-def test_note_registration(desc, valid, doc_type, has_sub, is_request, client_ref, attention):
+def test_admin_registration(desc, valid, doc_type, has_sub, is_request, client_ref, attention):
     """Assert that the staff admin registration schema is performing as expected."""
     data = copy.deepcopy(ADMIN_REGISTRATION)
     if not doc_type:
@@ -65,12 +85,59 @@ def test_note_registration(desc, valid, doc_type, has_sub, is_request, client_re
         del data['registrationType']
     if desc == 'Invalid update doc id':
         data['updateDocumentId'] = '123456789'
-    elif desc in ('Valid request REGC', 'Valid request STAT',
-                  'Valid request CANCEL_PERMIT', 'Valid response CANCEL_PERMIT'):
+    elif desc in ('Valid request STAT',
+                  'Valid request CANCEL_PERMIT',
+                  'Valid response CANCEL_PERMIT'):
         data['location'] = copy.deepcopy(LOCATION)
         if desc in ('Valid request CANCEL_PERMIT', 'Valid response CANCEL_PERMIT'):
             data['documentType'] = 'CANCEL_PERMIT'
             data['registrationType'] = 'REG_STAFF_ADMIN'
+    is_valid, errors = validate(data, 'adminRegistration', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,doc_type,status,location,description,owner_group', TEST_DATA_AMEND_CORRECT)
+def test_admin_amend_correct(desc, valid, doc_type, status, location, description, owner_group):
+    """Assert that the staff admin registration schema is performing as expected for amendments/corrections."""
+    data = copy.deepcopy(ADMIN_REGISTRATION)
+    data['documentType'] = doc_type
+    del data['mhrNumber']
+    del data['createDateTime']
+    del data['payment']
+    del data['registrationType']
+    if status:
+        data['status'] = status
+    if location:
+        if valid:
+            data['location'] = location
+        else:
+            bad_location = copy.deepcopy(location)
+            del bad_location['locationType']
+            data['location'] = bad_location
+    if description:
+        if valid:
+            data['description'] = description
+        else:
+            bad_desc = copy.deepcopy(description)
+            del bad_desc['sections']
+            data['description'] = bad_desc
+    if owner_group:
+        data['deleteOwnerGroups'] = owner_group
+        if valid:
+            data['addOwnerGroups'] = owner_group
+        else:
+            bad_owners = copy.deepcopy(owner_group)
+            del bad_owners[0]['type']
+            data['addOwnerGroups'] = bad_owners
+
     is_valid, errors = validate(data, 'adminRegistration', 'mhr')
 
     if errors:

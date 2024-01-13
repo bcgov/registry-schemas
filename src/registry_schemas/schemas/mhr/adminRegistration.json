@@ -10,6 +10,12 @@
             "maxLength": 6,
             "description": "Unique manufactured home registration number assigned by the Manufactured Home Registry when a registration is created."
         },
+        "status": {
+            "type": [ "string", "null" ],
+            "maxLength": 20,
+            "enum": ["ACTIVE", "EXEMPT", "FROZEN", "CANCELLED"],
+            "description": "The status of the registration. ACTIVE - registered; FROZEN; EXEMPT;CANCELLED - cancelled. FROZEN is a temporary state where only BC Registries staff can make a change to the manufactured home."
+        },
         "documentId": {
             "type": [ "string", "null" ],
             "maxLength": 8,
@@ -52,7 +58,7 @@
         "documentType": {
             "type": "string",
             "maxLength": 20 ,
-            "enum": ["ADDI", "ATTA", "COMP", "CONF", "COUR", "DNCH", "EXRE", "FZE", "INTE", "INTW", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "NCAN", "NRED", "PDEC", "PUBA", "REBU", "REGC", "STAT", "THAW", "WHAL", "AMEND_PERMIT", "CANCEL_PERMIT"]
+            "enum": ["ADDI", "ATTA", "COMP", "CONF", "COUR", "DNCH", "EXRE", "FZE", "INTE", "INTW", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "NCAN", "NRED", "PDEC", "PUBA", "REBU", "REGC", "REGC_CLIENT", "REGC_STAFF", "STAT", "THAW", "WHAL", "AMEND_PERMIT", "CANCEL_PERMIT"]
         },
         "updateDocumentId": {
             "type": [ "string", "null" ],
@@ -62,7 +68,14 @@
         "note": {
             "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/note"
         },
-        "ownerGroups": {
+        "deleteOwnerGroups": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/ownerGroup"
+            }
+        },
+        "addOwnerGroups": {
             "type": "array",
             "minItems": 1,
             "items": {
