@@ -31,6 +31,11 @@
             "maxLength": 100,
             "description": "Included in a response as a description of the registration report document."
         },
+        "documentType": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Conditionally included in a response to support internal registration report generation."
+        },
         "registrationType": {
             "type": "string",
             "maxLength": 20,
