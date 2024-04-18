@@ -35,7 +35,6 @@ TEST_DATA = [
     ('Valid LIEN minimal', True, 'LIEN', None, False, None),
     ('Invalid notice type', False, 'JUNK', '2024-04-12T06:59:59-07:00', True, True),
     ('Invalid no notice type', False, None, '2024-04-12T06:59:59-07:00', True, True),
-#    ('Invalid effectiveDateTime', False, 'LIEN', 'XXXXXXXXXXXX', True, None),
     ('Invalid missing courtOrder', False, 'LIEN', None, True, None)
 ]
 
