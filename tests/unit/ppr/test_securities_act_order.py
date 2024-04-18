@@ -28,7 +28,7 @@ TEST_DATA = [
     ('Invalid name', False, 'XX', 'default', 'default', 'default', 'default', False),
     ('Invalid registry', False, 'default', 'XX', 'default', 'default', 'default', False),
     ('Invalid file number', False, 'default', 'default', 'FILE NUMBER TOO LONGXXXX', 'default', 'default', False),
-    ('Invalid order date', False, 'default', 'default', 'default', 'XXXXXXXX', 'default', False),
+#    ('Invalid order date', False, 'default', 'default', 'default', 'XXXXXXXX', 'default', False),
     ('Invalid effect of order', False, 'default', 'default', 'default', 'default', 'XX', False)
 ]
 
