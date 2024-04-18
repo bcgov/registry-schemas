@@ -22,6 +22,8 @@ from registry_schemas.example_data.mhr import ADDRESS, NOTE
 
 # testdata pattern is ({desc},{valid},{type},{doc_id},{has_create},{has_expiry},{remarks},{contact_name},{address})
 LONG_NAME = '012345678901234567890123456789012345678901234567890'
+OTHER_MAX = '01234567890123456789012345678901234567890123456789' + \
+            '01234567890123456789012345678901234567890123456789' + '0123456789012345678901234'
 TEST_DATA_NOTE = [
     ('Valid all', True, 'type', '123456', True, True, 'remarks', 'contact', ADDRESS),
     ('Valid no expiry', True, 'type', '123456', True, False, 'remarks', 'contact', ADDRESS),
@@ -38,6 +40,18 @@ TEST_DATA_NOTE = [
     ('Invalid doc id too long', False, '1234', '123456789', True, True, 'remarks', 'contact', ADDRESS),
     ('Invalid contact too long', False, '1234', '123456', True, True, 'remarks', LONG_NAME, ADDRESS)
 ]
+# testdata pattern is ({valid},{reason},{other})
+TEST_DATA_NON_RES_REASON = [
+    (True, 'BURNT', None),
+    (True, 'DISMANTLED', None),
+    (True, 'DILAPIDATED', None),
+    (True, 'OFFICE', None),
+    (True, 'STORAGE_SHED', None),
+    (True, 'BUNKHOUSE', None),
+    (True, 'OTHER', OTHER_MAX),
+    (False, 'JUNK', None),
+    (False, 'OTHER', OTHER_MAX + 'X')
+ ]
 
 
 @pytest.mark.parametrize('desc,valid,type,doc_id,has_create,has_expiry,remarks,contact,address', TEST_DATA_NOTE)
@@ -81,3 +95,13 @@ def test_note(desc, valid, type, doc_id, has_create, has_expiry, remarks, contac
         assert is_valid
     else:
         assert not is_valid
+
+
+@pytest.mark.parametrize('valid,reason,other', TEST_DATA_NON_RES_REASON)
+def test_non_res_reason(valid, reason, other):
+    """Assert that non residential note properties are performing as expected."""
+    data = copy.deepcopy(NOTE)
+    data['documentType'] = 'EXNR'
+    data['nonResidentialReason'] = reason
+    if other:
+        data['nonResidentialOther'] = other

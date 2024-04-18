@@ -21,7 +21,7 @@
                 },
                 "registrationType": {
                     "type": "string",
-                    "enum": ["SA", "RL", "FR", "LT", "MH", "SG", "FL", "FA", "FS", "MR", "AM", "CO", "AC", "DR", "DT", "PD", "ST", "SU"],
+                    "enum": ["SA", "RL", "FR", "LT", "MH", "SG", "FL", "FA", "FS", "MR", "AM", "CO", "AC", "DR", "DT", "PD", "ST", "SU", "SE"],
                     "description": "For a Financing Statement the draft type value. For a Change Statement and an Amendment Statement the changeType value."
                 },
                 "documentId": {

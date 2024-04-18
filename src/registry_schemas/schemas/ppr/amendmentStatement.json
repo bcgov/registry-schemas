@@ -106,6 +106,18 @@
                 "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/generalCollateral"
             }
         },
+        "deleteSecuritiesActNotices": {
+            "type": [ "array", "null" ],
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/securitiesActNotice"
+            }
+        },
+        "addSecuritiesActNotices": {
+            "type": [ "array", "null" ],
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/securitiesActNotice"
+            }
+        },
         "createDateTime": {
             "type": "string",
             "format": "date-time",

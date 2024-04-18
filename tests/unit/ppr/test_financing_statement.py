@@ -20,6 +20,22 @@ from registry_schemas import validate
 from registry_schemas.example_data.ppr import FINANCING_STATEMENT
 
 
+SECURITIES_ACT_ORDERS = [
+    {
+        'courtName': 'Supreme Court of British Columbia.',
+        'courtRegistry': 'KAMLOOPS',
+        'fileNumber': 'BC123445',
+        'orderDate': '2024-02-02T00:00:00-08:00',
+        'effectOfOrder': 'Court Order to remove James Smith as debtor.',
+        'courtOrder': True
+    }
+]
+SECURITIES_ACT_NOTICE = {
+    'securitiesActNoticeType': 'LIEN',
+    'effectiveDateTime': '2024-02-02T00:00:00-08:00',
+    'description': 'TEST LIEN NOTICE TYPE',
+    'securitiesActOrders': SECURITIES_ACT_ORDERS
+}
 # testdata pattern is ({registration type}, {is valid})
 TEST_DATA_REG_TYPE = [
     ('CC', True),
@@ -63,6 +79,7 @@ TEST_DATA_REG_TYPE = [
     ('SC', True),
     ('SV', True),
     ('TO', True),
+    ('SE', True),
     ('XX', False),
 ]
 # testdata pattern is ({other type description}, {is valid})
@@ -70,6 +87,60 @@ TEST_DATA_OT = [
     ('0123456789012345678901234567890123456789012345678901234567890123456789', True),
     ('01234567890123456789012345678901234567890123456789012345678901234567890', False),
 ]
+# testdata pattern is ({desc}, {valid}, {reg_type}, {sec_type}, {has_orders}, {court_order})
+TEST_DATA_SEC_ACT = [
+    ('Valid LIEN', True, 'SE', 'LIEN', False, None),
+    ('Valid PRESERVATION', True, 'SE', 'PRESERVATION', True, True),
+    ('Valid PROCEEDINGS', True, 'SE', 'PROCEEDINGS', False, None),
+    ('Invalid order', False, 'SE', 'PROCEEDINGS', True, None),
+    ('Invalid SA type', False, 'SE', 'JUNK', False, None),
+    ('Invalid missing SA type', False, 'SE', None, False, None),
+    ('Invalid debtor name', False, 'SE', 'LIEN', False, None),
+    ('Invalid secured name', False, 'SE', 'LIEN', False, None),
+    ('Invalid missing collateral', False, 'SE', 'LIEN', False, None)
+]
+
+
+@pytest.mark.parametrize('desc,valid,reg_type,sec_type,has_orders,court_order', TEST_DATA_SEC_ACT)
+def test_financing_sec_act(desc, valid, reg_type, sec_type, has_orders, court_order):
+    """Assert the validation of a security act registration works as expected."""
+    statement = copy.deepcopy(FINANCING_STATEMENT)
+    statement['type'] = reg_type
+    statement['lifeInfinite'] = True
+    del statement['trustIndenture']
+    del statement['lienAmount']
+    del statement['surrenderDate']
+    del statement['createDateTime']
+    del statement['baseRegistrationNumber']
+    del statement['payment']
+    del statement['lifeYears']
+    notice = copy.deepcopy(SECURITIES_ACT_NOTICE)
+    if not sec_type:
+        del notice['securitiesActNoticeType']
+    else:
+        notice['securitiesActNoticeType'] = sec_type
+    if not has_orders:
+        del notice['securitiesActOrders']
+    elif not court_order:
+        del notice['securitiesActOrders'][0]['courtOrder']
+    statement['securitiesActNotices'] = [notice]
+    if desc == 'Invalid debtor name':
+        del statement['debtors'][0]['businessName']
+    elif desc == 'Invalid secured name':
+        del statement['securedParties'][0]['businessName']
+    elif desc == 'Invalid missing collateral':
+        del statement['vehicleCollateral']
+        del statement['generalCollateral']
+
+    is_valid, errors = validate(statement, 'financingStatement', 'ppr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
 
 
 @pytest.mark.parametrize('registration_type, valid', TEST_DATA_REG_TYPE)

@@ -1,0 +1,45 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/securitiesActOrder",
+    "type": "object",
+    "title": "The PPR Securities Act Order Information Schema",
+    "properties": {
+        "courtName": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 256,
+            "description": "The name of the court that issued the order."
+        },
+        "courtRegistry": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 64,
+            "description": "The location of the court that issued the order. If someone needs to request a copy of the order, this is where they will find it."
+        },
+        "fileNumber": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 20,
+            "description": "The court assigns each order a unique file number up to 20 characters in length."
+        },
+        "orderDate": {
+            "type": "string",
+            "description": "The date of the order as a timestamp in the ISO 8601 format YYYY-MM-DDThh:mm:ssTZD.",
+            "format": "date-time"
+        },
+        "effectOfOrder": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 512,
+            "description": "A brief note to explain the purpose of the order."
+        },
+        "courtOrder": {
+            "type": "boolean",
+            "description": "True if the order is a court order, otherwise false (commission order)."
+        }
+    },
+    "required": [
+        "courtOrder"
+    ]
+}

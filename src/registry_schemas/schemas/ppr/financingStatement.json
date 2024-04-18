@@ -8,8 +8,10 @@
         "type": {
             "type": "string",
             "maxLength": 2,
-            "enum": ["SA", "RL", "FR", "LT", "MH", "SG", "FL", "FA", "FS", "MR", "CC", "CT", "DP", "ET", "FO", "FT", "HR", "IP", "LO", "MI", "OT"
-                , "PG", "PS", "IT", "RA", "SS", "TL", "HN", "ML", "MN", "PN", "WL", "TF", "TA", "TG", "TM", "MD", "PT", "SC", "TO", "SV"],
+            "enum": ["SA", "RL", "FR", "LT", "MH", "SG", "FL", "FA", "FS", "MR", "CC", "CT", "DP", "ET", "FO", "FT"
+                , "HR", "IP", "LO", "MI", "OT"
+                , "PG", "PS", "IT", "RA", "SS", "TL", "HN", "ML", "MN", "PN", "WL", "TF", "TA", "TG", "TM", "MD", "PT"
+                , "SC", "TO", "SV", "SE"],
             "description": "Specifies the type of Financing Statement. Includes all legacy registration types."
         },
         "clientReferenceId": {
@@ -91,6 +93,12 @@
             "type": [ "string", "null" ],
             "format": "date-time",
             "description": "The date the vehicle was or will be surrendered to the owner in the ISO 8601 format YYYY-MM-DDThh:mm:ssTZD. When provided it must be within the past 21 days or a later date. Required when the type is RL, otherwise it should be absent."
+        },
+        "securitiesActNotices": {
+            "type": [ "array", "null" ],
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/ppr/securitiesActNotice"
+            }
         },
         "baseRegistrationNumber": {
             "type": "string",
