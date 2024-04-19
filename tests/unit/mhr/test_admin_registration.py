@@ -30,6 +30,8 @@ TEST_DATA = [
     ('Valid request NRED', True, 'NRED', True, True, None, None),
     ('Valid request NCAN', True, 'NCAN', True, True, None, None),
     ('Valid request STAT', True, 'STAT', True, True, None, None),
+    ('Valid request EXRE', True, 'EXRE', True, True, None, None),
+    ('Valid request REREGISTER_C', True, 'REREGISTER_C', True, True, None, None),
     ('Valid request CANCEL_PERMIT', True, 'CANCEL_PERMIT', True, True, None, None),
     ('Valid response CANCEL_PERMIT', True, 'CANCEL_PERMIT', True, True, None, None),
     ('Valid response', True, 'THAW', True, False, '1234', 'JOHN SMITH'),

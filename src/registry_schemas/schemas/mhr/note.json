@@ -73,6 +73,17 @@
             "type": [ "string", "null" ],
             "maxLength": 8,
             "description": "Conditionally included with the NCAN document type as the unique document registration number for the unit note registration that has been cancelled."
+        },
+        "nonResidentialOther": {
+            "type": "string",
+            "maxLength": 125,
+            "description": "For EXNR document types where nonResidentialReason is OTHER, provide a brief reason description."
+        },
+        "nonResidentialReason": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": ["BURNT", "DISMANTLED", "DILAPIDATED", "OFFICE", "STORAGE_SHED", "BUNKHOUSE", "OTHER"],
+            "description": "Only include and required for EXNR document types as the reason for the non-residential exemption."
         }
     },
     "required": [

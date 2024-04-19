@@ -20,6 +20,47 @@ from registry_schemas import validate
 from registry_schemas.example_data.ppr import AMENDMENT_STATEMENT
 
 
+ADD_SECURITIES_ACT_ORDERS = [
+    {
+        'courtName': 'Supreme Court of British Columbia',
+        'courtRegistry': 'KAMLOOPS',
+        'fileNumber': 'BC123445',
+        'orderDate': '2024-02-02T00:00:00-08:00',
+        'effectOfOrder': 'Court Order to remove James Smith as debtor.',
+        'courtOrder': True
+    },
+    {
+        'courtName': 'British Columbia Court of Appeal',
+        'courtRegistry': 'Vancouver',
+        'fileNumber': 'BCA123445',
+        'orderDate': '2024-02-02T00:00:00-08:00',
+        'effectOfOrder': 'Court Order to remove James Smith as debtor.',
+        'courtOrder': True
+    }
+]
+DELETE_SECURITIES_ACT_ORDERS = [
+    {
+        'courtName': 'Supreme Court of British Columbia.',
+        'courtRegistry': 'KAMLOOPS',
+        'fileNumber': 'BC123445',
+        'orderDate': '2024-02-02T00:00:00-08:00',
+        'effectOfOrder': 'Court Order to remove James Smith as debtor.',
+        'courtOrder': True
+    }
+]
+DELETE_SECURITIES_ACT_NOTICE = {
+    'noticeId': 1,
+    'securitiesActNoticeType': 'LIEN',
+    'effectiveDateTime': '2024-02-02T00:00:00-08:00',
+    'description': 'TEST DELETE LIEN NOTICE TYPE',
+    'securitiesActOrders': DELETE_SECURITIES_ACT_ORDERS
+}
+ADD_SECURITIES_ACT_NOTICE = {
+    'securitiesActNoticeType': 'LIEN',
+    'effectiveDateTime': '2024-04-12T00:00:00-08:00',
+    'description': 'TEST ADD LIEN NOTICE TYPE',
+    'securitiesActOrders': ADD_SECURITIES_ACT_ORDERS
+}
 # testdata pattern is ({change type}, {is valid})
 TEST_DATA_CHANGE_TYPE = [
     ('AM', True),
@@ -31,6 +72,55 @@ TEST_DATA_CHANGE_TYPE = [
     ('AU', True),
     ('XX', False)
 ]
+# testdata pattern is ({desc}, {valid}, {add}, {delete}, {add_order}, {delete_order)
+TEST_DATA_SEC_ACT = [
+    ('Valid no notice changes', True, None, None, False, False),
+    ('Valid add court order(s)', True, ADD_SECURITIES_ACT_NOTICE, None, True, False),
+    ('Valid delete court order(s)', True, None, DELETE_SECURITIES_ACT_NOTICE, False, True),
+    ('Valid change court orders', True, ADD_SECURITIES_ACT_NOTICE, DELETE_SECURITIES_ACT_NOTICE, True, True),
+    ('Invalid add missing notice type', False, ADD_SECURITIES_ACT_NOTICE, None, True, False),
+    ('Invalid add missing courtOrder', False, ADD_SECURITIES_ACT_NOTICE, None, True, False)
+]
+
+
+@pytest.mark.parametrize('desc,valid,add,delete,add_order,delete_order', TEST_DATA_SEC_ACT)
+def test_sec_act_amendment(desc, valid, add, delete, add_order, delete_order):
+    """Assert that the schema is performing as expected when amending a securities act base registration."""
+    statement = copy.deepcopy(AMENDMENT_STATEMENT)
+    statement['changeType'] = 'AM'
+    del statement['courtOrderInformation']
+    del statement['createDateTime']
+    del statement['amendmentRegistrationNumber']
+    del statement['payment']
+    add_notice = None
+    delete_notice = None
+    if add:
+        add_notice = copy.deepcopy(add)
+        if not add_order:
+            del add_notice['securitiesActOrders']
+    if delete:
+        delete_notice = copy.deepcopy(delete)
+        if not delete_order:
+            del delete_notice['securitiesActOrders']
+    if desc == 'Invalid add missing notice type':
+        del add_notice['securitiesActNoticeType']
+    elif desc == 'Invalid add missing courtOrder':
+        del add_notice['securitiesActOrders'][0]['courtOrder']
+    if add_notice:
+        statement['addSecuritiesActNotices'] = [add_notice]
+    if delete_notice:
+        statement['deleteSecuritiesActNotices'] = [delete_notice]
+
+    is_valid, errors = validate(statement, 'amendmentStatement', 'ppr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
 
 
 @pytest.mark.parametrize('change_type, valid', TEST_DATA_CHANGE_TYPE)

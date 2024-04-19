@@ -58,7 +58,7 @@
         "documentType": {
             "type": "string",
             "maxLength": 20 ,
-            "enum": ["ADDI", "ATTA", "COMP", "CONF", "COUR", "DNCH", "EXRE", "FZE", "INTE", "INTW", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "NCAN", "NRED", "PDEC", "PUBA", "REBU", "REGC", "REGC_CLIENT", "REGC_STAFF", "STAT", "THAW", "WHAL", "AMEND_PERMIT", "CANCEL_PERMIT"]
+            "enum": ["ADDI", "ATTA", "COMP", "CONF", "COUR", "DNCH", "EXRE", "FZE", "INTE", "INTW", "MAID", "MAIL", "MARR", "MEAM", "NAMV", "NCAN", "NRED", "PDEC", "PUBA", "REBU", "REGC", "REGC_CLIENT", "REGC_STAFF", "STAT", "THAW", "WHAL", "AMEND_PERMIT", "CANCEL_PERMIT", "REREGISTER_C"]
         },
         "updateDocumentId": {
             "type": [ "string", "null" ],
