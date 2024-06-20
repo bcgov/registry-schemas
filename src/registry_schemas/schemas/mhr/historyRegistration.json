@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/historyRegistration",
+    "type": "object",
+    "title": "The MH History View Registration Schema",
+    "definitions": {},
+    "anyOf": [{ "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/historyBase" },
+              { "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/registration" },
+              { "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/adminRegistration" },
+              { "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/noteRegistration" },
+              { "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/exemption" },
+              { "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/transfer" },
+              { "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/permit" }]
+}
