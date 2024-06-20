@@ -1,0 +1,55 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/homeHistory",
+    "type": "object",
+    "title": "The MHR Manufactured Home History Schema",
+    "properties": {
+        "mhrNumber": {
+            "type": [ "string", "null" ],
+            "maxLength": 6,
+            "description": "The MHR Number that uniquely identifies the manufactured home."
+        },
+        "statusType": {
+            "type": [ "string", "null" ],
+            "maxLength": 20,
+            "description": "The current status of the home."
+        },
+        "registrations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/historyRegistration"
+            }
+        },
+        "descriptions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/historyDescription"
+            }
+        },
+        "locations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/historyLocation"
+            }
+        },
+        "owners": {
+            "type": "array",
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/historyOwner"
+            }
+        },
+        "notes": {
+            "type": "array",
+            "items": {
+                "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/historyNote"
+            }
+        }
+    },
+    "required": [
+        "registrations"
+    ]
+}

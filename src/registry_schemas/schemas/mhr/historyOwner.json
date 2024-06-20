@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/historyOwner",
+    "type": "object",
+    "title": "The MH History View Owner Schema",
+    "definitions": {},
+    "allOf": [{ "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/historyBase" },
+              { "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/owner" }],
+    "properties": {
+        "groupId": {
+            "type": "integer",
+            "mimimum": 1,
+            "description": "The active group ID for the owner at the point in time of the registration that added the owner."
+        },
+        "groupCount": {
+            "type": "integer",
+            "mimimum": 1,
+            "description": "The number of active owner groups at the point in time of the registration that added the owner."
+        },
+        "groupTenancyType": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Conditionally added if the owner belongs to a tenants in common owner group structure and the type is COMMON. GroupTenancyType represents the tenancy type of the group this owner belongs to."
+        },
+        "ownerCount": {
+            "type": "integer",
+            "mimimum": 1,
+            "description": "The number of owners in the owner group that this owner belongs to. The ownerId starts with 1 and represents the owner's relative ID in the group."
+        },
+        "interest": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Describes the group ownership portion as a fraction. Does not apply and may be omitted for the Sole Ownership (SOLE) type."
+        },
+        "interestNumerator": {
+            "type": "integer",
+            "mimimum": 0,
+            "description": "Represents the group ownership portion as the numerator of a fraction. Does not apply and may be omitted for the Sole Ownership (SOLE) type."
+        },
+        "interestDenominator": {
+            "type": "integer",
+            "mimimum": 0,
+            "description": "Represents the group ownership portion as the denominator of a fraction. Does not apply and may be omitted for the Sole Ownership (SOLE) type."
+        }
+    }
+}
