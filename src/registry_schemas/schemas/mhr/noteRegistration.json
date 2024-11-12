@@ -38,7 +38,7 @@
         },
         "cancelDocumentId": {
             "type": [ "string", "null" ],
-            "maxLength": 8,
+            "maxLength": 10,
             "description": "Only included in requests for the NCAN document type, the document ID of the previously created unit note registration that is being cancelled."
         },
         "payment": {

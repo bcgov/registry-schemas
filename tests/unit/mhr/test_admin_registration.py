@@ -86,7 +86,7 @@ def test_admin_registration(desc, valid, doc_type, has_sub, is_request, client_r
         del data['payment']
         del data['registrationType']
     if desc == 'Invalid update doc id':
-        data['updateDocumentId'] = '123456789'
+        data['updateDocumentId'] = '01234567890'
     elif desc in ('Valid request STAT',
                   'Valid request CANCEL_PERMIT',
                   'Valid response CANCEL_PERMIT'):

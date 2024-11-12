@@ -23,6 +23,14 @@ from registry_schemas.example_data.mhr import QUALIFIED_SUPPLIER
 NAME_50 = '01234567890123456789012345678901234567890123456789'
 BUS_MAX_LENGTH = NAME_50 + NAME_50 + NAME_50
 DBA_MAX_LENGTH = NAME_50 + NAME_50 + NAME_50
+LOCATION_ADDRESS = {
+    'street': '520 Location St',
+    'city': 'Victoria',
+    'region': 'BC',
+    'country': 'CA',
+    'postalCode': 'V8S 2V4'
+}
+
 
 # testdata pattern is ({desc},{valid},{bus},{dba},{phone},{email},{has_address})
 TEST_DATA_SUPPLIER = [
@@ -36,6 +44,41 @@ TEST_DATA_SUPPLIER = [
     ('Invalid dba name', False, 'BUS NAME', DBA_MAX_LENGTH + 'X', None, None, True),
     ('Invalid email', False, 'BUS NAME', None, None, 'invalid format', True)
 ]
+# testdata pattern is ({desc},{valid},{confirm_req},{loc_address})
+TEST_DATA_DEALER = [
+    ('Valid all', True, True, LOCATION_ADDRESS),
+    ('Valid no confirm req', True, None, LOCATION_ADDRESS),
+    ('Valid confirm req false', True, False, LOCATION_ADDRESS),
+    ('Valid no loc address', True, True, None),
+    ('Invalid address', False, True, LOCATION_ADDRESS)
+]
+
+
+@pytest.mark.parametrize('desc,valid, confirm_req, loc_address', TEST_DATA_DEALER)
+def test_dealer(desc, valid, confirm_req, loc_address):
+    """Assert that the schema is performing as expected for dealer information."""
+    data = copy.deepcopy(QUALIFIED_SUPPLIER)
+    del data['phoneExtension']
+    if confirm_req is not None:
+        if confirm_req:
+            data['confirmRequirements'] = True
+        else:
+            data['confirmRequirements'] = False
+    if loc_address:
+        address = copy.deepcopy(loc_address)
+        if desc == 'Invalid address':
+            del address['postalCode']
+        data['locationAddress'] = address
+
+    is_valid, errors = validate(data, 'qualifiedSupplier', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
 
 
 @pytest.mark.parametrize('desc,valid,bus_name,dba_name,phone,email,has_address', TEST_DATA_SUPPLIER)
