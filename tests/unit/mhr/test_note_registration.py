@@ -34,7 +34,7 @@ TEST_DATA = [
 TEST_DATA_CANCEL = [
     ('Valid request', True, '12345678', True, None, None, None),
     ('Valid response', True, None, False, 'CAU', '00545678', 'NOTICE OF CAUTION'),
-    ('Invalid request doc id', False, '123456789', True, None, None, None)
+    ('Invalid request doc id', False, '01234567890', True, None, None, None)
 ]
 
 

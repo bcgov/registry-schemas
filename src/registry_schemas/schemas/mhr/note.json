@@ -12,7 +12,7 @@
         },
        "documentId": {
             "type": "string",
-            "maxLength": 8,
+            "maxLength": 10,
             "description": "The unique document ID for the registration associated with the note."
         },
         "documentRegistrationNumber": {

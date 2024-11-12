@@ -12,7 +12,7 @@
         },
         "documentId": {
             "type": [ "string", "null" ],
-            "maxLength": 8,
+            "maxLength": 10,
             "minLength": 8,
             "description": "Unique registration document ID/number assigned by the Manufactured Home Registry."
         },

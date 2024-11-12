@@ -17,7 +17,7 @@
         },
         "documentId": {
             "type": [ "string", "null" ],
-            "maxLength": 8,
+            "maxLength": 10,
             "minLength": 8,
             "description": "Unique registration document ID/number required for new registrations as a reference to the decal; assigned by the Manufactured Home Registry."
         },

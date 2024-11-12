@@ -44,6 +44,14 @@
         "termsAccepted": {
             "type": "boolean",
             "description": "Included in the POST response to indicate the terms of agreement document has been accepted by the account submitting the request."
+        },
+        "confirmRequirements": {
+            "type": "boolean",
+            "description": "Applies to QS dealers: indicates that the dealer has confirmed acceptance of additional requirements regarding registrations."
+        },
+        "locationAddress": {
+            "$ref": "https://bcrs.gov.bc.ca/.well_known/schemas/common/address",
+            "description": "Applies to QS dealers: specifies the location address for transport permit related registrations."
         }
     },
     "anyOf":[
