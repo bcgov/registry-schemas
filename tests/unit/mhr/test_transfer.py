@@ -17,7 +17,7 @@ import copy
 import pytest
 
 from registry_schemas import validate
-from registry_schemas.example_data.mhr import TRANSFER
+from registry_schemas.example_data.mhr import OWNER_GROUP, TRANSFER
 
 
 PARTY_VALID = {
@@ -55,6 +55,39 @@ PARTY_INVALID = {
 }
 LONG_CLIENT_REF = '012345678901234567890123456789012345678901234567890'
 MAX_CONSIDERATION = '01234567890123456789012345678901234567890123456789012345678901234567890123456789'
+OWNER_GROUPS = [
+    OWNER_GROUP
+]
+ADDRESS1 = {
+  'city': 'delivery_address city',
+  'region': 'BC',
+  'postalCode': 'V8S2J9',
+  'country': 'CA'
+}
+ADDRESS2 = {
+  'street': 'delivery_address - address line one',
+  'region': 'BC',
+  'postalCode': 'V8S2J9',
+  'country': 'CA'
+}
+ADDRESS3 = {
+  'street': 'delivery_address - address line one',
+  'city': 'delivery_address city',
+  'postalCode': 'V8S2J9',
+  'country': 'CA'
+}
+ADDRESS4 = {
+  'street': 'delivery_address - address line one',
+  'city': 'delivery_address city',
+  'region': 'BC',
+  'country': 'CA'
+}
+ADDRESS5 = {
+  'street': 'delivery_address - address line one',
+  'city': 'delivery_address city',
+  'region': 'BC',
+  'postalCode': 'V8S2J9'
+}
 
 # testdata pattern is ({desc},{valid},{sub_party},{add},{delete},{is_request},{client_ref})
 TEST_DATA = [
@@ -107,6 +140,40 @@ TEST_DATA_DOC_TYPE = [
     ('Valid VEST', True,  'VEST'),
     ('Invalid type', False,  'WILL')
 ]
+# testdata pattern is ({desc},{valid},{delete_owners},{delete_address})
+TEST_DATA_DELETE_GROUP = [
+   ('Valid', True, False, None),
+   ('Valid no owners', True, True, None),
+   ('Valid no address street', True, False, ADDRESS1),
+   ('Valid no address city', True, False, ADDRESS2),
+   ('Valid no address region', True, False, ADDRESS3),
+   ('Valid no address pcode', True, False, ADDRESS4),
+   ('Valid no address country', True, False, ADDRESS5),
+ ]
+
+
+@pytest.mark.parametrize('desc,valid,del_owners,del_address', TEST_DATA_DELETE_GROUP)
+def test_transfer_delete_group(desc, valid, del_owners, del_address):
+    """Assert that the schema is performing as expected."""
+    data = copy.deepcopy(TRANSFER)
+    del_group = copy.deepcopy(OWNER_GROUPS)
+    if del_address:
+        for owner in del_group[0].get('owners'):
+            owner['address'] = del_address
+    elif del_owners:
+        del del_group[0]['owners']
+    data['deleteOwnerGroups'] = del_group
+
+    is_valid, errors = validate(data, 'transfer', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
 
 
 @pytest.mark.parametrize('desc,valid,sub_party,add,delete,is_request,client_ref', TEST_DATA)
