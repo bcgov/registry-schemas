@@ -101,6 +101,7 @@ TEST_DATA_AMEND_CORRECT_OWNERS = [
    ('Valid no address country', True, 'PUBA', False, ADDRESS5),
  ]
 
+
 @pytest.mark.parametrize('desc,valid,doc_type,has_sub,is_request,client_ref,attention', TEST_DATA)
 def test_admin_registration(desc, valid, doc_type, has_sub, is_request, client_ref, attention):
     """Assert that the staff admin registration schema is performing as expected."""
