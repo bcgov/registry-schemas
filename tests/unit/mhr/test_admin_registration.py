@@ -210,7 +210,6 @@ def test_admin_amend_correct_owners(desc, valid, doc_type, del_owners, del_addre
     elif del_owners:
         del del_group[0]['owners']
     data['deleteOwnerGroups'] = del_group
-
     is_valid, errors = validate(data, 'adminRegistration', 'mhr')
 
     if errors:
