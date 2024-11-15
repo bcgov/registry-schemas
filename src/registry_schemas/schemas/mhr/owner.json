@@ -73,6 +73,11 @@
             "type": "string",
             "maxLength": 20,
             "description": "Include only for transfer due to death registration types when the owner is in the deleteOwnerGroups, not added, and is a business/organization."
+        },
+        "previousOwnerId": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Optional for an addOwnerGroups owner, used in transfer registrations to indicate the owner information has been changed except for the name. In other words, the previousOwnerId in an an addOwnerGroups owner maps to an ownerId in a deleteOwnerGroups owner and the names must be identical."
         }
     },
     "oneOf":[

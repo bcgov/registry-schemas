@@ -21,6 +21,37 @@ from registry_schemas.example_data.mhr import OWNER_GROUP
 
 
 LONG_INTEREST = '01234567890123456789'
+ADDRESS1 = {
+  'city': 'delivery_address city',
+  'region': 'BC',
+  'postalCode': 'V8S2J9',
+  'country': 'CA'
+}
+ADDRESS2 = {
+  'street': 'delivery_address - address line one',
+  'region': 'BC',
+  'postalCode': 'V8S2J9',
+  'country': 'CA'
+}
+ADDRESS3 = {
+  'street': 'delivery_address - address line one',
+  'city': 'delivery_address city',
+  'postalCode': 'V8S2J9',
+  'country': 'CA'
+}
+ADDRESS4 = {
+  'street': 'delivery_address - address line one',
+  'city': 'delivery_address city',
+  'region': 'BC',
+  'country': 'CA'
+}
+ADDRESS5 = {
+  'street': 'delivery_address - address line one',
+  'city': 'delivery_address city',
+  'region': 'BC',
+  'postalCode': 'V8S2J9'
+}
+
 # testdata pattern is ({desc}, {valid}, {group_id}, {owners}, {interest}, {numerator}, {type}, {status}, {denominator})
 TEST_DATA_OWNER_GROUP = [
     ('Valid SOLE type', True, 1, True, None, 0, 'SOLE', None, None),
@@ -42,6 +73,54 @@ TEST_DATA_OWNER_GROUP = [
     ('Invalid denominator', False, 1, True, None, 1, None, None, -1),
     ('Invalid interest too long', False, 1, True, LONG_INTEREST + 'X', 1, 'COMMON', None, None)
 ]
+# testdata pattern is ({desc}, {valid}, {group_id}, {owners}, {type}, {status}, {address})
+TEST_DATA_DELETE_GROUP = [
+    ('Valid SOLE type', True, 1, True, 'SOLE', None, None),
+    ('Valid JOINT type', True, 1, True, 'JOINT', None, None),
+    ('Valid COMMON type', True, 1, True, 'COMMON', None, None),
+    ('Valid NA type', True, 1, True, 'NA', None, None),
+    ('Valid no owners', True, 1, None, 'SOLE', None, None),
+    ('Invalid no group id', False, None, True, 'SOLE', 'ACTIVE', None),
+    ('Invalid missing type', False, 1, True, None, 'ACTIVE', None),
+    ('Valid no address street', True, 1, True, 'SOLE', None, ADDRESS1),
+    ('Valid no address city', True, 1, True, 'SOLE', None, ADDRESS2),
+    ('Valid no address region', True, 1, True, 'SOLE', None, ADDRESS3),
+    ('Valid no address pcode', True, 1, True, 'SOLE', None, ADDRESS4),
+    ('Valid no address country', True, 1, True, 'SOLE', None, ADDRESS5)
+]
+
+
+@pytest.mark.parametrize('desc,valid,group_id,owners,type,status,address', TEST_DATA_DELETE_GROUP)
+def test_delete_group(desc, valid, group_id, owners, type, status, address):
+    """Assert that the schema is performing as expected for the delete owner group."""
+    data = copy.deepcopy(OWNER_GROUP)
+    if not owners:
+        del data['owners']
+    if group_id:
+        data['groupId'] = group_id
+    else:
+        del data['groupId']
+    if type:
+        data['type'] = type
+    else:
+        del data['type']
+    if status:
+        data['status'] = status
+    else:
+        del data['status']
+    if address:
+        for owner in data.get('owners'):
+            owner['address'] = address
+    is_valid, errors = validate(data, 'deleteOwnerGroup', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
 
 
 @pytest.mark.parametrize('desc,valid,group_id,owners,interest,numerator,type,status,denominator', TEST_DATA_OWNER_GROUP)

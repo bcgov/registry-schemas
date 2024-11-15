@@ -24,6 +24,36 @@ LONG_CLIENT_REF = '012345678901234567890123456789012345678901234567890'
 OWNER_GROUPS = [
     OWNER_GROUP
 ]
+ADDRESS1 = {
+  'city': 'delivery_address city',
+  'region': 'BC',
+  'postalCode': 'V8S2J9',
+  'country': 'CA'
+}
+ADDRESS2 = {
+  'street': 'delivery_address - address line one',
+  'region': 'BC',
+  'postalCode': 'V8S2J9',
+  'country': 'CA'
+}
+ADDRESS3 = {
+  'street': 'delivery_address - address line one',
+  'city': 'delivery_address city',
+  'postalCode': 'V8S2J9',
+  'country': 'CA'
+}
+ADDRESS4 = {
+  'street': 'delivery_address - address line one',
+  'city': 'delivery_address city',
+  'region': 'BC',
+  'country': 'CA'
+}
+ADDRESS5 = {
+  'street': 'delivery_address - address line one',
+  'city': 'delivery_address city',
+  'region': 'BC',
+  'postalCode': 'V8S2J9'
+}
 # testdata pattern is ({desc},{valid},{doc_type},{has_submitting},{is_request},{client_ref}, {attention})
 TEST_DATA = [
     ('Valid request COUR', True, 'COUR', True, True, None, None),
@@ -60,6 +90,16 @@ TEST_DATA_AMEND_CORRECT = [
     ('Invalid staff correction description', False, 'REGC_STAFF', None, None, DESCRIPTION, None),
     ('Invalid amendment owners', False, 'PUBA', None, None, None, OWNER_GROUPS),
 ]
+# testdata pattern is ({desc},{valid},{doc_type},{delete_owners},{delete_address})
+TEST_DATA_AMEND_CORRECT_OWNERS = [
+   ('Valid amendment', True, 'PUBA', False, None),
+   ('Valid correction no owners', True, 'REGC_STAFF', True, None),
+   ('Valid no address street', True, 'PUBA', False, ADDRESS1),
+   ('Valid no address city', True, 'PUBA', False, ADDRESS2),
+   ('Valid no address region', True, 'PUBA', False, ADDRESS3),
+   ('Valid no address pcode', True, 'PUBA', False, ADDRESS4),
+   ('Valid no address country', True, 'PUBA', False, ADDRESS5),
+ ]
 
 
 @pytest.mark.parametrize('desc,valid,doc_type,has_sub,is_request,client_ref,attention', TEST_DATA)
@@ -140,6 +180,36 @@ def test_admin_amend_correct(desc, valid, doc_type, status, location, descriptio
             del bad_owners[0]['type']
             data['addOwnerGroups'] = bad_owners
 
+    is_valid, errors = validate(data, 'adminRegistration', 'mhr')
+
+    if errors:
+        for err in errors:
+            print(err.message)
+
+    if valid:
+        assert is_valid
+    else:
+        assert not is_valid
+
+
+@pytest.mark.parametrize('desc,valid,doc_type,del_owners,del_address', TEST_DATA_AMEND_CORRECT_OWNERS)
+def test_admin_amend_correct_owners(desc, valid, doc_type, del_owners, del_address):
+    """Assert that the staff admin registration schema is performing as expected for amendments/corrections."""
+    data = copy.deepcopy(ADMIN_REGISTRATION)
+    add_group = copy.deepcopy(OWNER_GROUPS)
+    del_group = copy.deepcopy(OWNER_GROUPS)
+    data['documentType'] = doc_type
+    del data['mhrNumber']
+    del data['createDateTime']
+    del data['payment']
+    del data['registrationType']
+    data['addOwnerGroups'] = add_group
+    if del_address:
+        for owner in del_group[0].get('owners'):
+            owner['address'] = del_address
+    elif del_owners:
+        del del_group[0]['owners']
+    data['deleteOwnerGroups'] = del_group
     is_valid, errors = validate(data, 'adminRegistration', 'mhr')
 
     if errors:

@@ -40,7 +40,8 @@ TEST_DATA_OWNER = [
     ('Invalid phone too long', False, 'org name', None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567          8', 'suffix'),
     ('Invalid org too long', False, LONG_ORG_NAME, None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567', 'suffix'),
     ('Invalid suffix too long', False, LONG_ORG_NAME, None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567',
-     SUFFIX_MAX_LENGTH + 'X')
+     SUFFIX_MAX_LENGTH + 'X'),
+    ('Invalid previous owner id', False, 'org name', None, ADDRESS, 'SOLE', 'ACTIVE', None, None)
 ]
 # testdata pattern is ({valid}, {party_type}, {party_desc})
 TEST_DATA_OWNER_PARTY_TYPE = [
@@ -89,7 +90,10 @@ def test_owner(desc, valid, org, individual, address, type, status, phone, suffi
         data['phoneNumber'] = phone
     if suffix:
         data['suffix'] = suffix
-
+    if desc == 'Valid org active SO':
+        data['previousOwnerId'] = 1
+    elif desc == 'Invalid previous owner id':
+        data['previousOwnerId'] = 0
     is_valid, errors = validate(data, 'owner', 'mhr')
 
     if errors:

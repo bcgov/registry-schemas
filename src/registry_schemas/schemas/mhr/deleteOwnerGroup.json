@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://bcrs.gov.bc.ca/.well_known/schemas/mhr/deleteOwnerGroup",
+    "type": "object",
+    "title": "The MHR Delete Owner Group Schema - skip owner validation",
+    "definitions": {},
+    "properties": {
+       "groupId": {
+            "type": "integer",
+            "mimimum": 1,
+            "description": "Assigned by the system if not provided. Starts with 1 and increments for each group associated with a home."
+        },
+        "type": {
+            "type": "string",
+            "maxLength": 20,
+            "enum": ["COMMON", "JOINT", "SOLE", "NA", "JT", "SO", "TC"],
+            "description": "The type of owner group (tenancy type). COMMON - tenants in common; JOINT - joint tenancy; SOLE - sole ownership; NA - not applicable; JT - joint tenancy (deprecated); SO - sole ownership (deprecated); TC - tenants in common (deprecated)."
+        },
+        "status": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "The status of the owner."
+        }
+    },
+    "required": [
+        "groupId",
+        "type"
+    ]
+}
