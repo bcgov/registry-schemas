@@ -80,6 +80,7 @@ TEST_DATA_REG_TYPE = [
     ('SV', True),
     ('TO', True),
     ('SE', True),
+    ('CL', True),
     ('XX', False),
 ]
 # testdata pattern is ({other type description}, {is valid})
