@@ -36,7 +36,7 @@ TEST_VALID_ALL = {
 }
 TEST_VALID_MINIMUM = {
     'registrationNumber': '9000100B',
-    'registrationType': 'SA',
+    'registrationType': 'CL',
     'registrationClass': 'PPSALIEN',
     'path': '/ppr/api/v1/financing-statements/9000100B',
     'createDateTime': '2021-06-03T22:58:45+00:00'
