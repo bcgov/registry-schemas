@@ -12,7 +12,7 @@
         },
        "organizationName": {
             "type": "string",
-            "maxLength": 70,
+            "maxLength": 150,
             "description": "The organization/business name of the owner."
         },
         "individualName": {
@@ -51,7 +51,7 @@
         },
         "suffix": {
             "type": "string",
-            "maxLength": 70,
+            "maxLength": 100,
             "description": "The organization or individual name suffix."
         },
         "deathCertificateNumber": {

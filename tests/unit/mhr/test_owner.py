@@ -21,11 +21,13 @@ from registry_schemas.example_data.mhr import ADDRESS, OWNER, PERSON_NAME
 
 
 # testdata pattern is ({desc}, {valid}, {org}, {individual}, {address}, {type}, {status}, {phone}, {suffix})
-LONG_ORG_NAME = '01234567890123456789012345678901234567890123456789012345678901234567890'
-SUFFIX_MAX_LENGTH = '0123456789012345678901234567890123456789012345678901234567890123456789'
+TEXT_60 = '012345678901234567890123456789012345678901234567890123456789'
+TEXT_30 = '012345678901234567890123456789'
+LONG_ORG_NAME = TEXT_60 + TEXT_60 + TEXT_30
+SUFFIX_MAX_LENGTH = '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789'
 TEST_DATA_OWNER = [
     ('Valid org active SO', True, 'org name', None, ADDRESS, 'SOLE', 'ACTIVE', None, None),
-    ('Valid org active SOLE', True, 'org name', None, ADDRESS, 'SOLE', 'ACTIVE', None, None),
+    ('Valid org active SOLE', True, LONG_ORG_NAME, None, ADDRESS, 'SOLE', 'ACTIVE', None, None),
     ('Valid ind exempt', True, None, PERSON_NAME, ADDRESS, 'SOLE', 'EXEMPT', None, 'suffix'),
     ('Valid JOINT type previous', True, 'org name', None, ADDRESS, 'JOINT', 'PREVIOUS', None, 'suffix'),
     ('Valid COMMON type', True, 'org name', None, ADDRESS, 'COMMON', 'ACTIVE', '2501234567', SUFFIX_MAX_LENGTH),
@@ -38,7 +40,7 @@ TEST_DATA_OWNER = [
     ('Invalid type', False, 'org name', None, ADDRESS, 'XX', 'ACTIVE', '2501234567', 'suffix'),
     ('Invalid status', False, 'org name', None, ADDRESS, 'SOLE', 'XXX', '2501234567', 'suffix'),
     ('Invalid phone too long', False, 'org name', None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567          8', 'suffix'),
-    ('Invalid org too long', False, LONG_ORG_NAME, None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567', 'suffix'),
+    ('Invalid org too long', False, LONG_ORG_NAME + 'X', None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567', 'suffix'),
     ('Invalid suffix too long', False, LONG_ORG_NAME, None, ADDRESS, 'SOLE', 'ACTIVE', '2501234567',
      SUFFIX_MAX_LENGTH + 'X'),
     ('Invalid previous owner id', False, 'org name', None, ADDRESS, 'SOLE', 'ACTIVE', None, None)
