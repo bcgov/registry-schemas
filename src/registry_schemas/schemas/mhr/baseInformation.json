@@ -12,12 +12,12 @@
         },
         "make": {
             "type": [ "string", "null" ],
-            "maxLength": 65,
+            "maxLength": 60,
             "description": "Make of home."
         },
         "model": {
             "type": [ "string", "null" ],
-            "maxLength": 65,
+            "maxLength": 60,
             "description": "Model name."
         },
         "circa": {

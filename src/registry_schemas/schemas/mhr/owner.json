@@ -51,7 +51,7 @@
         },
         "suffix": {
             "type": "string",
-            "maxLength": 70,
+            "maxLength": 100,
             "description": "The organization or individual name suffix."
         },
         "deathCertificateNumber": {
